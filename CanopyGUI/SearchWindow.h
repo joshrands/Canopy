@@ -24,6 +24,10 @@ public:
 private slots:
     void on_backButton_clicked();
 
+    void on_searchButton_clicked();
+
+    void on_doSearchButton_clicked();
+
 private:
     Ui::SearchWindow *ui;
 

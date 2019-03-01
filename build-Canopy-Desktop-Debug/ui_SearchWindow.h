@@ -13,9 +13,11 @@
 #include <QtWidgets/QAction>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QButtonGroup>
+#include <QtWidgets/QDateEdit>
 #include <QtWidgets/QFrame>
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLabel>
+#include <QtWidgets/QLineEdit>
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QMenu>
 #include <QtWidgets/QMenuBar>
@@ -45,6 +47,24 @@ public:
     QLabel *dateLabel;
     QLabel *label_5;
     QPushButton *backButton;
+    QFrame *frame;
+    QLabel *label_2;
+    QPushButton *searchButton;
+    QPushButton *inButton;
+    QPushButton *outButton;
+    QFrame *emailFrame;
+    QFrame *titleFrame;
+    QLabel *label_9;
+    QLabel *label_11;
+    QLabel *label_12;
+    QFrame *searchFrame;
+    QLabel *label_4;
+    QLineEdit *lineEdit;
+    QPushButton *doSearchButton;
+    QLabel *label_6;
+    QDateEdit *startDate;
+    QLabel *label_7;
+    QDateEdit *endDate;
     QMenuBar *menuBar;
     QMenu *menuCanopy_Search;
     QToolBar *mainToolBar;
@@ -99,7 +119,7 @@ public:
         emailCountLabel->setFont(font2);
         label = new QLabel(infoFrame);
         label->setObjectName(QStringLiteral("label"));
-        label->setGeometry(QRect(20, 20, 121, 21));
+        label->setGeometry(QRect(20, 20, 221, 21));
         label->setFont(font1);
         label_8 = new QLabel(infoFrame);
         label_8->setObjectName(QStringLiteral("label_8"));
@@ -131,7 +151,104 @@ public:
         QFont font3;
         font3.setPointSize(14);
         backButton->setFont(font3);
+        frame = new QFrame(centralWidget);
+        frame->setObjectName(QStringLiteral("frame"));
+        frame->setGeometry(QRect(260, 10, 751, 51));
+        frame->setFrameShape(QFrame::StyledPanel);
+        frame->setFrameShadow(QFrame::Raised);
+        label_2 = new QLabel(frame);
+        label_2->setObjectName(QStringLiteral("label_2"));
+        label_2->setGeometry(QRect(0, 0, 50, 50));
+        QFont font4;
+        font4.setPointSize(27);
+        label_2->setFont(font4);
+        label_2->setAlignment(Qt::AlignCenter);
+        searchButton = new QPushButton(frame);
+        searchButton->setObjectName(QStringLiteral("searchButton"));
+        searchButton->setGeometry(QRect(50, 5, 481, 41));
+        QFont font5;
+        font5.setPointSize(18);
+        font5.setBold(true);
+        font5.setWeight(75);
+        searchButton->setFont(font5);
+        inButton = new QPushButton(frame);
+        inButton->setObjectName(QStringLiteral("inButton"));
+        inButton->setGeometry(QRect(544, 5, 101, 41));
+        inButton->setFont(font5);
+        outButton = new QPushButton(frame);
+        outButton->setObjectName(QStringLiteral("outButton"));
+        outButton->setGeometry(QRect(645, 5, 101, 41));
+        outButton->setFont(font5);
+        emailFrame = new QFrame(centralWidget);
+        emailFrame->setObjectName(QStringLiteral("emailFrame"));
+        emailFrame->setGeometry(QRect(260, 60, 751, 771));
+        emailFrame->setFrameShape(QFrame::StyledPanel);
+        emailFrame->setFrameShadow(QFrame::Raised);
+        titleFrame = new QFrame(emailFrame);
+        titleFrame->setObjectName(QStringLiteral("titleFrame"));
+        titleFrame->setGeometry(QRect(0, 0, 751, 61));
+        titleFrame->setFrameShape(QFrame::StyledPanel);
+        titleFrame->setFrameShadow(QFrame::Raised);
+        label_9 = new QLabel(titleFrame);
+        label_9->setObjectName(QStringLiteral("label_9"));
+        label_9->setGeometry(QRect(20, 6, 191, 51));
+        label_9->setFont(font3);
+        label_11 = new QLabel(titleFrame);
+        label_11->setObjectName(QStringLiteral("label_11"));
+        label_11->setGeometry(QRect(180, 5, 191, 51));
+        label_11->setFont(font3);
+        label_12 = new QLabel(titleFrame);
+        label_12->setObjectName(QStringLiteral("label_12"));
+        label_12->setGeometry(QRect(640, 6, 131, 51));
+        label_12->setFont(font3);
+        searchFrame = new QFrame(centralWidget);
+        searchFrame->setObjectName(QStringLiteral("searchFrame"));
+        searchFrame->setGeometry(QRect(260, 60, 751, 771));
+        searchFrame->setFrameShape(QFrame::StyledPanel);
+        searchFrame->setFrameShadow(QFrame::Raised);
+        label_4 = new QLabel(searchFrame);
+        label_4->setObjectName(QStringLiteral("label_4"));
+        label_4->setGeometry(QRect(20, 16, 141, 31));
+        label_4->setFont(font3);
+        label_4->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
+        lineEdit = new QLineEdit(searchFrame);
+        lineEdit->setObjectName(QStringLiteral("lineEdit"));
+        lineEdit->setGeometry(QRect(170, 10, 571, 41));
+        lineEdit->setFont(font2);
+        doSearchButton = new QPushButton(searchFrame);
+        doSearchButton->setObjectName(QStringLiteral("doSearchButton"));
+        doSearchButton->setGeometry(QRect(280, 170, 201, 41));
+        label_6 = new QLabel(searchFrame);
+        label_6->setObjectName(QStringLiteral("label_6"));
+        label_6->setGeometry(QRect(20, 60, 141, 31));
+        label_6->setFont(font3);
+        label_6->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
+        startDate = new QDateEdit(searchFrame);
+        startDate->setObjectName(QStringLiteral("startDate"));
+        startDate->setGeometry(QRect(170, 55, 251, 41));
+        label_7 = new QLabel(searchFrame);
+        label_7->setObjectName(QStringLiteral("label_7"));
+        label_7->setGeometry(QRect(20, 105, 141, 31));
+        label_7->setFont(font3);
+        label_7->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
+        endDate = new QDateEdit(searchFrame);
+        endDate->setObjectName(QStringLiteral("endDate"));
+        endDate->setGeometry(QRect(170, 100, 251, 41));
+        label_4->raise();
+        lineEdit->raise();
+        doSearchButton->raise();
+        label_6->raise();
+        startDate->raise();
+        label_7->raise();
+        endDate->raise();
+        emailFrame->raise();
         SearchWindow->setCentralWidget(centralWidget);
+        searchFrame->raise();
+        suspectFrame->raise();
+        infoFrame->raise();
+        backButton->raise();
+        frame->raise();
+        emailFrame->raise();
         menuBar = new QMenuBar(SearchWindow);
         menuBar->setObjectName(QStringLiteral("menuBar"));
         menuBar->setGeometry(QRect(0, 0, 1250, 22));
@@ -160,7 +277,7 @@ public:
         label_10->setText(QApplication::translate("SearchWindow", "Date Imported", 0));
         label_3->setText(QApplication::translate("SearchWindow", "Source", 0));
         emailCountLabel->setText(QApplication::translate("SearchWindow", "###", 0));
-        label->setText(QApplication::translate("SearchWindow", "Warrant", 0));
+        label->setText(QApplication::translate("SearchWindow", "Warrant Number", 0));
         label_8->setText(QApplication::translate("SearchWindow", "# of Emails", 0));
         warrantNumberLabel->setText(QApplication::translate("SearchWindow", "###", 0));
         sourceLabel->setText(QApplication::translate("SearchWindow", "Gmail", 0));
@@ -168,6 +285,17 @@ public:
         dateLabel->setText(QApplication::translate("SearchWindow", "02/27/2019", 0));
         label_5->setText(QApplication::translate("SearchWindow", "Size", 0));
         backButton->setText(QApplication::translate("SearchWindow", "Back", 0));
+        label_2->setText(QApplication::translate("SearchWindow", "O", 0));
+        searchButton->setText(QApplication::translate("SearchWindow", "OPEN SEARCH", 0));
+        inButton->setText(QApplication::translate("SearchWindow", "IN", 0));
+        outButton->setText(QApplication::translate("SearchWindow", "OUT", 0));
+        label_9->setText(QApplication::translate("SearchWindow", "Email", 0));
+        label_11->setText(QApplication::translate("SearchWindow", "Subject Header", 0));
+        label_12->setText(QApplication::translate("SearchWindow", "Date", 0));
+        label_4->setText(QApplication::translate("SearchWindow", "Keyword/User:", 0));
+        doSearchButton->setText(QApplication::translate("SearchWindow", "SEARCH", 0));
+        label_6->setText(QApplication::translate("SearchWindow", "Start Date:", 0));
+        label_7->setText(QApplication::translate("SearchWindow", "End Date:", 0));
         menuCanopy_Search->setTitle(QApplication::translate("SearchWindow", "Canopy Search", 0));
     } // retranslateUi
 

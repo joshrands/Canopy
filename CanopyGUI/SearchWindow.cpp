@@ -11,6 +11,9 @@ SearchWindow::SearchWindow(QWidget *parent) :
 
     ui->suspectFrame->setStyleSheet("background-color: gray;");
     ui->infoFrame->setStyleSheet("background-color: gray;");
+    ui->outButton->setStyleSheet("background-color: black;");
+
+    ui->searchFrame->setVisible(false);
 }
 
 SearchWindow::~SearchWindow()
@@ -36,4 +39,16 @@ void SearchWindow::on_backButton_clicked()
     win->show();
 
     hide();
+}
+
+void SearchWindow::on_searchButton_clicked()
+{
+    ui->searchFrame->setVisible(true);
+    ui->emailFrame->setVisible(false);
+}
+
+void SearchWindow::on_doSearchButton_clicked()
+{
+    ui->searchFrame->setVisible(false);
+    ui->emailFrame->setVisible(true);
 }

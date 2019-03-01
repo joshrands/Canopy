@@ -4,6 +4,10 @@
 #include <QMainWindow>
 #include <QList>
 #include <QFileDialog>
+#include <QDebug>
+#include <QStringList>
+
+#include "SearchWindow.h"
 
 namespace Ui {
 class WelcomeWindow;
@@ -24,14 +28,21 @@ private slots:
 
     void on_warrantNumberField_editingFinished();
 
+    void on_evaluateButton_clicked();
+
 private:
     Ui::WelcomeWindow *ui;
 
     QList<QString> validFileTypes;
     QString currentDirectory;
+
     QString fileName;
+    QString suspectName;
+    int warrantNumber;
 
     void checkEvaluate();
+    QString getFileNameFromPath(QString path);
+    void getFieldValues();
 };
 
 #endif // WELCOMEWINDOW_H

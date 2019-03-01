@@ -15,8 +15,18 @@ public:
     explicit SearchWindow(QWidget *parent = 0);
     ~SearchWindow();
 
+    void initialize();
+
+    void setFileName(QString name) { this->fileName = name; }
+    void setSuspectName(QString name) { this->suspectName = name; }
+    void setWarrantNumber(int num) { this->warrantNumber = num; }
+
 private:
     Ui::SearchWindow *ui;
+
+    QString fileName;
+    QString suspectName;
+    int warrantNumber;
 };
 
 #endif // SEARCHWINDOW_H

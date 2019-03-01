@@ -49,12 +49,12 @@ OBJECTS_DIR   = ./
 ####### Files
 
 SOURCES       = ../CanopyGUI/main.cpp \
-		../CanopyGUI/SearchSindow.cpp \
-		../CanopyGUI/WelcomeWindow.cpp moc_SearchWindow.cpp \
+		../CanopyGUI/WelcomeWindow.cpp \
+		../CanopyGUI/SearchWindow.cpp moc_SearchWindow.cpp \
 		moc_WelcomeWindow.cpp
 OBJECTS       = main.o \
-		SearchSindow.o \
 		WelcomeWindow.o \
+		SearchWindow.o \
 		moc_SearchWindow.o \
 		moc_WelcomeWindow.o
 DIST          = /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
@@ -115,8 +115,8 @@ DIST          = /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/lex.prf \
 		../CanopyGUI/Canopy.pro ../CanopyGUI/SearchWindow.h \
 		../CanopyGUI/WelcomeWindow.h ../CanopyGUI/main.cpp \
-		../CanopyGUI/SearchSindow.cpp \
-		../CanopyGUI/WelcomeWindow.cpp
+		../CanopyGUI/WelcomeWindow.cpp \
+		../CanopyGUI/SearchWindow.cpp
 QMAKE_TARGET  = Canopy
 DESTDIR       = #avoid trailing-slash linebreak
 TARGET        = Canopy
@@ -283,7 +283,7 @@ distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
 	$(COPY_FILE) --parents ../CanopyGUI/SearchWindow.h ../CanopyGUI/WelcomeWindow.h $(DISTDIR)/
-	$(COPY_FILE) --parents ../CanopyGUI/main.cpp ../CanopyGUI/SearchSindow.cpp ../CanopyGUI/WelcomeWindow.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents ../CanopyGUI/main.cpp ../CanopyGUI/WelcomeWindow.cpp ../CanopyGUI/SearchWindow.cpp $(DISTDIR)/
 	$(COPY_FILE) --parents ../CanopyGUI/SearchWindow.ui ../CanopyGUI/WelcomeWindow.ui $(DISTDIR)/
 
 
@@ -337,16 +337,17 @@ compiler_clean: compiler_moc_header_clean compiler_uic_clean
 
 ####### Compile
 
-main.o: ../CanopyGUI/main.cpp ../CanopyGUI/SearchWindow.h
+main.o: ../CanopyGUI/main.cpp ../CanopyGUI/SearchWindow.h \
+		../CanopyGUI/WelcomeWindow.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main.o ../CanopyGUI/main.cpp
-
-SearchSindow.o: ../CanopyGUI/SearchSindow.cpp ../CanopyGUI/SearchWindow.h \
-		ui_SearchWindow.h
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o SearchSindow.o ../CanopyGUI/SearchSindow.cpp
 
 WelcomeWindow.o: ../CanopyGUI/WelcomeWindow.cpp ../CanopyGUI/WelcomeWindow.h \
 		ui_WelcomeWindow.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o WelcomeWindow.o ../CanopyGUI/WelcomeWindow.cpp
+
+SearchWindow.o: ../CanopyGUI/SearchWindow.cpp ../CanopyGUI/SearchWindow.h \
+		ui_SearchWindow.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o SearchWindow.o ../CanopyGUI/SearchWindow.cpp
 
 moc_SearchWindow.o: moc_SearchWindow.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_SearchWindow.o moc_SearchWindow.cpp

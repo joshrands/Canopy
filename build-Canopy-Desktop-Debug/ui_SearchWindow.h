@@ -15,6 +15,7 @@
 #include <QtWidgets/QButtonGroup>
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QMainWindow>
+#include <QtWidgets/QMenu>
 #include <QtWidgets/QMenuBar>
 #include <QtWidgets/QStatusBar>
 #include <QtWidgets/QToolBar>
@@ -25,28 +26,34 @@ QT_BEGIN_NAMESPACE
 class Ui_SearchWindow
 {
 public:
-    QMenuBar *menuBar;
-    QToolBar *mainToolBar;
     QWidget *centralWidget;
+    QMenuBar *menuBar;
+    QMenu *menuCanopy_Search;
+    QToolBar *mainToolBar;
     QStatusBar *statusBar;
 
     void setupUi(QMainWindow *SearchWindow)
     {
         if (SearchWindow->objectName().isEmpty())
             SearchWindow->setObjectName(QStringLiteral("SearchWindow"));
-        SearchWindow->resize(400, 300);
-        menuBar = new QMenuBar(SearchWindow);
-        menuBar->setObjectName(QStringLiteral("menuBar"));
-        SearchWindow->setMenuBar(menuBar);
-        mainToolBar = new QToolBar(SearchWindow);
-        mainToolBar->setObjectName(QStringLiteral("mainToolBar"));
-        SearchWindow->addToolBar(mainToolBar);
+        SearchWindow->resize(1240, 820);
         centralWidget = new QWidget(SearchWindow);
         centralWidget->setObjectName(QStringLiteral("centralWidget"));
         SearchWindow->setCentralWidget(centralWidget);
+        menuBar = new QMenuBar(SearchWindow);
+        menuBar->setObjectName(QStringLiteral("menuBar"));
+        menuBar->setGeometry(QRect(0, 0, 1240, 22));
+        menuCanopy_Search = new QMenu(menuBar);
+        menuCanopy_Search->setObjectName(QStringLiteral("menuCanopy_Search"));
+        SearchWindow->setMenuBar(menuBar);
+        mainToolBar = new QToolBar(SearchWindow);
+        mainToolBar->setObjectName(QStringLiteral("mainToolBar"));
+        SearchWindow->addToolBar(Qt::TopToolBarArea, mainToolBar);
         statusBar = new QStatusBar(SearchWindow);
         statusBar->setObjectName(QStringLiteral("statusBar"));
         SearchWindow->setStatusBar(statusBar);
+
+        menuBar->addAction(menuCanopy_Search->menuAction());
 
         retranslateUi(SearchWindow);
 
@@ -56,6 +63,7 @@ public:
     void retranslateUi(QMainWindow *SearchWindow)
     {
         SearchWindow->setWindowTitle(QApplication::translate("SearchWindow", "SearchWindow", 0));
+        menuCanopy_Search->setTitle(QApplication::translate("SearchWindow", "Canopy Search", 0));
     } // retranslateUi
 
 };

@@ -8,7 +8,7 @@ WelcomeWindow::WelcomeWindow(QWidget *parent) :
     ui->setupUi(this);
 
     /**** REMOVE THIS LINE IN RELEASE VERSION ****/
-    ui->evaluateButton->setEnabled(false);
+    ui->evaluateButton->setEnabled(true);
 
     ui->fileFrame->setStyleSheet("background-color: white;");
     ui->browseButton->setStyleSheet("background-color: pale gray;");
@@ -26,6 +26,7 @@ void WelcomeWindow::on_browseButton_clicked()
 {
     if ((this->fileName = QFileDialog::getOpenFileName(this, tr("Open File"),currentDirectory,tr("Images (*.txt *.html *.eml *.mbox)"))) != "")
     {
+        this->fileName = this->getFileNameFromPath(this->fileName);
         ui->fileNameLabel->setText(this->fileName);
     }
     else
@@ -41,11 +42,12 @@ void WelcomeWindow::checkEvaluate()
 {
     if (this->fileName != QString("") && ui->suspectNameField->text() != QString("") && ui->warrantNumberField->text() != QString(""))
     {
-       ui->evaluateButton->setEnabled(true);
+        ui->evaluateButton->setEnabled(true);
     }
     else
     {
-        ui->evaluateButton->setEnabled(false);
+        /**** SET THIS ON RELEASE ****/
+        ui->evaluateButton->setEnabled(true);
     }
 }
 
@@ -57,4 +59,33 @@ void WelcomeWindow::on_suspectNameField_editingFinished()
 void WelcomeWindow::on_warrantNumberField_editingFinished()
 {
     this->checkEvaluate();
+}
+
+void WelcomeWindow::on_evaluateButton_clicked()
+{
+    this->getFieldValues(); // get variable valeus from fields
+
+    SearchWindow* win = new SearchWindow();
+    win->setFileName(this->fileName);
+    win->setSuspectName(this->suspectName);
+    win->setWarrantNumber(this->warrantNumber);
+
+    win->initialize();
+    win->show();
+
+    hide();
+}
+
+QString WelcomeWindow::getFileNameFromPath(QString path)
+{
+    QStringList list = path.split("/");
+
+    return list.at(list.length() - 1);
+}
+
+void WelcomeWindow::getFieldValues()
+{
+    this->fileName = ui->fileNameLabel->text();
+    this->suspectName = ui->suspectNameField->text();
+    this->warrantNumber = ui->warrantNumberField->text().toInt();
 }

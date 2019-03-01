@@ -13,3 +13,9 @@ SearchWindow::~SearchWindow()
 {
     delete ui;
 }
+
+void SearchWindow::initialize()
+{
+    // initialize fields
+
+}

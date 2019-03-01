@@ -13,8 +13,8 @@ TEMPLATE = app
 
 
 SOURCES += main.cpp\
-        SearchSindow.cpp \
-    WelcomeWindow.cpp
+    WelcomeWindow.cpp \
+    SearchWindow.cpp
 
 HEADERS  += SearchWindow.h \
     WelcomeWindow.h

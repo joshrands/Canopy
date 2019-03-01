@@ -1,8 +1,8 @@
 # Canopy Alpha v1.0
 
-> A software solution to viewing email search warrants
+### A software solution to viewing email search warrants
 
-Created at Mines H4D by Ethan Bond, Luke Epp, Josh Rands, and Matt Wojnoski
+Created by Ethan Bond, Luke Epp, Josh Rands, and Matt Wojnoski  
 2/27/2019
 
 ## Bugs
@@ -12,10 +12,11 @@ Created at Mines H4D by Ethan Bond, Luke Epp, Josh Rands, and Matt Wojnoski
 ## ToDo
 
 ### Parser
-0. Create python class for storing Emails
+1. Create class for storing Emails
+	- best to be C++ for integration with GUI
+2. Create parser for .eml file type
 	- take file name as input
-1. Create python parser for .eml file type
-2. Parse email location in meta data
+3. Know email location in meta data
 
 ### Data
 1. Python script for word count

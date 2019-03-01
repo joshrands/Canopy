@@ -94,11 +94,11 @@ public:
         label_4->setFont(font2);
         fileNameLabel = new QLabel(fileFrame);
         fileNameLabel->setObjectName(QStringLiteral("fileNameLabel"));
-        fileNameLabel->setGeometry(QRect(220, 130, 211, 31));
+        fileNameLabel->setGeometry(QRect(210, 120, 211, 31));
         fileNameLabel->setFont(font2);
         browseButton = new QPushButton(fileFrame);
         browseButton->setObjectName(QStringLiteral("browseButton"));
-        browseButton->setGeometry(QRect(20, 124, 131, 31));
+        browseButton->setGeometry(QRect(20, 120, 131, 31));
         QFont font3;
         font3.setPointSize(12);
         browseButton->setFont(font3);

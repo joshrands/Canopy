@@ -148,8 +148,8 @@
     <widget class="QLabel" name="fileNameLabel">
      <property name="geometry">
       <rect>
-       <x>220</x>
-       <y>130</y>
+       <x>210</x>
+       <y>120</y>
        <width>211</width>
        <height>31</height>
       </rect>
@@ -169,7 +169,7 @@
      <property name="geometry">
       <rect>
        <x>20</x>
-       <y>124</y>
+       <y>120</y>
        <width>131</width>
        <height>31</height>
       </rect>

@@ -7,6 +7,8 @@ SearchWindow::SearchWindow(QWidget *parent) :
 {
     ui->setupUi(this);
 
+    ui->suspectFrame->setStyleSheet("background-color: gray;");
+    ui->infoFrame->setStyleSheet("background-color: gray;");
 }
 
 SearchWindow::~SearchWindow()

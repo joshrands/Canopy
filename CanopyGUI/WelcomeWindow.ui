@@ -59,7 +59,7 @@
      <string>Suspect/Case Name</string>
     </property>
    </widget>
-   <widget class="QLineEdit" name="lineEdit">
+   <widget class="QLineEdit" name="suspectNameField">
     <property name="geometry">
      <rect>
       <x>280</x>
@@ -74,7 +74,7 @@
      </font>
     </property>
    </widget>
-   <widget class="QLineEdit" name="lineEdit_2">
+   <widget class="QLineEdit" name="warrantNumberField">
     <property name="geometry">
      <rect>
       <x>280</x>
@@ -185,6 +185,9 @@
     </widget>
    </widget>
    <widget class="QPushButton" name="evaluateButton">
+    <property name="enabled">
+     <bool>false</bool>
+    </property>
     <property name="geometry">
      <rect>
       <x>710</x>

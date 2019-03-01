@@ -21,6 +21,12 @@ public:
     explicit WelcomeWindow(QWidget *parent = 0);
     ~WelcomeWindow();
 
+    void initialize();
+
+    void setFileName(QString name) { this->fileName = name; }
+    void setSuspectName(QString name) { this->suspectName = name; }
+    void setWarrantNumber(int num) { this->warrantNumber = num; }
+
 private slots:
     void on_browseButton_clicked();
 

@@ -65,7 +65,7 @@ void WelcomeWindow::on_evaluateButton_clicked()
 {
     this->getFieldValues(); // get variable valeus from fields
 
-    SearchWindow* win = new SearchWindow();
+    SearchWindow* win = new SearchWindow(this);
     win->setFileName(this->fileName);
     win->setSuspectName(this->suspectName);
     win->setWarrantNumber(this->warrantNumber);
@@ -88,4 +88,11 @@ void WelcomeWindow::getFieldValues()
     this->fileName = ui->fileNameLabel->text();
     this->suspectName = ui->suspectNameField->text();
     this->warrantNumber = ui->warrantNumberField->text().toInt();
+}
+
+void WelcomeWindow::initialize()
+{
+    ui->fileNameLabel->setText(this->fileName);
+    ui->suspectNameField->setText(this->suspectName);
+    ui->warrantNumberField->setText(QString::number(this->warrantNumber));
 }

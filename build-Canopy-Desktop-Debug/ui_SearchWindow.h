@@ -19,6 +19,7 @@
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QMenu>
 #include <QtWidgets/QMenuBar>
+#include <QtWidgets/QPushButton>
 #include <QtWidgets/QStatusBar>
 #include <QtWidgets/QToolBar>
 #include <QtWidgets/QWidget>
@@ -31,18 +32,19 @@ public:
     QWidget *centralWidget;
     QFrame *suspectFrame;
     QLabel *suspectPortrait;
-    QLabel *suspectName;
+    QLabel *suspectNameLabel;
     QFrame *infoFrame;
     QLabel *label_10;
     QLabel *label_3;
-    QLabel *label_7;
+    QLabel *emailCountLabel;
     QLabel *label;
     QLabel *label_8;
-    QLabel *label_2;
-    QLabel *label_4;
-    QLabel *label_6;
-    QLabel *label_9;
+    QLabel *warrantNumberLabel;
+    QLabel *sourceLabel;
+    QLabel *fileSizeLabel;
+    QLabel *dateLabel;
     QLabel *label_5;
+    QPushButton *backButton;
     QMenuBar *menuBar;
     QMenu *menuCanopy_Search;
     QToolBar *mainToolBar;
@@ -52,7 +54,7 @@ public:
     {
         if (SearchWindow->objectName().isEmpty())
             SearchWindow->setObjectName(QStringLiteral("SearchWindow"));
-        SearchWindow->resize(1248, 829);
+        SearchWindow->resize(1250, 891);
         centralWidget = new QWidget(SearchWindow);
         centralWidget->setObjectName(QStringLiteral("centralWidget"));
         suspectFrame = new QFrame(centralWidget);
@@ -67,15 +69,15 @@ public:
         font.setKerning(false);
         suspectPortrait->setFont(font);
         suspectPortrait->setAlignment(Qt::AlignCenter);
-        suspectName = new QLabel(suspectFrame);
-        suspectName->setObjectName(QStringLiteral("suspectName"));
-        suspectName->setGeometry(QRect(10, 300, 230, 50));
+        suspectNameLabel = new QLabel(suspectFrame);
+        suspectNameLabel->setObjectName(QStringLiteral("suspectNameLabel"));
+        suspectNameLabel->setGeometry(QRect(10, 300, 230, 50));
         QFont font1;
         font1.setPointSize(14);
         font1.setBold(true);
         font1.setWeight(75);
-        suspectName->setFont(font1);
-        suspectName->setAlignment(Qt::AlignCenter);
+        suspectNameLabel->setFont(font1);
+        suspectNameLabel->setAlignment(Qt::AlignCenter);
         infoFrame = new QFrame(centralWidget);
         infoFrame->setObjectName(QStringLiteral("infoFrame"));
         infoFrame->setGeometry(QRect(10, 380, 250, 411));
@@ -89,12 +91,12 @@ public:
         label_3->setObjectName(QStringLiteral("label_3"));
         label_3->setGeometry(QRect(20, 100, 121, 21));
         label_3->setFont(font1);
-        label_7 = new QLabel(infoFrame);
-        label_7->setObjectName(QStringLiteral("label_7"));
-        label_7->setGeometry(QRect(20, 290, 111, 21));
+        emailCountLabel = new QLabel(infoFrame);
+        emailCountLabel->setObjectName(QStringLiteral("emailCountLabel"));
+        emailCountLabel->setGeometry(QRect(20, 290, 111, 21));
         QFont font2;
         font2.setPointSize(12);
-        label_7->setFont(font2);
+        emailCountLabel->setFont(font2);
         label = new QLabel(infoFrame);
         label->setObjectName(QStringLiteral("label"));
         label->setGeometry(QRect(20, 20, 121, 21));
@@ -103,30 +105,36 @@ public:
         label_8->setObjectName(QStringLiteral("label_8"));
         label_8->setGeometry(QRect(20, 260, 121, 21));
         label_8->setFont(font1);
-        label_2 = new QLabel(infoFrame);
-        label_2->setObjectName(QStringLiteral("label_2"));
-        label_2->setGeometry(QRect(20, 50, 111, 21));
-        label_2->setFont(font2);
-        label_4 = new QLabel(infoFrame);
-        label_4->setObjectName(QStringLiteral("label_4"));
-        label_4->setGeometry(QRect(20, 130, 111, 21));
-        label_4->setFont(font2);
-        label_6 = new QLabel(infoFrame);
-        label_6->setObjectName(QStringLiteral("label_6"));
-        label_6->setGeometry(QRect(20, 210, 111, 21));
-        label_6->setFont(font2);
-        label_9 = new QLabel(infoFrame);
-        label_9->setObjectName(QStringLiteral("label_9"));
-        label_9->setGeometry(QRect(20, 370, 111, 21));
-        label_9->setFont(font2);
+        warrantNumberLabel = new QLabel(infoFrame);
+        warrantNumberLabel->setObjectName(QStringLiteral("warrantNumberLabel"));
+        warrantNumberLabel->setGeometry(QRect(20, 50, 111, 21));
+        warrantNumberLabel->setFont(font2);
+        sourceLabel = new QLabel(infoFrame);
+        sourceLabel->setObjectName(QStringLiteral("sourceLabel"));
+        sourceLabel->setGeometry(QRect(20, 130, 111, 21));
+        sourceLabel->setFont(font2);
+        fileSizeLabel = new QLabel(infoFrame);
+        fileSizeLabel->setObjectName(QStringLiteral("fileSizeLabel"));
+        fileSizeLabel->setGeometry(QRect(20, 210, 111, 21));
+        fileSizeLabel->setFont(font2);
+        dateLabel = new QLabel(infoFrame);
+        dateLabel->setObjectName(QStringLiteral("dateLabel"));
+        dateLabel->setGeometry(QRect(20, 370, 111, 21));
+        dateLabel->setFont(font2);
         label_5 = new QLabel(infoFrame);
         label_5->setObjectName(QStringLiteral("label_5"));
         label_5->setGeometry(QRect(20, 180, 121, 21));
         label_5->setFont(font1);
+        backButton = new QPushButton(centralWidget);
+        backButton->setObjectName(QStringLiteral("backButton"));
+        backButton->setGeometry(QRect(10, 800, 251, 31));
+        QFont font3;
+        font3.setPointSize(14);
+        backButton->setFont(font3);
         SearchWindow->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(SearchWindow);
         menuBar->setObjectName(QStringLiteral("menuBar"));
-        menuBar->setGeometry(QRect(0, 0, 1248, 22));
+        menuBar->setGeometry(QRect(0, 0, 1250, 22));
         menuCanopy_Search = new QMenu(menuBar);
         menuCanopy_Search->setObjectName(QStringLiteral("menuCanopy_Search"));
         SearchWindow->setMenuBar(menuBar);
@@ -148,17 +156,18 @@ public:
     {
         SearchWindow->setWindowTitle(QApplication::translate("SearchWindow", "SearchWindow", 0));
         suspectPortrait->setText(QApplication::translate("SearchWindow", "No image", 0));
-        suspectName->setText(QApplication::translate("SearchWindow", "Unknown Suspect", 0));
+        suspectNameLabel->setText(QApplication::translate("SearchWindow", "Unknown Suspect", 0));
         label_10->setText(QApplication::translate("SearchWindow", "Date Imported", 0));
         label_3->setText(QApplication::translate("SearchWindow", "Source", 0));
-        label_7->setText(QApplication::translate("SearchWindow", "###", 0));
+        emailCountLabel->setText(QApplication::translate("SearchWindow", "###", 0));
         label->setText(QApplication::translate("SearchWindow", "Warrant", 0));
         label_8->setText(QApplication::translate("SearchWindow", "# of Emails", 0));
-        label_2->setText(QApplication::translate("SearchWindow", "###", 0));
-        label_4->setText(QApplication::translate("SearchWindow", "Gmail", 0));
-        label_6->setText(QApplication::translate("SearchWindow", "## GB", 0));
-        label_9->setText(QApplication::translate("SearchWindow", "02/27/2019", 0));
+        warrantNumberLabel->setText(QApplication::translate("SearchWindow", "###", 0));
+        sourceLabel->setText(QApplication::translate("SearchWindow", "Gmail", 0));
+        fileSizeLabel->setText(QApplication::translate("SearchWindow", "## GB", 0));
+        dateLabel->setText(QApplication::translate("SearchWindow", "02/27/2019", 0));
         label_5->setText(QApplication::translate("SearchWindow", "Size", 0));
+        backButton->setText(QApplication::translate("SearchWindow", "Back", 0));
         menuCanopy_Search->setTitle(QApplication::translate("SearchWindow", "Canopy Search", 0));
     } // retranslateUi
 

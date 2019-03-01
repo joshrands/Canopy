@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1248</width>
-    <height>829</height>
+    <width>1250</width>
+    <height>891</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -50,7 +50,7 @@
       <set>Qt::AlignCenter</set>
      </property>
     </widget>
-    <widget class="QLabel" name="suspectName">
+    <widget class="QLabel" name="suspectNameLabel">
      <property name="geometry">
       <rect>
        <x>10</x>
@@ -129,7 +129,7 @@
       <string>Source</string>
      </property>
     </widget>
-    <widget class="QLabel" name="label_7">
+    <widget class="QLabel" name="emailCountLabel">
      <property name="geometry">
       <rect>
        <x>20</x>
@@ -152,7 +152,7 @@
       <rect>
        <x>20</x>
        <y>20</y>
-       <width>121</width>
+       <width>221</width>
        <height>21</height>
       </rect>
      </property>
@@ -164,7 +164,7 @@
       </font>
      </property>
      <property name="text">
-      <string>Warrant</string>
+      <string>Warrant Number</string>
      </property>
     </widget>
     <widget class="QLabel" name="label_8">
@@ -187,7 +187,7 @@
       <string># of Emails</string>
      </property>
     </widget>
-    <widget class="QLabel" name="label_2">
+    <widget class="QLabel" name="warrantNumberLabel">
      <property name="geometry">
       <rect>
        <x>20</x>
@@ -205,7 +205,7 @@
       <string>###</string>
      </property>
     </widget>
-    <widget class="QLabel" name="label_4">
+    <widget class="QLabel" name="sourceLabel">
      <property name="geometry">
       <rect>
        <x>20</x>
@@ -223,7 +223,7 @@
       <string>Gmail</string>
      </property>
     </widget>
-    <widget class="QLabel" name="label_6">
+    <widget class="QLabel" name="fileSizeLabel">
      <property name="geometry">
       <rect>
        <x>20</x>
@@ -241,7 +241,7 @@
       <string>## GB</string>
      </property>
     </widget>
-    <widget class="QLabel" name="label_9">
+    <widget class="QLabel" name="dateLabel">
      <property name="geometry">
       <rect>
        <x>20</x>
@@ -280,13 +280,31 @@
      </property>
     </widget>
    </widget>
+   <widget class="QPushButton" name="backButton">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>800</y>
+      <width>251</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>14</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>Back</string>
+    </property>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menuBar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1248</width>
+     <width>1250</width>
      <height>22</height>
     </rect>
    </property>

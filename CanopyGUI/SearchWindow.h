@@ -21,6 +21,9 @@ public:
     void setSuspectName(QString name) { this->suspectName = name; }
     void setWarrantNumber(int num) { this->warrantNumber = num; }
 
+private slots:
+    void on_backButton_clicked();
+
 private:
     Ui::SearchWindow *ui;
 

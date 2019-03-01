@@ -8,7 +8,7 @@ WelcomeWindow::WelcomeWindow(QWidget *parent) :
     ui->setupUi(this);
 
     /**** REMOVE THIS LINE IN RELEASE VERSION ****/
-    ui->evaluateButton->setEnabled(true);
+//    ui->evaluateButton->setEnabled(true);
 
     ui->fileFrame->setStyleSheet("background-color: white;");
     ui->browseButton->setStyleSheet("background-color: pale gray;");
@@ -47,7 +47,7 @@ void WelcomeWindow::checkEvaluate()
     else
     {
         /**** SET THIS ON RELEASE ****/
-        ui->evaluateButton->setEnabled(true);
+        ui->evaluateButton->setEnabled(false);
     }
 }
 

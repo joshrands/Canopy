@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1250</width>
+    <width>1276</width>
     <height>891</height>
    </rect>
   </property>
@@ -416,7 +416,7 @@
        <x>0</x>
        <y>0</y>
        <width>751</width>
-       <height>61</height>
+       <height>51</height>
       </rect>
      </property>
      <property name="frameShape">
@@ -431,7 +431,7 @@
         <x>20</x>
         <y>6</y>
         <width>191</width>
-        <height>51</height>
+        <height>41</height>
        </rect>
       </property>
       <property name="font">
@@ -449,7 +449,7 @@
         <x>180</x>
         <y>5</y>
         <width>191</width>
-        <height>51</height>
+        <height>41</height>
        </rect>
       </property>
       <property name="font">
@@ -467,7 +467,7 @@
         <x>640</x>
         <y>6</y>
         <width>131</width>
-        <height>51</height>
+        <height>41</height>
        </rect>
       </property>
       <property name="font">
@@ -616,19 +616,153 @@
     <zorder>endDate</zorder>
     <zorder>emailFrame</zorder>
    </widget>
+   <widget class="QFrame" name="freqFrame">
+    <property name="geometry">
+     <rect>
+      <x>1010</x>
+      <y>10</y>
+      <width>261</width>
+      <height>821</height>
+     </rect>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::StyledPanel</enum>
+    </property>
+    <property name="frameShadow">
+     <enum>QFrame::Raised</enum>
+    </property>
+    <widget class="QLabel" name="label_13">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>10</y>
+       <width>241</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>18</pointsize>
+      </font>
+     </property>
+     <property name="text">
+      <string>Frequency</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+    <widget class="QFrame" name="frame_2">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>50</y>
+       <width>51</width>
+       <height>771</height>
+      </rect>
+     </property>
+     <property name="frameShape">
+      <enum>QFrame::StyledPanel</enum>
+     </property>
+     <property name="frameShadow">
+      <enum>QFrame::Raised</enum>
+     </property>
+     <widget class="QLabel" name="label_14">
+      <property name="geometry">
+       <rect>
+        <x>4</x>
+        <y>5</y>
+        <width>41</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Rank</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QFrame" name="frame_3">
+     <property name="geometry">
+      <rect>
+       <x>52</x>
+       <y>50</y>
+       <width>121</width>
+       <height>771</height>
+      </rect>
+     </property>
+     <property name="frameShape">
+      <enum>QFrame::StyledPanel</enum>
+     </property>
+     <property name="frameShadow">
+      <enum>QFrame::Raised</enum>
+     </property>
+     <widget class="QLabel" name="label_15">
+      <property name="geometry">
+       <rect>
+        <x>5</x>
+        <y>5</y>
+        <width>111</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Word</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QFrame" name="frame_4">
+     <property name="geometry">
+      <rect>
+       <x>174</x>
+       <y>50</y>
+       <width>85</width>
+       <height>771</height>
+      </rect>
+     </property>
+     <property name="frameShape">
+      <enum>QFrame::StyledPanel</enum>
+     </property>
+     <property name="frameShadow">
+      <enum>QFrame::Raised</enum>
+     </property>
+     <widget class="QLabel" name="label_16">
+      <property name="geometry">
+       <rect>
+        <x>7</x>
+        <y>6</y>
+        <width>71</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Frequency</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
+     </widget>
+    </widget>
+   </widget>
    <zorder>searchFrame</zorder>
    <zorder>suspectFrame</zorder>
    <zorder>infoFrame</zorder>
    <zorder>backButton</zorder>
    <zorder>frame</zorder>
    <zorder>emailFrame</zorder>
+   <zorder>freqFrame</zorder>
   </widget>
   <widget class="QMenuBar" name="menuBar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1250</width>
+     <width>1276</width>
      <height>22</height>
     </rect>
    </property>

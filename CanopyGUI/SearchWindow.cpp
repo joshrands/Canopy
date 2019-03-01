@@ -11,9 +11,13 @@ SearchWindow::SearchWindow(QWidget *parent) :
 
     ui->suspectFrame->setStyleSheet("background-color: gray;");
     ui->infoFrame->setStyleSheet("background-color: gray;");
+    ui->freqFrame->setStyleSheet("background-color: gray;");
     ui->outButton->setStyleSheet("background-color: black;");
 
     ui->searchFrame->setVisible(false);
+
+    this->inBtnState = false;
+    this->outBtnState = true;
 }
 
 SearchWindow::~SearchWindow()
@@ -51,4 +55,33 @@ void SearchWindow::on_doSearchButton_clicked()
 {
     ui->searchFrame->setVisible(false);
     ui->emailFrame->setVisible(true);
+}
+
+void SearchWindow::on_inButton_clicked()
+{
+    if (this->inBtnState)
+    {
+        inBtnState = false;
+        ui->inButton->setStyleSheet("background-color: white;");
+    }
+    else
+    {
+        inBtnState = true;
+        ui->inButton->setStyleSheet("background-color: black;");
+    }
+}
+
+void SearchWindow::on_outButton_clicked()
+{
+    if (this->outBtnState)
+    {
+        outBtnState = false;
+        ui->outButton->setStyleSheet("background-color: white;");
+    }
+    else
+    {
+        outBtnState = true;
+        ui->outButton->setStyleSheet("background-color: black;");
+    }
+
 }

@@ -28,12 +28,19 @@ private slots:
 
     void on_doSearchButton_clicked();
 
+    void on_inButton_clicked();
+
+    void on_outButton_clicked();
+
 private:
     Ui::SearchWindow *ui;
 
     QString fileName;
     QString suspectName;
     int warrantNumber;
+
+    bool inBtnState;
+    bool outBtnState;
 };
 
 #endif // SEARCHWINDOW_H

@@ -1,10 +1,11 @@
 #include "SearchWindow.h"
+#include "WelcomeWindow.h"
 #include <QApplication>
 
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
-    SearchWindow w;
+    WelcomeWindow w;
     w.show();
 
     return a.exec();

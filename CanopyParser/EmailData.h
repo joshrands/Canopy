@@ -13,7 +13,6 @@ class EmailData
 public:
     EmailData(); // default constructor
 
-private:
     QString senderAddress;
     QString receiverAddress;
     QString subjectLine;
@@ -21,6 +20,12 @@ private:
 
     QString parentFileName;
 
-    int rawDataLocation;
-    int htmlLocation;
+    int rawDataLocation; // byte location of raw data in parent file
+    int rawDataLength; // byte length of raw data in parent file
+
+    int htmlLocation; // byte location of html in parent file
+    int htmlLength; // byte length of html in parent file
+
+private:
+
 };

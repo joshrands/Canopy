@@ -43,6 +43,7 @@ private:
     QString currentDirectory;
 
     QString fileName;
+    QString filePath;
     QString suspectName;
     int warrantNumber;
 

@@ -14,10 +14,14 @@ TEMPLATE = app
 
 SOURCES += main.cpp\
     WelcomeWindow.cpp \
-    SearchWindow.cpp
+    SearchWindow.cpp \
+    ../CanopyParser/EmailData.cpp \
+    ../CanopyParser/EmailParser.cpp
 
 HEADERS  += SearchWindow.h \
-    WelcomeWindow.h
+    WelcomeWindow.h \
+    ../CanopyParser/EmailData.h \
+    ../CanopyParser/EmailParser.h
 
 FORMS    += SearchWindow.ui \
     WelcomeWindow.ui

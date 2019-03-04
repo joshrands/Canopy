@@ -2,6 +2,7 @@
 #define SEARCHWINDOW_H
 
 #include <QMainWindow>
+#include "../CanopyParser/EmailParser.h"
 
 namespace Ui {
 class SearchWindow;
@@ -20,6 +21,7 @@ public:
     void setFileName(QString name) { this->fileName = name; }
     void setSuspectName(QString name) { this->suspectName = name; }
     void setWarrantNumber(int num) { this->warrantNumber = num; }
+    void setEmailData(QList<EmailData> data) { this->emailData = data; }
 
 private slots:
     void on_backButton_clicked();
@@ -35,6 +37,7 @@ private slots:
 private:
     Ui::SearchWindow *ui;
 
+    QList<EmailData> emailData;
     QString fileName;
     QString suspectName;
     int warrantNumber;

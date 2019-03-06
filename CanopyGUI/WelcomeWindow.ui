@@ -46,7 +46,7 @@
      <rect>
       <x>80</x>
       <y>170</y>
-      <width>181</width>
+      <width>201</width>
       <height>31</height>
      </rect>
     </property>
@@ -62,9 +62,9 @@
    <widget class="QLineEdit" name="suspectNameField">
     <property name="geometry">
      <rect>
-      <x>280</x>
+      <x>290</x>
       <y>170</y>
-      <width>611</width>
+      <width>601</width>
       <height>31</height>
      </rect>
     </property>
@@ -77,9 +77,9 @@
    <widget class="QLineEdit" name="warrantNumberField">
     <property name="geometry">
      <rect>
-      <x>280</x>
+      <x>290</x>
       <y>230</y>
-      <width>611</width>
+      <width>601</width>
       <height>31</height>
      </rect>
     </property>

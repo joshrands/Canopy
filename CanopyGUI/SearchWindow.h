@@ -3,6 +3,9 @@
 
 #include <QMainWindow>
 #include "../CanopyParser/EmailParser.h"
+#include <QFrame>
+#include <QHBoxLayout>
+#include <QVBoxLayout>
 
 namespace Ui {
 class SearchWindow;
@@ -21,7 +24,7 @@ public:
     void setFileName(QString name) { this->fileName = name; }
     void setSuspectName(QString name) { this->suspectName = name; }
     void setWarrantNumber(int num) { this->warrantNumber = num; }
-    void setEmailData(QList<EmailData> data) { this->emailData = data; }
+    void setFilePath(QString path) { this->filePath = path; }
 
 private slots:
     void on_backButton_clicked();
@@ -38,12 +41,20 @@ private:
     Ui::SearchWindow *ui;
 
     QList<EmailData> emailData;
+    QString filePath;
     QString fileName;
     QString suspectName;
     int warrantNumber;
+    QString userEmail; // email of suspect
+
+    // email header display
+    int emailCount;
+    QList<QFrame> emailFrames;
 
     bool inBtnState;
     bool outBtnState;
+
+    void populateEmailHeaders(); // fill header fields for email in GUI
 };
 
 #endif // SEARCHWINDOW_H

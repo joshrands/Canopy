@@ -68,15 +68,13 @@ void WelcomeWindow::on_evaluateButton_clicked()
 {
     this->getFieldValues(); // get variable valeus from fields
 
-    // start parsing file
-//    QList<EmailData> emailData = parseEmailWarrant(this->filePath);
-
     SearchWindow* win = new SearchWindow(this);
     win->setFileName(this->fileName);
     win->setSuspectName(this->suspectName);
     win->setWarrantNumber(this->warrantNumber);
-    win->setEmailData(parseEmailWarrant(this->filePath));
+    win->setFilePath(this->filePath);
 
+    // emails are parsed in initialize function
     win->initialize();
     win->show();
 

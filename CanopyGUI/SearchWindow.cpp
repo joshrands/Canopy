@@ -54,6 +54,13 @@ void SearchWindow::initialize()
     sample2.dateTime = QDateTime(QDate(2019, 3, 1)), QTime(11, 48);
     this->emailData.append(sample2);
 
+    EmailData sample3;
+    sample3.senderAddress = QString("ethanbond@mines.edu");
+    sample3.receiverAddress = QString("wkuhr@mines.edu");
+    sample3.subjectLine = QString("Dm me");
+    sample3.dateTime = QDateTime(QDate(2019, 2, 28)), QTime(16, 22);
+    this->emailData.append(sample3);
+
     // set up email header list scroll area
     ui->emailHeaderList->widget()->setLayout(new QVBoxLayout());
     ui->emailHeaderList->widget()->layout()->setAlignment(Qt::AlignTop);
@@ -62,6 +69,7 @@ void SearchWindow::initialize()
 
 void SearchWindow::populateEmailHeaders()
 {
+    // delete existing emails
     for (int i = 0; i < this->emailFrames.length(); i++)
     {
         delete emailFrames.at(i);
@@ -92,7 +100,10 @@ void SearchWindow::populateEmailHeaders()
                 emailLabelText = emailLabelText + email.receiverAddress;
             }
             else
-                emailLabelText = email.senderAddress;
+            {
+                emailLabelText = QString("From: ");
+                emailLabelText = emailLabelText + email.senderAddress;
+            }
 
             QHBoxLayout* layout = new QHBoxLayout();
 

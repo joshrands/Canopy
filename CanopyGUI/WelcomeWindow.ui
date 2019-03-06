@@ -130,7 +130,7 @@
       <rect>
        <x>10</x>
        <y>10</y>
-       <width>341</width>
+       <width>421</width>
        <height>31</height>
       </rect>
      </property>
@@ -212,7 +212,7 @@
      <x>0</x>
      <y>0</y>
      <width>958</width>
-     <height>22</height>
+     <height>26</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuWelcome_to_Canopy_Search">

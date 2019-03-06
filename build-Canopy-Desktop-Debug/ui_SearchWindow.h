@@ -63,7 +63,7 @@ public:
     QLabel *label_11;
     QLabel *label_12;
     QScrollArea *emailHeaderList;
-    QWidget *scrollAreaWidgetContents_2;
+    QWidget *emailScrollArea;
     QFrame *searchFrame;
     QLabel *label_4;
     QLineEdit *lineEdit;
@@ -235,10 +235,10 @@ public:
         emailHeaderList = new QScrollArea(emailFrame);
         emailHeaderList->setObjectName(QStringLiteral("emailHeaderList"));
         emailHeaderList->setWidgetResizable(true);
-        scrollAreaWidgetContents_2 = new QWidget();
-        scrollAreaWidgetContents_2->setObjectName(QStringLiteral("scrollAreaWidgetContents_2"));
-        scrollAreaWidgetContents_2->setGeometry(QRect(0, 0, 729, 701));
-        emailHeaderList->setWidget(scrollAreaWidgetContents_2);
+        emailScrollArea = new QWidget();
+        emailScrollArea->setObjectName(QStringLiteral("emailScrollArea"));
+        emailScrollArea->setGeometry(QRect(0, 0, 729, 701));
+        emailHeaderList->setWidget(emailScrollArea);
 
         verticalLayout->addWidget(emailHeaderList);
 

@@ -45,6 +45,7 @@ void SearchWindow::initialize()
     sample1.receiverAddress = QString("wkuhr@mines.edu");
     sample1.subjectLine = QString("Interested in your turtles");
     sample1.dateTime = QDateTime(QDate(2019, 3, 1)), QTime(10, 30);
+    this->emailData.append(sample1);
 
     EmailData sample2;
     sample2.senderAddress = QString("wkuhr@mines.edu");
@@ -53,12 +54,20 @@ void SearchWindow::initialize()
     sample2.dateTime = QDateTime(QDate(2019, 3, 1)), QTime(11, 48);
     this->emailData.append(sample2);
 
+    // set up email header list scroll area
+    ui->emailHeaderList->widget()->setLayout(new QVBoxLayout());
+    ui->emailHeaderList->widget()->layout()->setAlignment(Qt::AlignTop);
     populateEmailHeaders();
 }
 
 void SearchWindow::populateEmailHeaders()
 {
-    ui->emailHeaderList->widget()->setLayout(new QVBoxLayout());
+    for (int i = 0; i < this->emailFrames.length(); i++)
+    {
+        delete emailFrames.at(i);
+    }
+
+    this->emailFrames.clear();
 
     for (int i = 0; i < this->emailData.length(); i++)
     {
@@ -85,24 +94,36 @@ void SearchWindow::populateEmailHeaders()
             else
                 emailLabelText = email.senderAddress;
 
-//            QHBoxLayout* layout = new QHBoxLayout();
-//            layout->setParent(ui->emailHeaderList);
- //           QFrame* frame = new QFrame();
+            QHBoxLayout* layout = new QHBoxLayout();
 
-//            ui->emailHeaderList->widget()->layout()->addWidget(frame);//->addScrollBarWidget(layout);
-            // create new frame
-  //          QFrame frame;
-/*            frame.setParent(ui->emailFrame);
-            frame.setFixedWidth(750);
-            frame.setFixedHeight(50);
-*/
+            // create frame and set horizontal layout
+            QFrame* frame = new QFrame();
+            frame->setLayout(layout);
+
             QLabel* emailLabel = new QLabel();
             emailLabel->setText(emailLabelText);
-            ui->emailHeaderList->widget()->layout()->addWidget(emailLabel);
-            //            ui->emailHeaderList->addScrollBarWidget(emailLabel);
+            emailLabel->setAlignment(Qt::AlignLeft);
 
-//            layout->addWidget(emailLabel);
-   //         this->emailFrames.append(frame);
+            QLabel* subjectLabel = new QLabel();
+            subjectLabel->setText(email.subjectLine);
+            subjectLabel->setAlignment(Qt::AlignCenter);
+            subjectLabel->setAlignment(Qt::AlignTop);
+
+            QLabel* dateLabel = new QLabel();
+            dateLabel->setText(email.dateTime.date().toString());
+            dateLabel->setAlignment(Qt::AlignRight);
+            dateLabel->setAlignment(Qt::AlignTop);
+
+            frame->layout()->addWidget(emailLabel);
+            frame->layout()->addWidget(subjectLabel);
+            frame->layout()->addWidget(dateLabel);
+            frame->setFixedHeight(40);
+            frame->setFixedWidth(750);
+
+            this->emailFrames.append(frame);
+
+            // add frame to email scroll area
+            ui->emailHeaderList->widget()->layout()->addWidget(frame);
         }
     }
 }
@@ -144,6 +165,8 @@ void SearchWindow::on_inButton_clicked()
         inBtnState = true;
         ui->inButton->setStyleSheet("background-color: black;");
     }
+
+    this->populateEmailHeaders();
 }
 
 void SearchWindow::on_outButton_clicked()
@@ -159,4 +182,5 @@ void SearchWindow::on_outButton_clicked()
         ui->outButton->setStyleSheet("background-color: black;");
     }
 
+    this->populateEmailHeaders();
 }

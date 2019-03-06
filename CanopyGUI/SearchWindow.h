@@ -49,7 +49,7 @@ private:
 
     // email header display
     int emailCount;
-    QList<QFrame> emailFrames;
+    QList<QFrame*> emailFrames;
 
     bool inBtnState;
     bool outBtnState;

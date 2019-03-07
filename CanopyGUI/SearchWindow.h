@@ -6,6 +6,7 @@
 #include <QFrame>
 #include <QHBoxLayout>
 #include <QVBoxLayout>
+#include "FrameButton.h"
 
 namespace Ui {
 class SearchWindow;
@@ -49,7 +50,7 @@ private:
 
     // email header display
     int emailCount;
-    QList<QFrame*> emailFrames;
+    QList<FrameButton*> emailFrames;
 
     bool inBtnState;
     bool outBtnState;

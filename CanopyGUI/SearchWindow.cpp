@@ -108,8 +108,9 @@ void SearchWindow::populateEmailHeaders()
             QHBoxLayout* layout = new QHBoxLayout();
 
             // create frame and set horizontal layout
-            QFrame* frame = new QFrame();
+            FrameButton* frame = new FrameButton();
             frame->setLayout(layout);
+            frame->setFrameShape(QFrame::Box);
 
             QLabel* emailLabel = new QLabel();
             emailLabel->setText(emailLabelText);
@@ -129,7 +130,7 @@ void SearchWindow::populateEmailHeaders()
             frame->layout()->addWidget(subjectLabel);
             frame->layout()->addWidget(dateLabel);
             frame->setFixedHeight(40);
-            frame->setFixedWidth(750);
+            frame->setFixedWidth(710);
 
             this->emailFrames.append(frame);
 

@@ -12,8 +12,10 @@ Created by Ethan Bond, Luke Epp, Josh Rands, and Matt Wojnoski
 ## ToDo
 
 ### GUI
-1. Display email html in webviewer
-2. Add word bank to search window
+1. Create selectable frame class for email headers
+2. Display email html in webviewer
+3. Take user input for keywords and date range
+4. Add word bank to search window
 
 ### Data
 1. C++ function for word count from string/char stream
@@ -26,11 +28,12 @@ Created by Ethan Bond, Luke Epp, Josh Rands, and Matt Wojnoski
 3. Create parser for .mbox file type
 4. Parse html section of .eml to look normal
 
-## Latest Features
+## Latest Features: Canopy Alpha v1.0
 
 ### GUI
 - Welcome Window and Search Window interface
 - Allow user to select a file as an input
+- Display email headers in Search Window
 
 ### Data
 - 

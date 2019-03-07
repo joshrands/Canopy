@@ -2,7 +2,7 @@
 #define SEARCHWINDOW_H
 
 #include <QMainWindow>
-#include "../CanopyParser/EmailParser.h"
+//#include "../CanopyParser/EmailParser.h"
 #include <QFrame>
 #include <QHBoxLayout>
 #include <QVBoxLayout>

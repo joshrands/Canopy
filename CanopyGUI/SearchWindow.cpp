@@ -111,6 +111,7 @@ void SearchWindow::populateEmailHeaders()
             FrameButton* frame = new FrameButton();
             frame->setLayout(layout);
             frame->setFrameShape(QFrame::Box);
+            frame->email = email;
 
             QLabel* emailLabel = new QLabel();
             emailLabel->setText(emailLabelText);

@@ -3,11 +3,19 @@
 
 #include "ui_SearchWindow.h"
 
+#include <QDesktopWidget>
+
 SearchWindow::SearchWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::SearchWindow)
 {
     ui->setupUi(this);
+
+    // center window
+    QRect screenGeometry = QApplication::desktop()->screenGeometry();
+    int x = (screenGeometry.width()-this->width()) / 2;
+    int y = (screenGeometry.height()-this->height()) / 2;
+    this->move(x, y);
 
     ui->suspectFrame->setStyleSheet("background-color: gray;");
     ui->infoFrame->setStyleSheet("background-color: gray;");
@@ -80,7 +88,7 @@ void SearchWindow::populateEmailHeaders()
     for (int i = 0; i < this->emailData.length(); i++)
     {
         EmailData email = this->emailData.at(i);
-        qDebug() << email.senderAddress;
+//        qDebug() << email.senderAddress;
 
         // should we display this email?
         bool displayEmail = false;
@@ -196,4 +204,9 @@ void SearchWindow::on_outButton_clicked()
     }
 
     this->populateEmailHeaders();
+}
+
+void SearchWindow::on_closeButton_clicked()
+{
+   qApp->closeAllWindows();
 }

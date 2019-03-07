@@ -38,6 +38,8 @@ private slots:
 
     void on_outButton_clicked();
 
+    void on_closeButton_clicked();
+
 private:
     Ui::SearchWindow *ui;
 

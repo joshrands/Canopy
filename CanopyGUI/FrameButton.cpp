@@ -6,7 +6,7 @@ FrameButton::FrameButton()
     this->setAttribute(Qt::WA_Hover);
     this->setMouseTracking(true);
 
-    this->setStyleSheet(":hover {background-color: black;");
+//    this->setStyleSheet(":hover {background-color: black;");
 }
 
 void FrameButton::mousePressEvent(QMouseEvent* event)
@@ -14,10 +14,11 @@ void FrameButton::mousePressEvent(QMouseEvent* event)
     if (event->button() == Qt::LeftButton)
     {
         clickPoint = event->pos();
-//        qDebug() << "FrameButton clicked";
 
         // open email window
-
+        EmailWindow* win = new EmailWindow();
+        win->setEmailData(this->email);
+        win->show();
     }
 }
 

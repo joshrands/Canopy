@@ -80,6 +80,7 @@ public:
     QLabel *label_15;
     QFrame *frame_4;
     QLabel *label_16;
+    QPushButton *closeButton;
     QMenuBar *menuBar;
     QMenu *menuCanopy_Search;
     QToolBar *mainToolBar;
@@ -162,7 +163,7 @@ public:
         label_5->setFont(font1);
         backButton = new QPushButton(centralWidget);
         backButton->setObjectName(QStringLiteral("backButton"));
-        backButton->setGeometry(QRect(10, 800, 251, 31));
+        backButton->setGeometry(QRect(134, 800, 121, 31));
         QFont font3;
         font3.setPointSize(14);
         backButton->setFont(font3);
@@ -314,6 +315,10 @@ public:
         label_16->setObjectName(QStringLiteral("label_16"));
         label_16->setGeometry(QRect(7, 6, 71, 31));
         label_16->setAlignment(Qt::AlignCenter);
+        closeButton = new QPushButton(centralWidget);
+        closeButton->setObjectName(QStringLiteral("closeButton"));
+        closeButton->setGeometry(QRect(10, 800, 121, 31));
+        closeButton->setFont(font3);
         SearchWindow->setCentralWidget(centralWidget);
         searchFrame->raise();
         suspectFrame->raise();
@@ -322,6 +327,7 @@ public:
         frame->raise();
         emailFrame->raise();
         freqFrame->raise();
+        closeButton->raise();
         menuBar = new QMenuBar(SearchWindow);
         menuBar->setObjectName(QStringLiteral("menuBar"));
         menuBar->setGeometry(QRect(0, 0, 1276, 22));
@@ -373,6 +379,7 @@ public:
         label_14->setText(QApplication::translate("SearchWindow", "Rank", 0));
         label_15->setText(QApplication::translate("SearchWindow", "Word", 0));
         label_16->setText(QApplication::translate("SearchWindow", "Frequency", 0));
+        closeButton->setText(QApplication::translate("SearchWindow", "Close", 0));
         menuCanopy_Search->setTitle(QApplication::translate("SearchWindow", "Canopy Search", 0));
     } // retranslateUi
 

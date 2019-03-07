@@ -1,11 +1,18 @@
 #include "WelcomeWindow.h"
 #include "ui_WelcomeWindow.h"
+#include <QDesktopWidget>
 
 WelcomeWindow::WelcomeWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::WelcomeWindow)
 {
     ui->setupUi(this);
+
+    // center window
+    QRect screenGeometry = QApplication::desktop()->screenGeometry();
+    int x = (screenGeometry.width()-this->width()) / 2;
+    int y = (screenGeometry.height()-this->height()) / 2;
+    this->move(x, y);
 
     /**** REMOVE THIS LINE IN RELEASE VERSION ****/
     ui->evaluateButton->setEnabled(true);

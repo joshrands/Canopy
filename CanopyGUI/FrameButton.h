@@ -6,7 +6,7 @@
 #include <QFrame>
 #include <QDebug>
 #include <QMouseEvent>
-#include "../CanopyParser/EmailParser.h"
+#include "EmailWindow.h"
 
 /*
  * Frame button class that is a frame but has button capabilities

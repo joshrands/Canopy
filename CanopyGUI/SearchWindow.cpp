@@ -40,7 +40,7 @@ void SearchWindow::initialize()
     ui->warrantNumberLabel->setText(QString::number(this->warrantNumber));
 
     // parse input file
-    this->emailData = parseEmailWarrant(this->fileName);
+    this->emailData = parseEmailWarrant(this->filePath);
 
     // REMOVE IN RELEASE
     // ADD SAMPLE DATA

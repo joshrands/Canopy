@@ -8,7 +8,8 @@
 enum EmailFileType
 {
     MBOX,
-    EML
+    EML,
+    NONE
 };
 
 QList<EmailData> parseEmailWarrant(QString fileName);

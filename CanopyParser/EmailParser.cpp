@@ -83,6 +83,11 @@ void parseMIMEHeader(EmailData* email, QTextStream* in, QString* line, int* file
             parseEmailString(*line, &receiver);
             email->receiverAddress = receiver;
         }
+        else if (line->left(8) == "Subject:")
+        {
+            QString subject = line->mid(8, line->length() - 8);
+            email->subjectLine = subject;
+        }
 
         *line = in->readLine();
         *fileLoc = *fileLoc + 1;
@@ -90,7 +95,6 @@ void parseMIMEHeader(EmailData* email, QTextStream* in, QString* line, int* file
 
     if (!(to && from))
     {
-//        qDebug() << *fileLoc;
         // weird format
 
     }

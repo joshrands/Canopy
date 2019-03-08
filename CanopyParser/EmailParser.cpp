@@ -88,6 +88,12 @@ void parseMIMEHeader(EmailData* email, QTextStream* in, QString* line, int* file
             QString subject = line->mid(8, line->length() - 8);
             email->subjectLine = subject;
         }
+        else if (line->left(5) == "Date:")
+        {
+            QString date = line->mid(5, line->length() - 5);
+            email->dateString = date;
+            //            email->dateTime.fromString(date);
+        }
 
         *line = in->readLine();
         *fileLoc = *fileLoc + 1;
@@ -133,6 +139,7 @@ QList<EmailData> parseMBOX(QString fileName)
 
     QString line = in.readLine();
     int fileLoc = 0;
+    qDebug() << "Opening file";
     while (!line.isNull())
     {
         EmailData email;

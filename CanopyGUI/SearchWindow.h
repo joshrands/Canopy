@@ -26,6 +26,7 @@ public:
     void setSuspectName(QString name) { this->suspectName = name; }
     void setWarrantNumber(int num) { this->warrantNumber = num; }
     void setFilePath(QString path) { this->filePath = path; }
+    void setUserEmail(QString email) { this->userEmail = email; }
 
 private slots:
     void on_backButton_clicked();

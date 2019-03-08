@@ -28,7 +28,8 @@ void EmailWindow::setEmailData(EmailData email)
     ui->receiverLabel->setText("To: " + email.receiverAddress);
     ui->senderLabel->setText("From: " + email.senderAddress);
     ui->subjectLabel->setText("Subject: " + email.subjectLine);
-    ui->dateLabel->setText("Date: " + email.dateTime.date().toString());
+    ui->dateLabel->setText("Date: " + email.dateString);
+    //    ui->dateLabel->setText("Date: " + email.dateTime.date().toString());
 
     QString htmlString = QStringLiteral("<!DOCTYPE html>"
             "<html>"

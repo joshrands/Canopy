@@ -40,6 +40,8 @@ public:
     QLabel *fileNameLabel;
     QPushButton *browseButton;
     QPushButton *evaluateButton;
+    QLineEdit *emailAddressField;
+    QLabel *label_5;
     QMenuBar *menubar;
     QMenu *menuWelcome_to_Canopy_Search;
     QStatusBar *statusbar;
@@ -72,11 +74,11 @@ public:
         suspectNameField->setFont(font1);
         warrantNumberField = new QLineEdit(centralwidget);
         warrantNumberField->setObjectName(QStringLiteral("warrantNumberField"));
-        warrantNumberField->setGeometry(QRect(290, 230, 601, 31));
+        warrantNumberField->setGeometry(QRect(290, 220, 601, 31));
         warrantNumberField->setFont(font1);
         label_3 = new QLabel(centralwidget);
         label_3->setObjectName(QStringLiteral("label_3"));
-        label_3->setGeometry(QRect(80, 230, 181, 31));
+        label_3->setGeometry(QRect(80, 220, 181, 31));
         label_3->setFont(font1);
         fileFrame = new QFrame(centralwidget);
         fileFrame->setObjectName(QStringLiteral("fileFrame"));
@@ -109,10 +111,18 @@ public:
         QFont font4;
         font4.setPointSize(15);
         evaluateButton->setFont(font4);
+        emailAddressField = new QLineEdit(centralwidget);
+        emailAddressField->setObjectName(QStringLiteral("emailAddressField"));
+        emailAddressField->setGeometry(QRect(290, 270, 601, 31));
+        emailAddressField->setFont(font1);
+        label_5 = new QLabel(centralwidget);
+        label_5->setObjectName(QStringLiteral("label_5"));
+        label_5->setGeometry(QRect(80, 270, 181, 31));
+        label_5->setFont(font1);
         WelcomeWindow->setCentralWidget(centralwidget);
         menubar = new QMenuBar(WelcomeWindow);
         menubar->setObjectName(QStringLiteral("menubar"));
-        menubar->setGeometry(QRect(0, 0, 958, 26));
+        menubar->setGeometry(QRect(0, 0, 958, 22));
         menuWelcome_to_Canopy_Search = new QMenu(menubar);
         menuWelcome_to_Canopy_Search->setObjectName(QStringLiteral("menuWelcome_to_Canopy_Search"));
         WelcomeWindow->setMenuBar(menubar);
@@ -137,6 +147,7 @@ public:
         fileNameLabel->setText(QApplication::translate("WelcomeWindow", "No file selected", 0));
         browseButton->setText(QApplication::translate("WelcomeWindow", "Browse", 0));
         evaluateButton->setText(QApplication::translate("WelcomeWindow", "Evaluate", 0));
+        label_5->setText(QApplication::translate("WelcomeWindow", "Email Address", 0));
         menuWelcome_to_Canopy_Search->setTitle(QApplication::translate("WelcomeWindow", "Welcome to Canopy Search", 0));
     } // retranslateUi
 

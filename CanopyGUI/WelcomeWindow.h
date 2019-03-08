@@ -46,6 +46,7 @@ private:
     QString filePath;
     QString suspectName;
     int warrantNumber;
+    QString emailAddress;
 
     void checkEvaluate();
     QString getFileNameFromPath(QString path);

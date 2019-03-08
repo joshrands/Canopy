@@ -46,7 +46,7 @@ void SearchWindow::initialize()
     // ADD SAMPLE DATA
     // This is Werner's inbox
     // TODO: Add user email in WelcomeWindow
-    this->userEmail = QString("wkuhr@mines.edu");
+/*    this->userEmail = QString("wkuhr@mines.edu");
     this->userEmail = QString("jmrands11@gmail.com");
 
     EmailData sample1;
@@ -69,10 +69,12 @@ void SearchWindow::initialize()
     sample3.subjectLine = QString("Dm me");
     sample3.dateTime = QDateTime(QDate(2019, 2, 28)), QTime(16, 22);
     this->emailData.append(sample3);
+*/
 
     // set up email header list scroll area
     ui->emailHeaderList->widget()->setLayout(new QVBoxLayout());
     ui->emailHeaderList->widget()->layout()->setAlignment(Qt::AlignTop);
+
     populateEmailHeaders();
 }
 
@@ -132,7 +134,7 @@ void SearchWindow::populateEmailHeaders()
             subjectLabel->setAlignment(Qt::AlignTop);
 
             QLabel* dateLabel = new QLabel();
-            dateLabel->setText(email.dateTime.date().toString());
+            dateLabel->setText(email.dateString);//email.dateTime.date().toString());
             dateLabel->setAlignment(Qt::AlignRight);
             dateLabel->setAlignment(Qt::AlignTop);
 

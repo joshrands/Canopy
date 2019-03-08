@@ -50,7 +50,10 @@ void WelcomeWindow::on_browseButton_clicked()
 
 void WelcomeWindow::checkEvaluate()
 {
-    if (this->fileName != QString("") && ui->suspectNameField->text() != QString("") && ui->warrantNumberField->text() != QString(""))
+    if (this->fileName != QString("")
+            && ui->suspectNameField->text() != QString("")
+            && ui->warrantNumberField->text() != QString("")
+            && !ui->emailAddressField->text().isEmpty())
     {
         ui->evaluateButton->setEnabled(true);
     }
@@ -80,6 +83,7 @@ void WelcomeWindow::on_evaluateButton_clicked()
     win->setSuspectName(this->suspectName);
     win->setWarrantNumber(this->warrantNumber);
     win->setFilePath(this->filePath);
+    win->setUserEmail(this->emailAddress);
 
     // emails are parsed in initialize function
     win->initialize();
@@ -100,6 +104,7 @@ void WelcomeWindow::getFieldValues()
     this->fileName = ui->fileNameLabel->text();
     this->suspectName = ui->suspectNameField->text();
     this->warrantNumber = ui->warrantNumberField->text().toInt();
+    this->emailAddress = ui->emailAddressField->text();
 }
 
 void WelcomeWindow::initialize()

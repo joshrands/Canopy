@@ -17,6 +17,7 @@ public:
     QString receiverAddress;
     QString subjectLine;
     QDateTime dateTime;
+    QString dateString;
 
     QString parentFileName;
 

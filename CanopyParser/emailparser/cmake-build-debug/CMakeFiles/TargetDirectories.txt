@@ -1,0 +1,3 @@
+C:/Users/Luke Epp/Documents/C++/emailparser/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Users/Luke Epp/Documents/C++/emailparser/cmake-build-debug/CMakeFiles/emailparser.dir
+C:/Users/Luke Epp/Documents/C++/emailparser/cmake-build-debug/CMakeFiles/rebuild_cache.dir

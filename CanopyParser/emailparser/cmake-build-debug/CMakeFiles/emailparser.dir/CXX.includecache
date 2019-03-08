@@ -1,0 +1,26 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+C:/Users/Luke Epp/Documents/C++/emailparser/main.cpp
+iostream
+-
+string
+-
+cstdlib
+-
+cctype
+-
+vector
+-
+set
+-
+map
+-
+fstream
+-
+

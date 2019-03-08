@@ -1,5 +1,6 @@
 #include "WelcomeWindow.h"
 #include "ui_WelcomeWindow.h"
+#include <QDesktopWidget>
 
 WelcomeWindow::WelcomeWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -7,8 +8,14 @@ WelcomeWindow::WelcomeWindow(QWidget *parent) :
 {
     ui->setupUi(this);
 
+    // center window
+    QRect screenGeometry = QApplication::desktop()->screenGeometry();
+    int x = (screenGeometry.width()-this->width()) / 2;
+    int y = (screenGeometry.height()-this->height()) / 2;
+    this->move(x, y);
+
     /**** REMOVE THIS LINE IN RELEASE VERSION ****/
-//    ui->evaluateButton->setEnabled(true);
+    ui->evaluateButton->setEnabled(true);
 
     ui->fileFrame->setStyleSheet("background-color: white;");
     ui->browseButton->setStyleSheet("background-color: pale gray;");
@@ -26,6 +33,9 @@ void WelcomeWindow::on_browseButton_clicked()
 {
     if ((this->fileName = QFileDialog::getOpenFileName(this, tr("Open File"),currentDirectory,tr("Images (*.txt *.html *.eml *.mbox)"))) != "")
     {
+        // assign the full path
+        this->filePath = this->fileName;
+
         this->fileName = this->getFileNameFromPath(this->fileName);
         ui->fileNameLabel->setText(this->fileName);
     }
@@ -46,8 +56,8 @@ void WelcomeWindow::checkEvaluate()
     }
     else
     {
-        /**** SET THIS ON RELEASE ****/
-        ui->evaluateButton->setEnabled(false);
+        /**** SET THIS FALSE ON RELEASE ****/
+        ui->evaluateButton->setEnabled(true);
     }
 }
 
@@ -69,7 +79,9 @@ void WelcomeWindow::on_evaluateButton_clicked()
     win->setFileName(this->fileName);
     win->setSuspectName(this->suspectName);
     win->setWarrantNumber(this->warrantNumber);
+    win->setFilePath(this->filePath);
 
+    // emails are parsed in initialize function
     win->initialize();
     win->show();
 

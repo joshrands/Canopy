@@ -283,9 +283,9 @@
    <widget class="QPushButton" name="backButton">
     <property name="geometry">
      <rect>
-      <x>10</x>
+      <x>134</x>
       <y>800</y>
-      <width>251</width>
+      <width>121</width>
       <height>31</height>
      </rect>
     </property>
@@ -410,76 +410,73 @@
     <property name="frameShadow">
      <enum>QFrame::Raised</enum>
     </property>
-    <widget class="QFrame" name="titleFrame">
-     <property name="geometry">
-      <rect>
-       <x>0</x>
-       <y>0</y>
-       <width>751</width>
-       <height>51</height>
-      </rect>
-     </property>
-     <property name="frameShape">
-      <enum>QFrame::StyledPanel</enum>
-     </property>
-     <property name="frameShadow">
-      <enum>QFrame::Raised</enum>
-     </property>
-     <widget class="QLabel" name="label_9">
-      <property name="geometry">
-       <rect>
-        <x>20</x>
-        <y>6</y>
-        <width>191</width>
-        <height>41</height>
-       </rect>
-      </property>
-      <property name="font">
-       <font>
-        <pointsize>14</pointsize>
-       </font>
-      </property>
-      <property name="text">
-       <string>Email</string>
-      </property>
-     </widget>
-     <widget class="QLabel" name="label_11">
-      <property name="geometry">
-       <rect>
-        <x>180</x>
-        <y>5</y>
-        <width>191</width>
-        <height>41</height>
-       </rect>
-      </property>
-      <property name="font">
-       <font>
-        <pointsize>14</pointsize>
-       </font>
-      </property>
-      <property name="text">
-       <string>Subject Header</string>
-      </property>
-     </widget>
-     <widget class="QLabel" name="label_12">
-      <property name="geometry">
-       <rect>
-        <x>640</x>
-        <y>6</y>
-        <width>131</width>
-        <height>41</height>
-       </rect>
-      </property>
-      <property name="font">
-       <font>
-        <pointsize>14</pointsize>
-       </font>
-      </property>
-      <property name="text">
-       <string>Date</string>
-      </property>
-     </widget>
-    </widget>
+    <layout class="QVBoxLayout" name="verticalLayout">
+     <item>
+      <widget class="QFrame" name="titleFrame">
+       <property name="frameShape">
+        <enum>QFrame::StyledPanel</enum>
+       </property>
+       <property name="frameShadow">
+        <enum>QFrame::Raised</enum>
+       </property>
+       <layout class="QHBoxLayout" name="horizontalLayout">
+        <item>
+         <widget class="QLabel" name="label_9">
+          <property name="font">
+           <font>
+            <pointsize>14</pointsize>
+           </font>
+          </property>
+          <property name="text">
+           <string>Email</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="label_11">
+          <property name="font">
+           <font>
+            <pointsize>14</pointsize>
+           </font>
+          </property>
+          <property name="text">
+           <string>Subject Header</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="label_12">
+          <property name="font">
+           <font>
+            <pointsize>14</pointsize>
+           </font>
+          </property>
+          <property name="text">
+           <string>Date</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+     </item>
+     <item>
+      <widget class="QScrollArea" name="emailHeaderList">
+       <property name="widgetResizable">
+        <bool>true</bool>
+       </property>
+       <widget class="QWidget" name="emailScrollArea">
+        <property name="geometry">
+         <rect>
+          <x>0</x>
+          <y>0</y>
+          <width>729</width>
+          <height>701</height>
+         </rect>
+        </property>
+       </widget>
+      </widget>
+     </item>
+    </layout>
    </widget>
    <widget class="QFrame" name="searchFrame">
     <property name="geometry">
@@ -607,14 +604,6 @@
       </rect>
      </property>
     </widget>
-    <zorder>label_4</zorder>
-    <zorder>lineEdit</zorder>
-    <zorder>doSearchButton</zorder>
-    <zorder>label_6</zorder>
-    <zorder>startDate</zorder>
-    <zorder>label_7</zorder>
-    <zorder>endDate</zorder>
-    <zorder>emailFrame</zorder>
    </widget>
    <widget class="QFrame" name="freqFrame">
     <property name="geometry">
@@ -749,6 +738,24 @@
      </widget>
     </widget>
    </widget>
+   <widget class="QPushButton" name="closeButton">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>800</y>
+      <width>121</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>14</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>Close</string>
+    </property>
+   </widget>
    <zorder>searchFrame</zorder>
    <zorder>suspectFrame</zorder>
    <zorder>infoFrame</zorder>
@@ -756,6 +763,7 @@
    <zorder>frame</zorder>
    <zorder>emailFrame</zorder>
    <zorder>freqFrame</zorder>
+   <zorder>closeButton</zorder>
   </widget>
   <widget class="QMenuBar" name="menuBar">
    <property name="geometry">

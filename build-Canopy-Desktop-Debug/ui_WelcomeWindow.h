@@ -62,17 +62,17 @@ public:
         label->setAlignment(Qt::AlignCenter);
         label_2 = new QLabel(centralwidget);
         label_2->setObjectName(QStringLiteral("label_2"));
-        label_2->setGeometry(QRect(80, 170, 181, 31));
+        label_2->setGeometry(QRect(80, 170, 201, 31));
         QFont font1;
         font1.setPointSize(14);
         label_2->setFont(font1);
         suspectNameField = new QLineEdit(centralwidget);
         suspectNameField->setObjectName(QStringLiteral("suspectNameField"));
-        suspectNameField->setGeometry(QRect(280, 170, 611, 31));
+        suspectNameField->setGeometry(QRect(290, 170, 601, 31));
         suspectNameField->setFont(font1);
         warrantNumberField = new QLineEdit(centralwidget);
         warrantNumberField->setObjectName(QStringLiteral("warrantNumberField"));
-        warrantNumberField->setGeometry(QRect(280, 230, 611, 31));
+        warrantNumberField->setGeometry(QRect(290, 230, 601, 31));
         warrantNumberField->setFont(font1);
         label_3 = new QLabel(centralwidget);
         label_3->setObjectName(QStringLiteral("label_3"));
@@ -86,7 +86,7 @@ public:
         fileFrame->setFrameShadow(QFrame::Raised);
         label_4 = new QLabel(fileFrame);
         label_4->setObjectName(QStringLiteral("label_4"));
-        label_4->setGeometry(QRect(10, 10, 341, 31));
+        label_4->setGeometry(QRect(10, 10, 421, 31));
         QFont font2;
         font2.setPointSize(12);
         font2.setBold(true);
@@ -112,7 +112,7 @@ public:
         WelcomeWindow->setCentralWidget(centralwidget);
         menubar = new QMenuBar(WelcomeWindow);
         menubar->setObjectName(QStringLiteral("menubar"));
-        menubar->setGeometry(QRect(0, 0, 958, 22));
+        menubar->setGeometry(QRect(0, 0, 958, 26));
         menuWelcome_to_Canopy_Search = new QMenu(menubar);
         menuWelcome_to_Canopy_Search->setObjectName(QStringLiteral("menuWelcome_to_Canopy_Search"));
         WelcomeWindow->setMenuBar(menubar);

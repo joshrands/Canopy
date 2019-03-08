@@ -2,6 +2,11 @@
 #define SEARCHWINDOW_H
 
 #include <QMainWindow>
+//#include "../CanopyParser/EmailParser.h"
+#include <QFrame>
+#include <QHBoxLayout>
+#include <QVBoxLayout>
+#include "FrameButton.h"
 
 namespace Ui {
 class SearchWindow;
@@ -20,6 +25,7 @@ public:
     void setFileName(QString name) { this->fileName = name; }
     void setSuspectName(QString name) { this->suspectName = name; }
     void setWarrantNumber(int num) { this->warrantNumber = num; }
+    void setFilePath(QString path) { this->filePath = path; }
 
 private slots:
     void on_backButton_clicked();
@@ -32,15 +38,26 @@ private slots:
 
     void on_outButton_clicked();
 
+    void on_closeButton_clicked();
+
 private:
     Ui::SearchWindow *ui;
 
+    QList<EmailData> emailData;
+    QString filePath;
     QString fileName;
     QString suspectName;
     int warrantNumber;
+    QString userEmail; // email of suspect
+
+    // email header display
+    int emailCount;
+    QList<FrameButton*> emailFrames;
 
     bool inBtnState;
     bool outBtnState;
+
+    void populateEmailHeaders(); // fill header fields for email in GUI
 };
 
 #endif // SEARCHWINDOW_H

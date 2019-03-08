@@ -15,6 +15,7 @@
 #include <QtWidgets/QButtonGroup>
 #include <QtWidgets/QDateEdit>
 #include <QtWidgets/QFrame>
+#include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QLineEdit>
@@ -22,8 +23,10 @@
 #include <QtWidgets/QMenu>
 #include <QtWidgets/QMenuBar>
 #include <QtWidgets/QPushButton>
+#include <QtWidgets/QScrollArea>
 #include <QtWidgets/QStatusBar>
 #include <QtWidgets/QToolBar>
+#include <QtWidgets/QVBoxLayout>
 #include <QtWidgets/QWidget>
 
 QT_BEGIN_NAMESPACE
@@ -53,10 +56,14 @@ public:
     QPushButton *inButton;
     QPushButton *outButton;
     QFrame *emailFrame;
+    QVBoxLayout *verticalLayout;
     QFrame *titleFrame;
+    QHBoxLayout *horizontalLayout;
     QLabel *label_9;
     QLabel *label_11;
     QLabel *label_12;
+    QScrollArea *emailHeaderList;
+    QWidget *emailScrollArea;
     QFrame *searchFrame;
     QLabel *label_4;
     QLineEdit *lineEdit;
@@ -73,6 +80,7 @@ public:
     QLabel *label_15;
     QFrame *frame_4;
     QLabel *label_16;
+    QPushButton *closeButton;
     QMenuBar *menuBar;
     QMenu *menuCanopy_Search;
     QToolBar *mainToolBar;
@@ -155,7 +163,7 @@ public:
         label_5->setFont(font1);
         backButton = new QPushButton(centralWidget);
         backButton->setObjectName(QStringLiteral("backButton"));
-        backButton->setGeometry(QRect(10, 800, 251, 31));
+        backButton->setGeometry(QRect(134, 800, 121, 31));
         QFont font3;
         font3.setPointSize(14);
         backButton->setFont(font3);
@@ -192,23 +200,49 @@ public:
         emailFrame->setGeometry(QRect(260, 60, 751, 771));
         emailFrame->setFrameShape(QFrame::StyledPanel);
         emailFrame->setFrameShadow(QFrame::Raised);
+        verticalLayout = new QVBoxLayout(emailFrame);
+        verticalLayout->setSpacing(6);
+        verticalLayout->setContentsMargins(11, 11, 11, 11);
+        verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
         titleFrame = new QFrame(emailFrame);
         titleFrame->setObjectName(QStringLiteral("titleFrame"));
-        titleFrame->setGeometry(QRect(0, 0, 751, 51));
         titleFrame->setFrameShape(QFrame::StyledPanel);
         titleFrame->setFrameShadow(QFrame::Raised);
+        horizontalLayout = new QHBoxLayout(titleFrame);
+        horizontalLayout->setSpacing(6);
+        horizontalLayout->setContentsMargins(11, 11, 11, 11);
+        horizontalLayout->setObjectName(QStringLiteral("horizontalLayout"));
         label_9 = new QLabel(titleFrame);
         label_9->setObjectName(QStringLiteral("label_9"));
-        label_9->setGeometry(QRect(20, 6, 191, 41));
         label_9->setFont(font3);
+
+        horizontalLayout->addWidget(label_9);
+
         label_11 = new QLabel(titleFrame);
         label_11->setObjectName(QStringLiteral("label_11"));
-        label_11->setGeometry(QRect(180, 5, 191, 41));
         label_11->setFont(font3);
+
+        horizontalLayout->addWidget(label_11);
+
         label_12 = new QLabel(titleFrame);
         label_12->setObjectName(QStringLiteral("label_12"));
-        label_12->setGeometry(QRect(640, 6, 131, 41));
         label_12->setFont(font3);
+
+        horizontalLayout->addWidget(label_12);
+
+
+        verticalLayout->addWidget(titleFrame);
+
+        emailHeaderList = new QScrollArea(emailFrame);
+        emailHeaderList->setObjectName(QStringLiteral("emailHeaderList"));
+        emailHeaderList->setWidgetResizable(true);
+        emailScrollArea = new QWidget();
+        emailScrollArea->setObjectName(QStringLiteral("emailScrollArea"));
+        emailScrollArea->setGeometry(QRect(0, 0, 729, 701));
+        emailHeaderList->setWidget(emailScrollArea);
+
+        verticalLayout->addWidget(emailHeaderList);
+
         searchFrame = new QFrame(centralWidget);
         searchFrame->setObjectName(QStringLiteral("searchFrame"));
         searchFrame->setGeometry(QRect(260, 60, 751, 771));
@@ -242,14 +276,6 @@ public:
         endDate = new QDateEdit(searchFrame);
         endDate->setObjectName(QStringLiteral("endDate"));
         endDate->setGeometry(QRect(170, 100, 251, 41));
-        label_4->raise();
-        lineEdit->raise();
-        doSearchButton->raise();
-        label_6->raise();
-        startDate->raise();
-        label_7->raise();
-        endDate->raise();
-        emailFrame->raise();
         freqFrame = new QFrame(centralWidget);
         freqFrame->setObjectName(QStringLiteral("freqFrame"));
         freqFrame->setGeometry(QRect(1010, 10, 261, 821));
@@ -289,6 +315,10 @@ public:
         label_16->setObjectName(QStringLiteral("label_16"));
         label_16->setGeometry(QRect(7, 6, 71, 31));
         label_16->setAlignment(Qt::AlignCenter);
+        closeButton = new QPushButton(centralWidget);
+        closeButton->setObjectName(QStringLiteral("closeButton"));
+        closeButton->setGeometry(QRect(10, 800, 121, 31));
+        closeButton->setFont(font3);
         SearchWindow->setCentralWidget(centralWidget);
         searchFrame->raise();
         suspectFrame->raise();
@@ -297,6 +327,7 @@ public:
         frame->raise();
         emailFrame->raise();
         freqFrame->raise();
+        closeButton->raise();
         menuBar = new QMenuBar(SearchWindow);
         menuBar->setObjectName(QStringLiteral("menuBar"));
         menuBar->setGeometry(QRect(0, 0, 1276, 22));
@@ -348,6 +379,7 @@ public:
         label_14->setText(QApplication::translate("SearchWindow", "Rank", 0));
         label_15->setText(QApplication::translate("SearchWindow", "Word", 0));
         label_16->setText(QApplication::translate("SearchWindow", "Frequency", 0));
+        closeButton->setText(QApplication::translate("SearchWindow", "Close", 0));
         menuCanopy_Search->setTitle(QApplication::translate("SearchWindow", "Canopy Search", 0));
     } // retranslateUi
 

@@ -11,18 +11,36 @@ Created by Ethan Bond, Luke Epp, Josh Rands, and Matt Wojnoski
 
 ## ToDo
 
-### Parser
-1. Create class for storing Emails
-	- best to be C++ for integration with GUI
-2. Create parser for .eml file type
-	- take file name as input
-3. Know email location in meta data
+### GUI
+1. Take user input for keywords and date range
+2. Add word bank to search window
+3. Add search feature for word frequency
+4. Add work frequency architecture
 
 ### Data
-1. Python script for word count
-2. Python script for organizing by date 
+1. C++ function for word count from string/char stream
+2. Organize emails by date
+
+### Parser
+1. Create parser for .eml file type
+	- take file name as input
+2. Know email location in meta data
+3. Create parser for .mbox file type
+4. Parse html section of .eml to look normal
+5. Create html string from raw html
+
+## Latest Features: Canopy Alpha v1.0
 
 ### GUI
-1. Finish mock-up of SearchWindow
-2. Display emails
+- Welcome Window and Search Window interface
+- Allow user to select a file as an input
+- Display email headers in Search Window
+- Clicking email headers opens an email viewer window displaying email contents
+- All windows are centered
+
+### Data
+- 
+
+### Parser
+- Created Email Data storage class
 

@@ -39,18 +39,87 @@ QList<EmailData> parseEmailWarrant(QString fileName)
     }
 }
 
+void parseEmailString(QString line, QString* address)
+{
+//    qDebug() << line;
+    for (int i = 0; i < line.length(); i++)
+    {
+        if (line.at(i) == '<')
+        {
+            // find '>', if not end get next email
+            int start = i + 1;
+            while (line.at(i) != '>' && i < line.length() - 1)
+                i++;
+
+            *address = *address + line.mid(start, i - start);
+            if (i != line.length() - 1)
+                *address += ", ";
+        }
+
+    }
+}
+
 void parseMIMEHeader(EmailData* email, QTextStream* in, QString* line, int* fileLoc)
 {
+    qDebug() << "Parsing MIME header";
     while (!line->isNull() && line->left(12) != QString("Content-Type"))
     {
-//        qDebug() << line->left(12);
         if (line->left(5) == "From:")
-            qDebug() << *line;
+        {
+            QString sender;
+            parseEmailString(*line, &sender);
+            email->senderAddress = sender;
+        }
+        else if (line->left(3) == "To:")
+        {
+            QString receiver;
+            parseEmailString(*line, &receiver);
+            email->receiverAddress = receiver;
+        }
+        //        qDebug() << line->left(12);
+/*        if (line->left(5) == "From:")
+        {
+            //qDebug() << *line;
+            // parse email
+            for (int i = 0; i < line->length(); i++)
+            {
+                if (line->at(i) == '<')
+                {
+                    QString sender = line->mid(i + 1, line->length() - i - 2);
+                    qDebug() << sender;
+                    email->senderAddress = sender;
+                    i = line->length();
+                }
+                else if (line->at(i) == '[')
+                {
+                    // mailto syntax
+                }
+            }
+        }
 
+        if (line->left(3) == "To:")
+        {
+            //qDebug() << *line;
+            // parse email
+            for (int i = 0; i < line->length(); i++)
+            {
+                if (line->at(i) == '<')
+                {
+                    QString receiver = line->mid(i + 1, line->length() - i - 2);
+                    qDebug() << receiver;
+                    email->receiverAddress = receiver;
+                    i = line->length();
+                }
+                else if (line->at(i) == '[')
+                {
+                    // mailto syntax
+                }
+            }
+        }
+        */
         *line = in->readLine();
-        *fileLoc++;
+        *fileLoc = *fileLoc + 1;
     }
-
 //    qDebug() << *line;
 }
 
@@ -80,16 +149,23 @@ QList<EmailData> parseMBOX(QString fileName)
     }
 
     QTextStream in(&file);
-    EmailData email;
 
     QString line = in.readLine();
     int fileLoc = 0;
     while (!line.isNull())
     {
+        EmailData email;
+        email.subjectLine = QString("NO SUBJECT");
+        email.senderAddress = QString("NO ADDRESS");
+        email.receiverAddress = QString("NO ADDRESS");
+        email.dateTime.setDate(QDate(2000, 0, 0));
+
         parseMIMEHeader(&email, &in, &line, &fileLoc);
         //qDebug() << line;
         line = in.readLine();
         fileLoc++;
+
+        emails.push_back(email);
     }
 
     /*QString line = in.readLine();

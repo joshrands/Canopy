@@ -47,6 +47,7 @@ void SearchWindow::initialize()
     // This is Werner's inbox
     // TODO: Add user email in WelcomeWindow
     this->userEmail = QString("wkuhr@mines.edu");
+    this->userEmail = QString("jmrands11@gmail.com");
 
     EmailData sample1;
     sample1.senderAddress = QString("shsaleh@mines.edu");

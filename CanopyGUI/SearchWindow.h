@@ -57,6 +57,7 @@ private:
     QDateTime endDateFilter;
 
     // auto generated data analytics
+    QList<WordFreq> wordFreqData;
     //QList<tuple<int,QString,int>> wordFreqData;
 
     // email header display

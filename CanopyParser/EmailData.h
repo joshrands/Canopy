@@ -30,3 +30,19 @@ public:
 private:
 
 };
+
+class WordFreq
+{
+public:
+    WordFreq(); // default constructor
+    WordFreq(int rank, QString word, int count)
+    {
+        this->rank = rank;
+        this->word = word;
+        this->count = count;
+    }
+
+    int rank;
+    QString word;
+    int count;
+};

@@ -46,7 +46,13 @@ void SearchWindow::initialize()
     ui->emailHeaderList->widget()->setLayout(new QVBoxLayout());
     ui->emailHeaderList->widget()->layout()->setAlignment(Qt::AlignTop);
 
+    ui->freqCountScrollArea->widget()->setLayout(new QVBoxLayout());
+    ui->freqCountScrollArea->widget()->layout()->setAlignment(Qt::AlignTop);
+
     populateEmailHeaders();
+
+    getWordFrequency();
+    populateWordFreq();
 }
 
 void SearchWindow::populateEmailHeaders()
@@ -189,11 +195,40 @@ void SearchWindow::on_closeButton_clicked()
 void SearchWindow::populateWordFreq()
 {
     // populate gui based off information from getWordFrequency
-    /*for (int i = 0; i < wordFreqData.size(); i++)
+    for (int i = 0; i < wordFreqData.size(); i++)
     {
-        tuple<int,QString,int> word = wordFreqData.at(i);
+        WordFreq word = wordFreqData.at(i);
+
+        qDebug() << word.word;
+        QHBoxLayout* layout = new QHBoxLayout();
+
+        // create frame and set horizontal layout
+        QFrame* frame = new QFrame();
+        frame->setLayout(layout);
+        frame->setFrameShape(QFrame::Box);
+
+        QLabel* rankLabel = new QLabel();
+        rankLabel->setText(QString::number(word.rank));
+        rankLabel->setAlignment(Qt::AlignLeft);
+
+        QLabel* wordLabel = new QLabel();
+        wordLabel->setText(word.word);
+        wordLabel->setAlignment(Qt::AlignCenter);
+        wordLabel->setAlignment(Qt::AlignTop);
+
+        QLabel* countLabel = new QLabel();
+        countLabel->setText(QString::number(word.count));//email.dateTime.date().toString());
+        countLabel->setAlignment(Qt::AlignRight);
+        countLabel->setAlignment(Qt::AlignTop);
+
+        frame->layout()->addWidget(rankLabel);
+        frame->layout()->addWidget(wordLabel);
+        frame->layout()->addWidget(countLabel);
+        frame->setFixedHeight(40);
+        frame->setFixedWidth(230);
+
+        ui->freqCountScrollArea->widget()->layout()->addWidget(frame);
     }
-*/
 }
 
 void SearchWindow::doDataAnalytics()
@@ -206,6 +241,14 @@ void SearchWindow::doDataAnalytics()
 void SearchWindow::getWordFrequency()
 {
     // call Canopy Data functions for word frequency on all email content
+
+    WordFreq word1(1, QString("rhino"), 22);
+    WordFreq word2(2, QString("tiger"), 15);
+    WordFreq word3(3, QString("cupcake"), 11);
+
+    wordFreqData.append(word1);
+    wordFreqData.append(word2);
+    wordFreqData.append(word3);
 
     /*tuple<int,QString,int> word1(1, QString("rhino"), 22);
     tuple<int,QString,int> word2(2, QString("tiger"), 15);

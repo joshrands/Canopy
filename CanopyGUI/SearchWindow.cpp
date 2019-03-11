@@ -39,6 +39,12 @@ void SearchWindow::initialize()
     ui->suspectNameLabel->setText(this->suspectName);
     ui->warrantNumberLabel->setText(QString::number(this->warrantNumber));
 
+    QFile file(this->filePath);
+    qDebug() << "File size: " << file.size()/1000000000.0;
+    ui->fileSizeLabel->setText(QString::number(file.size()/1000000000.0) + QString(" GB"));
+
+    file.close();
+
     // parse input file
     this->emailData = parseEmailWarrant(this->filePath);
 

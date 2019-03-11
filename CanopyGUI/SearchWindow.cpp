@@ -42,35 +42,6 @@ void SearchWindow::initialize()
     // parse input file
     this->emailData = parseEmailWarrant(this->filePath);
 
-    // REMOVE IN RELEASE
-    // ADD SAMPLE DATA
-    // This is Werner's inbox
-    // TODO: Add user email in WelcomeWindow
-/*    this->userEmail = QString("wkuhr@mines.edu");
-    this->userEmail = QString("jmrands11@gmail.com");
-
-    EmailData sample1;
-    sample1.senderAddress = QString("shsaleh@mines.edu");
-    sample1.receiverAddress = QString("wkuhr@mines.edu");
-    sample1.subjectLine = QString("Interested in your turtles");
-    sample1.dateTime = QDateTime(QDate(2019, 3, 1)), QTime(10, 30);
-    this->emailData.append(sample1);
-
-    EmailData sample2;
-    sample2.senderAddress = QString("wkuhr@mines.edu");
-    sample2.receiverAddress = QString("shsaleh@mines.edu");
-    sample2.subjectLine = QString("Interested in your turtles");
-    sample2.dateTime = QDateTime(QDate(2019, 3, 1)), QTime(11, 48);
-    this->emailData.append(sample2);
-
-    EmailData sample3;
-    sample3.senderAddress = QString("ethanbond@mines.edu");
-    sample3.receiverAddress = QString("wkuhr@mines.edu");
-    sample3.subjectLine = QString("Dm me");
-    sample3.dateTime = QDateTime(QDate(2019, 2, 28)), QTime(16, 22);
-    this->emailData.append(sample3);
-*/
-
     // set up email header list scroll area
     ui->emailHeaderList->widget()->setLayout(new QVBoxLayout());
     ui->emailHeaderList->widget()->layout()->setAlignment(Qt::AlignTop);
@@ -91,7 +62,6 @@ void SearchWindow::populateEmailHeaders()
     for (int i = 0; i < this->emailData.length(); i++)
     {
         EmailData email = this->emailData.at(i);
-//        qDebug() << email.senderAddress;
 
         // should we display this email?
         bool displayEmail = false;
@@ -175,6 +145,8 @@ void SearchWindow::on_doSearchButton_clicked()
 {
     ui->searchFrame->setVisible(false);
     ui->emailFrame->setVisible(true);
+
+    this->doDataAnalytics();
 }
 
 void SearchWindow::on_inButton_clicked()
@@ -212,4 +184,35 @@ void SearchWindow::on_outButton_clicked()
 void SearchWindow::on_closeButton_clicked()
 {
    qApp->closeAllWindows();
+}
+
+void SearchWindow::populateWordFreq()
+{
+    // populate gui based off information from getWordFrequency
+    /*for (int i = 0; i < wordFreqData.size(); i++)
+    {
+        tuple<int,QString,int> word = wordFreqData.at(i);
+    }
+*/
+}
+
+void SearchWindow::doDataAnalytics()
+{
+    // call data analytics functions on email content
+
+    qDebug() << "Performing data analytics on email data...";
+}
+
+void SearchWindow::getWordFrequency()
+{
+    // call Canopy Data functions for word frequency on all email content
+
+    /*tuple<int,QString,int> word1(1, QString("rhino"), 22);
+    tuple<int,QString,int> word2(2, QString("tiger"), 15);
+    tuple<int,QString,int> word3(3, QString("cupcake"), 11);
+
+    wordFreqData.append(word1);
+    wordFreqData.append(word2);
+    wordFreqData.append(word3);
+    */
 }

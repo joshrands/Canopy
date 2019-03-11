@@ -30,3 +30,6 @@ HEADERS  += SearchWindow.h \
 FORMS    += SearchWindow.ui \
     WelcomeWindow.ui \
     EmailWindow.ui
+
+DISTFILES += \
+    ../images/CanopyLogo-04.png

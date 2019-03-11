@@ -42,6 +42,7 @@ public:
     QPushButton *evaluateButton;
     QLineEdit *emailAddressField;
     QLabel *label_5;
+    QLabel *logo;
     QMenuBar *menubar;
     QMenu *menuWelcome_to_Canopy_Search;
     QStatusBar *statusbar;
@@ -119,6 +120,11 @@ public:
         label_5->setObjectName(QStringLiteral("label_5"));
         label_5->setGeometry(QRect(80, 270, 181, 31));
         label_5->setFont(font1);
+        logo = new QLabel(centralwidget);
+        logo->setObjectName(QStringLiteral("logo"));
+        logo->setGeometry(QRect(-40, -20, 241, 111));
+        logo->setPixmap(QPixmap(QString::fromUtf8("../images/CanopyLogo-04.png")));
+        logo->setScaledContents(true);
         WelcomeWindow->setCentralWidget(centralwidget);
         menubar = new QMenuBar(WelcomeWindow);
         menubar->setObjectName(QStringLiteral("menubar"));
@@ -148,6 +154,7 @@ public:
         browseButton->setText(QApplication::translate("WelcomeWindow", "Browse", 0));
         evaluateButton->setText(QApplication::translate("WelcomeWindow", "Evaluate", 0));
         label_5->setText(QApplication::translate("WelcomeWindow", "Email Address", 0));
+        logo->setText(QString());
         menuWelcome_to_Canopy_Search->setTitle(QApplication::translate("WelcomeWindow", "Welcome to Canopy Search", 0));
     } // retranslateUi
 

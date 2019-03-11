@@ -51,6 +51,14 @@ private:
     int warrantNumber;
     QString userEmail; // email of suspect
 
+    // data analysis input
+    QList<QString> keywordFilters;
+    QDateTime startDateFilter;
+    QDateTime endDateFilter;
+
+    // auto generated data analytics
+    //QList<tuple<int,QString,int>> wordFreqData;
+
     // email header display
     int emailCount;
     QList<FrameButton*> emailFrames;
@@ -59,6 +67,9 @@ private:
     bool outBtnState;
 
     void populateEmailHeaders(); // fill header fields for email in GUI
+    void populateWordFreq(); 	// fill gui for word freq
+    void doDataAnalytics();		// perform analytics as specified by user
+    void getWordFrequency();	// find word frequency for all words
 };
 
 #endif // SEARCHWINDOW_H

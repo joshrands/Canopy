@@ -3,7 +3,6 @@
 #include <fstream>
 #include <string>
 #include <QFile>
-#include <QTextStream>
 #include <QStringRef>
 #include <QString>
 
@@ -91,6 +90,7 @@ void parseMIMEHeader(EmailData* email, QTextStream* in, QString* line, int* file
         else if (line->left(5) == "Date:")
         {
             QString date = line->mid(5, line->length() - 5);
+            date = date.left(date.length() - 6);
             email->dateString = date;
             //            email->dateTime.fromString(date);
         }
@@ -114,6 +114,29 @@ void parseMIMEContent(EmailData* email, QTextStream* in, QString* line, int* fil
     while (!line->isNull() && line->left(10) != QString("X-GM-THRID"))
     {
         *line = in->readLine();
+
+        /*
+        bool isContent=false;
+
+        if (line.substr(0,23) == "Content-Type: multipart"){
+            //finding boundary
+            size_t start = line.find_first_of(34);
+            size_t end = line.find_first_of(start+1, 34);
+            string boundary="--"+line.substr(int(start),int(end-start));
+        }
+        if (line == boundary) {
+            if (isContent)
+                isContent =false;
+            else
+                isContent=true;
+        }
+        string content;
+        while (isContent){
+            content += line
+        }
+        // if line = boundary then put it in content type
+        */
+
         *fileLoc = *fileLoc + 1;
     }
 //    qDebug() << content;

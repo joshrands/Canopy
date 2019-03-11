@@ -43,4 +43,4 @@ Created by Ethan Bond, Luke Epp, Josh Rands, and Matt Wojnoski
 
 ### Parser
 - Created Email Data storage class
-
+- Parsing MIME header information and displaying in scroll area

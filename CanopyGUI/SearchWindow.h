@@ -74,6 +74,9 @@ private:
     void getFilterInput();
 
     void populateEmailHeaders(); // fill header fields for email in GUI
+    void sortDisplayEmails();	// put display emails in chronological order
+    bool emailLessThan(const EmailData* d1, const EmailData* d2);
+
     void populateWordFreq(); 	// fill gui for word freq
     void applyEmailFilters();		// perform analytics as specified by user
     void getWordFrequency();	// find word frequency for all words

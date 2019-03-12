@@ -4,6 +4,7 @@
 #include "ui_SearchWindow.h"
 
 #include <QDesktopWidget>
+#include <QtAlgorithms>
 
 SearchWindow::SearchWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -73,6 +74,9 @@ void SearchWindow::populateEmailHeaders()
     }
 
     this->emailFrames.clear();
+
+    // put emails in chronological order
+    sortDisplayEmails();
 
     for (int i = 0; i < this->displayEmails.length(); i++)
     {
@@ -211,7 +215,7 @@ void SearchWindow::populateWordFreq()
     {
         WordFreq word = wordFreqData.at(i);
 
-        qDebug() << word.word;
+//        qDebug() << word.word;
         QHBoxLayout* layout = new QHBoxLayout();
 
         // create frame and set horizontal layout
@@ -306,4 +310,15 @@ void SearchWindow::on_addKeywordButton_clicked()
             ui->keywordBank->layout()->addWidget(label);
         }
     }
+}
+
+bool SearchWindow::emailLessThan(const EmailData* d1, const EmailData* d2)
+{
+    return (d1->dateTime < d2->dateTime);
+}
+
+void SearchWindow::sortDisplayEmails()
+{
+//    qSort(displayEmails.begin(), displayEmails.end(), emailLessThan);
+    qSort(displayEmails);
 }

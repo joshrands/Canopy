@@ -230,6 +230,15 @@
      <bool>true</bool>
     </property>
    </widget>
+   <zorder>logo</zorder>
+   <zorder>label_2</zorder>
+   <zorder>suspectNameField</zorder>
+   <zorder>warrantNumberField</zorder>
+   <zorder>label_3</zorder>
+   <zorder>fileFrame</zorder>
+   <zorder>evaluateButton</zorder>
+   <zorder>emailAddressField</zorder>
+   <zorder>label_5</zorder>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
@@ -237,7 +246,7 @@
      <x>0</x>
      <y>0</y>
      <width>958</width>
-     <height>26</height>
+     <height>22</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuWelcome_to_Canopy_Search">
@@ -249,6 +258,13 @@
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
  </widget>
+ <tabstops>
+  <tabstop>suspectNameField</tabstop>
+  <tabstop>warrantNumberField</tabstop>
+  <tabstop>emailAddressField</tabstop>
+  <tabstop>browseButton</tabstop>
+  <tabstop>evaluateButton</tabstop>
+ </tabstops>
  <resources/>
  <connections/>
 </ui>

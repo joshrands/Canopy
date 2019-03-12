@@ -5,6 +5,8 @@
 #include <QFile>
 #include <QStringRef>
 #include <QString>
+#include <QTime>
+#include <QMap>
 
 using namespace std;
 
@@ -40,7 +42,6 @@ QList<EmailData> parseEmailWarrant(QString fileName)
 
 void parseEmailString(QString line, QString* address)
 {
-//    qDebug() << line;
     for (int i = 0; i < line.length(); i++)
     {
         if (line.at(i) == '<')
@@ -57,6 +58,7 @@ void parseEmailString(QString line, QString* address)
         else if (line.at(i) == '[')
         {
             //qDebug() << line;
+            // UPDATE: This shouldn't happen if parsing is done right
         }
     }
 }
@@ -84,15 +86,16 @@ void parseMIMEHeader(EmailData* email, QTextStream* in, QString* line, int* file
         }
         else if (line->left(8) == "Subject:")
         {
-            QString subject = line->mid(8, line->length() - 8);
+            QString subject = line->mid(9, line->length() - 8);
             email->subjectLine = subject;
         }
         else if (line->left(5) == "Date:")
         {
-            QString date = line->mid(5, line->length() - 5);
+            QString date = line->mid(6, line->length() - 5);
             date = date.left(date.length() - 6);
             email->dateString = date;
-            //            email->dateTime.fromString(date);
+
+            email->dateTime = parseMIMEDateString(date);
         }
 
         *line = in->readLine();
@@ -104,13 +107,10 @@ void parseMIMEHeader(EmailData* email, QTextStream* in, QString* line, int* file
         // weird format
 
     }
-    //qDebug() << *line;
-    //qDebug() << *fileLoc;
 }
 
 void parseMIMEContent(EmailData* email, QTextStream* in, QString* line, int* fileLoc)
 {
-  //  QString content = "";
     while (!line->isNull() && line->left(10) != QString("X-GM-THRID"))
     {
         *line = in->readLine();
@@ -139,7 +139,6 @@ void parseMIMEContent(EmailData* email, QTextStream* in, QString* line, int* fil
 
         *fileLoc = *fileLoc + 1;
     }
-//    qDebug() << content;
 }
 
 QList<EmailData> parseMBOX(QString fileName)
@@ -148,8 +147,6 @@ QList<EmailData> parseMBOX(QString fileName)
     QList<EmailData> emails;
 
     // open the file
-//    string file = "test.eml";
- //   ifstream inFile(fileName.toStdWString());//fileName.toStdString());
     QFile file(fileName);
 
     if (!file.open(QIODevice::ReadOnly | QIODevice::Text))
@@ -172,36 +169,71 @@ QList<EmailData> parseMBOX(QString fileName)
         email.dateTime.setDate(QDate(2000, 0, 0));
 
         parseMIMEHeader(&email, &in, &line, &fileLoc);
-        //line = in.readLine();
-        //qDebug() << line;
         parseMIMEContent(&email, &in, &line, &fileLoc);
-        //qDebug() << line;
+
         line = in.readLine();
         fileLoc++;
 
         emails.push_back(email);
     }
 
-    /*QString line = in.readLine();
-    while (!line.isNull()) {
-        qDebug() << line;
-//        line = in.readLine();
-    }
-*/
-    /*
-    string line;
-    if (inFile.is_open())
-    {
-        while (getline(inFile, line))
-        {
-            qDebug() << line;
-        }
-    }
-
-    // read the header information from file
-
-    // read content types
-*/
-
     return emails;
+}
+
+QDateTime parseMIMEDateString(QString dateString)
+{
+    QDateTime date;
+    int d, m, y;
+
+    int i = 0;
+
+    // get date
+    if (dateString.at(i).isLetter())
+        i += 5;
+
+    int start = i;
+    while (dateString.at(i) != ' ')
+        i++;
+
+    d = dateString.mid(start, i - start).toInt();
+
+    // get month
+    i+=1; // move past empty space
+    start = i;
+    while (dateString.at(i) != ' ')
+        i++;
+
+    m = getMonthIndex(dateString.mid(start, i - start));
+
+    // get year
+    i+=1; // move past empty space
+    start = i;
+    while (dateString.at(i) != ' ')
+        i++;
+
+    y = dateString.mid(start, i - start).toInt(); // get only last 2 digits
+
+    date.setDate(QDate(y, m, d));
+
+    return date;
+}
+
+int getMonthIndex(QString month)
+{
+    QMap<QString,int> months;
+
+    months.insert("Jan", 1);
+    months.insert("Feb", 2);
+    months.insert("Mar", 3);
+    months.insert("Apr", 4);
+    months.insert("May", 5);
+    months.insert("Jun", 6);
+    months.insert("Jul", 7);
+    months.insert("Aug", 8);
+    months.insert("Sep", 9);
+    months.insert("Oct", 10);
+    months.insert("Nov", 11);
+    months.insert("Dec", 12);
+
+    return months.value(month);
 }

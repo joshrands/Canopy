@@ -41,10 +41,14 @@ private slots:
 
     void on_closeButton_clicked();
 
+    void on_addKeywordButton_clicked();
+
 private:
     Ui::SearchWindow *ui;
 
     QList<EmailData> emailData;
+    QList<EmailData> displayEmails;
+
     QString filePath;
     QString fileName;
     QString suspectName;
@@ -67,9 +71,11 @@ private:
     bool inBtnState;
     bool outBtnState;
 
+    void getFilterInput();
+
     void populateEmailHeaders(); // fill header fields for email in GUI
     void populateWordFreq(); 	// fill gui for word freq
-    void doDataAnalytics();		// perform analytics as specified by user
+    void applyEmailFilters();		// perform analytics as specified by user
     void getWordFrequency();	// find word frequency for all words
 };
 

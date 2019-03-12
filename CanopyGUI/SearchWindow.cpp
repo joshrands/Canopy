@@ -47,6 +47,7 @@ void SearchWindow::initialize()
 
     // parse input file
     this->emailData = parseEmailWarrant(this->filePath);
+    this->displayEmails = emailData;
 
     // set up email header list scroll area
     ui->emailHeaderList->widget()->setLayout(new QVBoxLayout());
@@ -54,6 +55,8 @@ void SearchWindow::initialize()
 
     ui->freqCountScrollArea->widget()->setLayout(new QVBoxLayout());
     ui->freqCountScrollArea->widget()->layout()->setAlignment(Qt::AlignTop);
+
+    //	ui->keywordBank->layout()->setFieldGrowth
 
     populateEmailHeaders();
 
@@ -71,9 +74,9 @@ void SearchWindow::populateEmailHeaders()
 
     this->emailFrames.clear();
 
-    for (int i = 0; i < this->emailData.length(); i++)
+    for (int i = 0; i < this->displayEmails.length(); i++)
     {
-        EmailData email = this->emailData.at(i);
+        EmailData email = this->displayEmails.at(i);
 
         // should we display this email?
         bool displayEmail = false;
@@ -158,7 +161,10 @@ void SearchWindow::on_doSearchButton_clicked()
     ui->searchFrame->setVisible(false);
     ui->emailFrame->setVisible(true);
 
-    this->doDataAnalytics();
+    this->getFilterInput();
+    this->applyEmailFilters();
+
+    this->populateEmailHeaders();
 }
 
 void SearchWindow::on_inButton_clicked()
@@ -237,11 +243,28 @@ void SearchWindow::populateWordFreq()
     }
 }
 
-void SearchWindow::doDataAnalytics()
+void SearchWindow::applyEmailFilters()
 {
-    // call data analytics functions on email content
+     qDebug() << "Applying email filters";
 
-    qDebug() << "Performing data analytics on email data...";
+     // call data analytics functions on email content
+    int n = emailData.size();
+
+    QList<EmailData> validEmails;
+    for (int i = 0; i < n; i++)
+    {
+        // make sure email is within date range
+        EmailData email = emailData.at(i);
+        bool valid = true;
+
+        if (!(email.dateTime >= startDateFilter && email.dateTime < endDateFilter))
+            valid = false;
+
+        if (valid)
+            validEmails.append(email);
+    }
+
+    displayEmails = validEmails;
 }
 
 void SearchWindow::getWordFrequency()
@@ -255,13 +278,32 @@ void SearchWindow::getWordFrequency()
     wordFreqData.append(word1);
     wordFreqData.append(word2);
     wordFreqData.append(word3);
+}
 
-    /*tuple<int,QString,int> word1(1, QString("rhino"), 22);
-    tuple<int,QString,int> word2(2, QString("tiger"), 15);
-    tuple<int,QString,int> word3(3, QString("cupcake"), 11);
+void SearchWindow::getFilterInput()
+{
+    // get filter input from user
+    qDebug() << "Adding filter input";
 
-    wordFreqData.append(word1);
-    wordFreqData.append(word2);
-    wordFreqData.append(word3);
-    */
+    startDateFilter = ui->startDate->dateTime();
+    endDateFilter = ui->endDate->dateTime();
+}
+
+void SearchWindow::on_addKeywordButton_clicked()
+{
+    QString key = ui->keywordInput->text();
+    if (key != QString(""))
+    {
+        if (!keywordFilters.contains(key))
+        {
+            keywordFilters.append(key);
+            // create frame
+
+            QLabel* label = new QLabel();
+            label->setText(key);
+
+            // TODO: Get this to be on same row
+            ui->keywordBank->layout()->addWidget(label);
+        }
+    }
 }

@@ -24,7 +24,7 @@ void parseMIMEHeader(EmailData* email, QTextStream* in, QString* line, int* file
 
 void parseMIMEContent(EmailData* email, QTextStream* in, QString* line, int* fileLoc);
 
-
-
+QDateTime parseMIMEDateString(QString dateString);
+int getMonthIndex(QString month);
 
 #endif // EMAILPARSER_H

@@ -14,6 +14,7 @@
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QButtonGroup>
 #include <QtWidgets/QDateEdit>
+#include <QtWidgets/QFormLayout>
 #include <QtWidgets/QFrame>
 #include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QHeaderView>
@@ -24,6 +25,7 @@
 #include <QtWidgets/QMenuBar>
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QScrollArea>
+#include <QtWidgets/QSpacerItem>
 #include <QtWidgets/QStatusBar>
 #include <QtWidgets/QToolBar>
 #include <QtWidgets/QVBoxLayout>
@@ -66,12 +68,20 @@ public:
     QWidget *emailScrollArea;
     QFrame *searchFrame;
     QLabel *label_4;
-    QLineEdit *lineEdit;
-    QPushButton *doSearchButton;
+    QLineEdit *keywordInput;
     QLabel *label_6;
     QDateEdit *startDate;
     QLabel *label_7;
     QDateEdit *endDate;
+    QPushButton *addKeywordButton;
+    QWidget *widget;
+    QFormLayout *formLayout_2;
+    QHBoxLayout *horizontalLayout_4;
+    QSpacerItem *horizontalSpacer;
+    QPushButton *doSearchButton;
+    QSpacerItem *horizontalSpacer_2;
+    QFrame *keywordBank;
+    QFormLayout *formLayout;
     QFrame *freqFrame;
     QLabel *freqTitle;
     QFrame *frame_5;
@@ -82,7 +92,7 @@ public:
     QScrollArea *freqCountScrollArea;
     QWidget *scrollAreaWidgetContents;
     QPushButton *closeButton;
-    QWidget *widget;
+    QWidget *layoutWidget;
     QHBoxLayout *horizontalLayout_2;
     QMenuBar *menuBar;
     QMenu *menuCanopy_Search;
@@ -256,13 +266,10 @@ public:
         label_4->setGeometry(QRect(20, 16, 141, 31));
         label_4->setFont(font3);
         label_4->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
-        lineEdit = new QLineEdit(searchFrame);
-        lineEdit->setObjectName(QStringLiteral("lineEdit"));
-        lineEdit->setGeometry(QRect(170, 10, 571, 41));
-        lineEdit->setFont(font2);
-        doSearchButton = new QPushButton(searchFrame);
-        doSearchButton->setObjectName(QStringLiteral("doSearchButton"));
-        doSearchButton->setGeometry(QRect(280, 170, 201, 41));
+        keywordInput = new QLineEdit(searchFrame);
+        keywordInput->setObjectName(QStringLiteral("keywordInput"));
+        keywordInput->setGeometry(QRect(170, 10, 481, 41));
+        keywordInput->setFont(font2);
         label_6 = new QLabel(searchFrame);
         label_6->setObjectName(QStringLiteral("label_6"));
         label_6->setGeometry(QRect(20, 60, 141, 31));
@@ -279,6 +286,50 @@ public:
         endDate = new QDateEdit(searchFrame);
         endDate->setObjectName(QStringLiteral("endDate"));
         endDate->setGeometry(QRect(170, 100, 251, 41));
+        addKeywordButton = new QPushButton(searchFrame);
+        addKeywordButton->setObjectName(QStringLiteral("addKeywordButton"));
+        addKeywordButton->setGeometry(QRect(660, 10, 81, 41));
+        widget = new QWidget(searchFrame);
+        widget->setObjectName(QStringLiteral("widget"));
+        widget->setGeometry(QRect(10, 150, 731, 331));
+        formLayout_2 = new QFormLayout(widget);
+        formLayout_2->setSpacing(6);
+        formLayout_2->setContentsMargins(11, 11, 11, 11);
+        formLayout_2->setObjectName(QStringLiteral("formLayout_2"));
+        formLayout_2->setContentsMargins(0, 0, 0, 0);
+        horizontalLayout_4 = new QHBoxLayout();
+        horizontalLayout_4->setSpacing(6);
+        horizontalLayout_4->setObjectName(QStringLiteral("horizontalLayout_4"));
+        horizontalSpacer = new QSpacerItem(300, 30, QSizePolicy::Fixed, QSizePolicy::Minimum);
+
+        horizontalLayout_4->addItem(horizontalSpacer);
+
+        doSearchButton = new QPushButton(widget);
+        doSearchButton->setObjectName(QStringLiteral("doSearchButton"));
+
+        horizontalLayout_4->addWidget(doSearchButton);
+
+        horizontalSpacer_2 = new QSpacerItem(300, 30, QSizePolicy::Fixed, QSizePolicy::Minimum);
+
+        horizontalLayout_4->addItem(horizontalSpacer_2);
+
+
+        formLayout_2->setLayout(1, QFormLayout::SpanningRole, horizontalLayout_4);
+
+        keywordBank = new QFrame(widget);
+        keywordBank->setObjectName(QStringLiteral("keywordBank"));
+        keywordBank->setFrameShape(QFrame::StyledPanel);
+        keywordBank->setFrameShadow(QFrame::Raised);
+        formLayout = new QFormLayout(keywordBank);
+        formLayout->setSpacing(6);
+        formLayout->setContentsMargins(11, 11, 11, 11);
+        formLayout->setObjectName(QStringLiteral("formLayout"));
+        formLayout->setFieldGrowthPolicy(QFormLayout::FieldsStayAtSizeHint);
+        formLayout->setRowWrapPolicy(QFormLayout::WrapLongRows);
+        formLayout->setContentsMargins(-1, 6, -1, -1);
+
+        formLayout_2->setWidget(0, QFormLayout::SpanningRole, keywordBank);
+
         freqFrame = new QFrame(centralWidget);
         freqFrame->setObjectName(QStringLiteral("freqFrame"));
         freqFrame->setGeometry(QRect(1010, 10, 261, 821));
@@ -330,15 +381,16 @@ public:
         closeButton->setObjectName(QStringLiteral("closeButton"));
         closeButton->setGeometry(QRect(10, 800, 121, 31));
         closeButton->setFont(font3);
-        widget = new QWidget(centralWidget);
-        widget->setObjectName(QStringLiteral("widget"));
-        widget->setGeometry(QRect(0, 0, 2, 2));
-        horizontalLayout_2 = new QHBoxLayout(widget);
+        layoutWidget = new QWidget(centralWidget);
+        layoutWidget->setObjectName(QStringLiteral("layoutWidget"));
+        layoutWidget->setGeometry(QRect(0, 0, 2, 2));
+        horizontalLayout_2 = new QHBoxLayout(layoutWidget);
         horizontalLayout_2->setSpacing(6);
         horizontalLayout_2->setContentsMargins(11, 11, 11, 11);
         horizontalLayout_2->setObjectName(QStringLiteral("horizontalLayout_2"));
         horizontalLayout_2->setContentsMargins(0, 0, 0, 0);
         SearchWindow->setCentralWidget(centralWidget);
+        layoutWidget->raise();
         searchFrame->raise();
         suspectFrame->raise();
         infoFrame->raise();
@@ -391,9 +443,10 @@ public:
         label_11->setText(QApplication::translate("SearchWindow", "Subject Header", 0));
         label_12->setText(QApplication::translate("SearchWindow", "Date", 0));
         label_4->setText(QApplication::translate("SearchWindow", "Keyword/User:", 0));
-        doSearchButton->setText(QApplication::translate("SearchWindow", "SEARCH", 0));
         label_6->setText(QApplication::translate("SearchWindow", "Start Date:", 0));
         label_7->setText(QApplication::translate("SearchWindow", "End Date:", 0));
+        addKeywordButton->setText(QApplication::translate("SearchWindow", "ADD", 0));
+        doSearchButton->setText(QApplication::translate("SearchWindow", "SEARCH", 0));
         freqTitle->setText(QApplication::translate("SearchWindow", "Frequency", 0));
         label_14->setText(QApplication::translate("SearchWindow", "Rank", 0));
         label_15->setText(QApplication::translate("SearchWindow", "Word", 0));

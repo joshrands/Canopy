@@ -111,8 +111,6 @@ void parseMIMEHeader(EmailData* email, QTextStream* in, QString* line, int* file
 
 void parseMIMEContent(EmailData* email, QTextStream* in, QString* line, int* fileLoc)
 {
-
-/*
     int rawPlace;
     int rawLen;
     int htmlPlace;
@@ -125,24 +123,24 @@ void parseMIMEContent(EmailData* email, QTextStream* in, QString* line, int* fil
         *line = in->readLine();
 
         if (isContent){
-            if (line.mid(14,10)=="text/plain"){
+            if (line->mid(14,10)=="text/plain"){
                 rawPlace= *fileLoc;
                 isPlain=true;
             }
-            if (line.mid(14,9)=="text/html"){
+            if (line->mid(14,9)=="text/html"){
                         htmlPlace= *fileLoc;
                         ishtml= true;
             }
         }
 
-
-        if (line.mid(0,23) == "Content-Type: multipart"){
+        QString boundary;
+        if (line->mid(0,23) == "Content-Type: multipart"){
             int boundaryStart= line->indexOf(char(34), 23);
             int boundaryEnd= line->indexOf(char(34),boundaryStart+1);
-            Qstring boundary= "--"+line->mid(boundaryStart,boundaryEnd-boundaryStart);
+            boundary= "--"+line->mid(boundaryStart,boundaryEnd-boundaryStart);
 
         }
-        if (line == boundary) {
+        if (*line == boundary) {
             if (isContent) {
                 isContent = false;
                 if (isPlain){
@@ -168,7 +166,9 @@ void parseMIMEContent(EmailData* email, QTextStream* in, QString* line, int* fil
     email->htmlLength=htmlLen;
     email->rawDataLocation=rawPlace;
     email->rawDataLength=rawLen;
-*/
+
+    qDebug() << "HTML Location: " << htmlPlace;
+    qDebug() << "HTLM Length: " << htmlLen;
 }
 
 QList<EmailData> parseMBOX(QString fileName)

@@ -111,34 +111,64 @@ void parseMIMEHeader(EmailData* email, QTextStream* in, QString* line, int* file
 
 void parseMIMEContent(EmailData* email, QTextStream* in, QString* line, int* fileLoc)
 {
+
+/*
+    int rawPlace;
+    int rawLen;
+    int htmlPlace;
+    int htmlLen;
+    bool isContent=false;
+    bool isPlain=false;
+    bool ishtml=false;
     while (!line->isNull() && line->left(10) != QString("X-GM-THRID"))
     {
         *line = in->readLine();
 
-        /*
-        bool isContent=false;
+        if (isContent){
+            if (line.mid(14,10)=="text/plain"){
+                rawPlace= *fileLoc;
+                isPlain=true;
+            }
+            if (line.mid(14,9)=="text/html"){
+                        htmlPlace= *fileLoc;
+                        ishtml= true;
+            }
+        }
 
-        if (line.substr(0,23) == "Content-Type: multipart"){
-            //finding boundary
-            size_t start = line.find_first_of(34);
-            size_t end = line.find_first_of(start+1, 34);
-            string boundary="--"+line.substr(int(start),int(end-start));
+
+        if (line.mid(0,23) == "Content-Type: multipart"){
+            int boundaryStart= line->indexOf(char(34), 23);
+            int boundaryEnd= line->indexOf(char(34),boundaryStart+1);
+            Qstring boundary= "--"+line->mid(boundaryStart,boundaryEnd-boundaryStart);
+
         }
         if (line == boundary) {
-            if (isContent)
-                isContent =false;
-            else
-                isContent=true;
+            if (isContent) {
+                isContent = false;
+                if (isPlain){
+                    rawLen= *fileLoc-rawPlace;
+                    isPlain=false;
+                }
+                if (ishtml){
+                            htmlLen= *fileLoc-htmlPlace;
+                            ishtml=false;
+                    }
+            }
+            else {
+                isContent = true;
+            }
         }
-        string content;
-        while (isContent){
-            content += line
-        }
+
         // if line = boundary then put it in content type
-        */
+
 
         *fileLoc = *fileLoc + 1;
     }
+    email->htmlLocation= htmlPlace;
+    email->htmlLength=htmlLen;
+    email->rawDataLocation=rawPlace;
+    email->rawDataLength=rawLen;
+*/
 }
 
 QList<EmailData> parseMBOX(QString fileName)

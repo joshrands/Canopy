@@ -47,7 +47,7 @@ public:
     }
 
     bool operator<(const WordFreq& other) const {
-        return count < other.count; // sort by namefile
+        return count > other.count; // sort by namefile
     }
 
     int rank;

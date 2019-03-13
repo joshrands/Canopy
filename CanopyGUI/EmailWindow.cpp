@@ -3,6 +3,7 @@
 #include <QRect>
 #include <QApplication>
 #include <QDesktopWidget>
+#include <QFile>
 
 EmailWindow::EmailWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -32,6 +33,12 @@ void EmailWindow::setEmailData(EmailData email)
     ui->senderLabel->setText("From: " + email.senderAddress);
     ui->subjectLabel->setText("Subject: " + email.subjectLine);
     ui->dateLabel->setText("Date: " + email.dateString);
+
+    // get html
+    QFile file(email.parentFileName);
+    QTextStream in(&file);
+
+    file.close();
 
     QString errorHTML = QStringLiteral("<!DOCTYPE html>"
             "<html>"

@@ -5,6 +5,7 @@
 
 #include <QDesktopWidget>
 #include <QtAlgorithms>
+#include <QFile>
 
 SearchWindow::SearchWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -39,6 +40,7 @@ void SearchWindow::initialize()
     // initialize fields
     ui->suspectNameLabel->setText(this->suspectName);
     ui->warrantNumberLabel->setText(QString::number(this->warrantNumber));
+    ui->dateLabel->setText(QDate::currentDate().toString());
 
     QFile file(this->filePath);
 
@@ -52,6 +54,8 @@ void SearchWindow::initialize()
         // parse input file
         this->emailData = parseEmailWarrant(this->filePath);
         this->displayEmails = emailData;
+
+        ui->emailCountLabel->setText(QString::number(emailData.size()));
 
         // set up email header list scroll area
         ui->emailHeaderList->widget()->setLayout(new QVBoxLayout());
@@ -92,6 +96,7 @@ void SearchWindow::populateEmailHeaders()
     // put emails in chronological order
     sortDisplayEmails();
 
+    QList<EmailData> validEmails;
     for (int i = 0; i < this->displayEmails.length(); i++)
     {
         EmailData email = this->displayEmails.at(i);
@@ -107,6 +112,8 @@ void SearchWindow::populateEmailHeaders()
         // display email in GUI
         if (displayEmail)
         {
+            validEmails.append(displayEmails.at(i));
+
             QString emailLabelText;
             if (email.senderAddress == this->userEmail)
             {
@@ -166,6 +173,9 @@ void SearchWindow::populateEmailHeaders()
             ui->emailHeaderList->widget()->layout()->addWidget(frame);
         }
     }
+
+//    getWordFrequency();
+//    populateWordFreq();
 }
 
 void SearchWindow::on_backButton_clicked()
@@ -310,24 +320,69 @@ void SearchWindow::getWordFrequency()
 {
     qDebug() << "Getting word count from input file";
     // call Canopy Data functions for word frequency on all email content
-    QMap<QString,int> wordCounts;
+
+    // super inefficient method for getting word frequencies
+    QList<WordFreq> wordCounts;
+    QList<QString> words;
+
+    QFile file(this->filePath);
+
+    QTextStream in(&file);
+
     for (int i = 0; i < emailData.length(); i++)
     {
         // get data from content
         EmailData email = emailData.at(i);
 //        QString data = "test";
 
-        wordCounts[email.senderAddress]++;
-        wordCounts[email.receiverAddress]++;
-
-        /* if (wordCounts.contains(email.senderAddress))
-            wordCounts[email.senderAddress] = wordCounts.value(email.senderAddress) + 1;
+        // add email addresses to word count
+        if (words.contains(email.senderAddress))
+        {
+            // increment existing
+            int index = words.indexOf(email.senderAddress);
+            wordCounts[index].count = wordCounts.at(index).count + 1;
+        }
         else
-            wordCounts.insert(email.senderAddress, 1); */
+        {
+            WordFreq word;
+            word.count = 1;
+            word.word = email.senderAddress;
+
+            wordCounts.append(word);
+            words.append(email.senderAddress);
+        }
+
+        if (words.contains(email.receiverAddress))
+        {
+            // increment existing
+            int index = words.indexOf(email.receiverAddress);
+            wordCounts[index].count = wordCounts.at(index).count + 1;
+        }
+        else
+        {
+            WordFreq word;
+            word.count = 1;
+            word.word = email.receiverAddress;
+
+            wordCounts.append(word);
+            words.append(email.receiverAddress);
+        }
+
+        // run word frequency count on email content
+        // TODO: Call TextAnalysis on this email content
+
     }
 
-//    QList<QString> keys = wordCounts.keys();
- //   qSort(keys);
+    file.close();
+
+    qSort(wordCounts);
+    for (int i = 0; i < wordCounts.size(); i++)
+    {
+        wordCounts[i].rank = i + 1;
+        wordFreqData.append(wordCounts[i]);
+    }
+
+    /*
     QList<int> values = wordCounts.values();
     qSort(values);
 
@@ -335,12 +390,10 @@ void SearchWindow::getWordFrequency()
 
     for (int i = 0; i < values.size(); i++)
     {
-//        qDebug() << wordCounts.key(values.at(i));
-
         WordFreq word(i + 1, wordCounts.key(values.at(i)), values.at(i));
         wordFreqData.append(word);
     }
-
+    */
 /*
     WordFreq word1(1, QString("rhino"), 22);
     WordFreq word2(2, QString("tiger"), 15);

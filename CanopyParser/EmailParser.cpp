@@ -193,6 +193,7 @@ QList<EmailData> parseMBOX(QString fileName)
     while (!line.isNull())
     {
         EmailData email;
+        email.parentFileName = fileName;
         email.subjectLine = QString("NO SUBJECT");
         email.senderAddress = QString("NO ADDRESS");
         email.receiverAddress = QString("NO ADDRESS");

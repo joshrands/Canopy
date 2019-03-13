@@ -18,14 +18,16 @@ SOURCES += main.cpp\
     ../CanopyParser/EmailData.cpp \
     ../CanopyParser/EmailParser.cpp \
     FrameButton.cpp \
-    EmailWindow.cpp
+    EmailWindow.cpp \
+    ../CanopyData/TextAnalysis.cpp
 
 HEADERS  += SearchWindow.h \
     WelcomeWindow.h \
     ../CanopyParser/EmailData.h \
     ../CanopyParser/EmailParser.h \
     FrameButton.h \
-    EmailWindow.h
+    EmailWindow.h \
+    ../CanopyData/TextAnalysis.h
 
 FORMS    += SearchWindow.ui \
     WelcomeWindow.ui \

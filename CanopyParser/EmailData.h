@@ -14,7 +14,7 @@ public:
     EmailData(); // default constructor
 
     bool operator<(const EmailData& other) const {
-        return dateTime < other.dateTime; // sort by namefile
+        return dateTime > other.dateTime; // sort by namefile
     }
 
     QString senderAddress;

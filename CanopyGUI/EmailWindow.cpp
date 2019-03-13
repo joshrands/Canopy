@@ -10,6 +10,9 @@ EmailWindow::EmailWindow(QWidget *parent) :
 {
     ui->setupUi(this);
 
+    // remove 'x'
+    this->setWindowFlags(Qt::WindowTitleHint | Qt::WindowMinimizeButtonHint);
+
     QRect screenGeometry = QApplication::desktop()->screenGeometry();
     int x = (screenGeometry.width()-this->width()) / 2;
     int y = (screenGeometry.height()-this->height()) / 2;
@@ -29,7 +32,6 @@ void EmailWindow::setEmailData(EmailData email)
     ui->senderLabel->setText("From: " + email.senderAddress);
     ui->subjectLabel->setText("Subject: " + email.subjectLine);
     ui->dateLabel->setText("Date: " + email.dateString);
-    //    ui->dateLabel->setText("Date: " + email.dateTime.date().toString());
 
     QString htmlString = QStringLiteral("<!DOCTYPE html>"
             "<html>"

@@ -57,12 +57,22 @@ void SearchWindow::initialize()
     ui->freqCountScrollArea->widget()->setLayout(new QVBoxLayout());
     ui->freqCountScrollArea->widget()->layout()->setAlignment(Qt::AlignTop);
 
-    //	ui->keywordBank->layout()->setFieldGrowth
-
     populateEmailHeaders();
 
     getWordFrequency();
     populateWordFreq();
+
+    // fill start and end date fields
+    int i = 0;
+    while (!displayEmails.at(i).dateTime.isValid())
+        i++;
+    ui->endDate->setDateTime(displayEmails.at(i).dateTime);
+
+    i = displayEmails.length() - 1;
+    while (!displayEmails.at(i).dateTime.isValid())
+        i--;
+
+    ui->startDate->setDateTime(displayEmails.at(i).dateTime);
 }
 
 void SearchWindow::populateEmailHeaders()
@@ -97,12 +107,20 @@ void SearchWindow::populateEmailHeaders()
             if (email.senderAddress == this->userEmail)
             {
                 emailLabelText = QString("To: ");
-                emailLabelText = emailLabelText + email.receiverAddress;
+
+                if (email.receiverAddress.length() <= 27)
+                    emailLabelText = emailLabelText + email.receiverAddress;
+                else
+                    emailLabelText = emailLabelText + email.receiverAddress.left(24) + QString("...");
             }
             else
             {
                 emailLabelText = QString("From: ");
-                emailLabelText = emailLabelText + email.senderAddress;
+
+                if (email.senderAddress.length() <= 27)
+                    emailLabelText = emailLabelText + email.senderAddress;
+                else
+                    emailLabelText = emailLabelText + email.senderAddress.left(24) + QString("...");
             }
 
             QHBoxLayout* layout = new QHBoxLayout();
@@ -118,12 +136,17 @@ void SearchWindow::populateEmailHeaders()
             emailLabel->setAlignment(Qt::AlignLeft);
 
             QLabel* subjectLabel = new QLabel();
-            subjectLabel->setText(email.subjectLine);
+
+            if (email.subjectLine.length() <= 30)
+                subjectLabel->setText(email.subjectLine);
+            else
+                subjectLabel->setText(email.subjectLine.left(27) + QString("..."));
+
             subjectLabel->setAlignment(Qt::AlignCenter);
             subjectLabel->setAlignment(Qt::AlignTop);
 
             QLabel* dateLabel = new QLabel();
-            dateLabel->setText(email.dateString);//email.dateTime.date().toString());
+            dateLabel->setText(email.dateTime.date().toString());//email.dateTime.date().toString());
             dateLabel->setAlignment(Qt::AlignRight);
             dateLabel->setAlignment(Qt::AlignTop);
 

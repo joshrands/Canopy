@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1276</width>
+    <width>1308</width>
     <height>891</height>
    </rect>
   </property>
@@ -686,7 +686,7 @@
      <rect>
       <x>1010</x>
       <y>10</y>
-      <width>261</width>
+      <width>291</width>
       <height>811</height>
      </rect>
     </property>
@@ -701,7 +701,7 @@
       <rect>
        <x>10</x>
        <y>7</y>
-       <width>241</width>
+       <width>271</width>
        <height>41</height>
       </rect>
      </property>
@@ -722,7 +722,7 @@
       <rect>
        <x>5</x>
        <y>48</y>
-       <width>250</width>
+       <width>281</width>
        <height>41</height>
       </rect>
      </property>
@@ -770,7 +770,7 @@
       <rect>
        <x>5</x>
        <y>94</y>
-       <width>250</width>
+       <width>281</width>
        <height>681</height>
       </rect>
      </property>
@@ -782,7 +782,7 @@
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>248</width>
+        <width>279</width>
         <height>679</height>
        </rect>
       </property>
@@ -791,8 +791,8 @@
     <widget class="QLabel" name="label_13">
      <property name="geometry">
       <rect>
-       <x>10</x>
-       <y>785</y>
+       <x>19</x>
+       <y>783</y>
        <width>67</width>
        <height>17</height>
       </rect>
@@ -809,9 +809,9 @@
     <widget class="QLineEdit" name="wordFreqFilter">
      <property name="geometry">
       <rect>
-       <x>74</x>
+       <x>84</x>
        <y>780</y>
-       <width>181</width>
+       <width>201</width>
        <height>25</height>
       </rect>
      </property>
@@ -861,7 +861,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1276</width>
+     <width>1308</width>
      <height>22</height>
     </rect>
    </property>

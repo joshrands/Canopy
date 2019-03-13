@@ -46,6 +46,10 @@ public:
         this->count = count;
     }
 
+    bool operator<(const WordFreq& other) const {
+        return count < other.count; // sort by namefile
+    }
+
     int rank;
     QString word;
     int count;

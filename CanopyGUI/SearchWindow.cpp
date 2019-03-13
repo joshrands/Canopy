@@ -42,7 +42,6 @@ void SearchWindow::initialize()
 
     QFile file(this->filePath);
 
-
     if (file.exists())
     {
         qDebug() << "File size: " << file.size()/1000000000.0;
@@ -276,7 +275,7 @@ void SearchWindow::populateWordFreq()
         frame->layout()->addWidget(wordLabel);
         frame->layout()->addWidget(countLabel);
         frame->setFixedHeight(40);
-        frame->setFixedWidth(230);
+        frame->setFixedWidth(250);
 
         ui->freqCountScrollArea->widget()->layout()->addWidget(frame);
         wordFreqFrames.append(frame);
@@ -309,8 +308,40 @@ void SearchWindow::applyEmailFilters()
 
 void SearchWindow::getWordFrequency()
 {
+    qDebug() << "Getting word count from input file";
     // call Canopy Data functions for word frequency on all email content
+    QMap<QString,int> wordCounts;
+    for (int i = 0; i < emailData.length(); i++)
+    {
+        // get data from content
+        EmailData email = emailData.at(i);
+//        QString data = "test";
 
+        wordCounts[email.senderAddress]++;
+        wordCounts[email.receiverAddress]++;
+
+        /* if (wordCounts.contains(email.senderAddress))
+            wordCounts[email.senderAddress] = wordCounts.value(email.senderAddress) + 1;
+        else
+            wordCounts.insert(email.senderAddress, 1); */
+    }
+
+//    QList<QString> keys = wordCounts.keys();
+ //   qSort(keys);
+    QList<int> values = wordCounts.values();
+    qSort(values);
+
+    std::reverse(values.begin(), values.end());
+
+    for (int i = 0; i < values.size(); i++)
+    {
+//        qDebug() << wordCounts.key(values.at(i));
+
+        WordFreq word(i + 1, wordCounts.key(values.at(i)), values.at(i));
+        wordFreqData.append(word);
+    }
+
+/*
     WordFreq word1(1, QString("rhino"), 22);
     WordFreq word2(2, QString("tiger"), 15);
     WordFreq word3(3, QString("cupcake"), 11);
@@ -318,7 +349,7 @@ void SearchWindow::getWordFrequency()
     wordFreqData.append(word1);
     wordFreqData.append(word2);
     wordFreqData.append(word3);
-
+*/
     wordFreqDisplay = wordFreqData;
 }
 

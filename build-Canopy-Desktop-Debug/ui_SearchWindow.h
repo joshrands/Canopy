@@ -105,7 +105,7 @@ public:
     {
         if (SearchWindow->objectName().isEmpty())
             SearchWindow->setObjectName(QStringLiteral("SearchWindow"));
-        SearchWindow->resize(1276, 891);
+        SearchWindow->resize(1308, 891);
         centralWidget = new QWidget(SearchWindow);
         centralWidget->setObjectName(QStringLiteral("centralWidget"));
         suspectFrame = new QFrame(centralWidget);
@@ -334,19 +334,19 @@ public:
 
         freqFrame = new QFrame(centralWidget);
         freqFrame->setObjectName(QStringLiteral("freqFrame"));
-        freqFrame->setGeometry(QRect(1010, 10, 261, 811));
+        freqFrame->setGeometry(QRect(1010, 10, 291, 811));
         freqFrame->setFrameShape(QFrame::StyledPanel);
         freqFrame->setFrameShadow(QFrame::Raised);
         freqTitle = new QLabel(freqFrame);
         freqTitle->setObjectName(QStringLiteral("freqTitle"));
-        freqTitle->setGeometry(QRect(10, 7, 241, 41));
+        freqTitle->setGeometry(QRect(10, 7, 271, 41));
         QFont font6;
         font6.setPointSize(18);
         freqTitle->setFont(font6);
         freqTitle->setAlignment(Qt::AlignCenter);
         frame_5 = new QFrame(freqFrame);
         frame_5->setObjectName(QStringLiteral("frame_5"));
-        frame_5->setGeometry(QRect(5, 48, 250, 41));
+        frame_5->setGeometry(QRect(5, 48, 281, 41));
         frame_5->setFrameShape(QFrame::StyledPanel);
         frame_5->setFrameShadow(QFrame::Raised);
         horizontalLayout_3 = new QHBoxLayout(frame_5);
@@ -373,21 +373,21 @@ public:
 
         freqCountScrollArea = new QScrollArea(freqFrame);
         freqCountScrollArea->setObjectName(QStringLiteral("freqCountScrollArea"));
-        freqCountScrollArea->setGeometry(QRect(5, 94, 250, 681));
+        freqCountScrollArea->setGeometry(QRect(5, 94, 281, 681));
         freqCountScrollArea->setWidgetResizable(true);
         scrollAreaWidgetContents = new QWidget();
         scrollAreaWidgetContents->setObjectName(QStringLiteral("scrollAreaWidgetContents"));
-        scrollAreaWidgetContents->setGeometry(QRect(0, 0, 248, 679));
+        scrollAreaWidgetContents->setGeometry(QRect(0, 0, 279, 679));
         freqCountScrollArea->setWidget(scrollAreaWidgetContents);
         label_13 = new QLabel(freqFrame);
         label_13->setObjectName(QStringLiteral("label_13"));
-        label_13->setGeometry(QRect(10, 785, 67, 17));
+        label_13->setGeometry(QRect(19, 783, 67, 17));
         QFont font7;
         font7.setPointSize(13);
         label_13->setFont(font7);
         wordFreqFilter = new QLineEdit(freqFrame);
         wordFreqFilter->setObjectName(QStringLiteral("wordFreqFilter"));
-        wordFreqFilter->setGeometry(QRect(74, 780, 181, 25));
+        wordFreqFilter->setGeometry(QRect(84, 780, 201, 25));
         closeButton = new QPushButton(centralWidget);
         closeButton->setObjectName(QStringLiteral("closeButton"));
         closeButton->setGeometry(QRect(10, 800, 121, 31));
@@ -412,7 +412,7 @@ public:
         closeButton->raise();
         menuBar = new QMenuBar(SearchWindow);
         menuBar->setObjectName(QStringLiteral("menuBar"));
-        menuBar->setGeometry(QRect(0, 0, 1276, 22));
+        menuBar->setGeometry(QRect(0, 0, 1308, 22));
         menuCanopy_Search = new QMenu(menuBar);
         menuCanopy_Search->setObjectName(QStringLiteral("menuCanopy_Search"));
         SearchWindow->setMenuBar(menuBar);

@@ -604,7 +604,7 @@
       <string>ADD</string>
      </property>
     </widget>
-    <widget class="QWidget" name="">
+    <widget class="QWidget" name="layoutWidget">
      <property name="geometry">
       <rect>
        <x>10</x>
@@ -687,7 +687,7 @@
       <x>1010</x>
       <y>10</y>
       <width>261</width>
-      <height>821</height>
+      <height>811</height>
      </rect>
     </property>
     <property name="frameShape">
@@ -771,7 +771,7 @@
        <x>5</x>
        <y>94</y>
        <width>250</width>
-       <height>716</height>
+       <height>681</height>
       </rect>
      </property>
      <property name="widgetResizable">
@@ -783,10 +783,38 @@
         <x>0</x>
         <y>0</y>
         <width>248</width>
-        <height>714</height>
+        <height>679</height>
        </rect>
       </property>
      </widget>
+    </widget>
+    <widget class="QLabel" name="label_13">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>785</y>
+       <width>67</width>
+       <height>17</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>13</pointsize>
+      </font>
+     </property>
+     <property name="text">
+      <string>Search:</string>
+     </property>
+    </widget>
+    <widget class="QLineEdit" name="wordFreqFilter">
+     <property name="geometry">
+      <rect>
+       <x>74</x>
+       <y>780</y>
+       <width>181</width>
+       <height>25</height>
+      </rect>
+     </property>
     </widget>
    </widget>
    <widget class="QPushButton" name="closeButton">

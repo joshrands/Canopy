@@ -43,6 +43,8 @@ private slots:
 
     void on_addKeywordButton_clicked();
 
+    void on_wordFreqFilter_textChanged(const QString &arg1);
+
 private:
     Ui::SearchWindow *ui;
 
@@ -62,7 +64,8 @@ private:
 
     // auto generated data analytics
     QList<WordFreq> wordFreqData;
-    //QList<tuple<int,QString,int>> wordFreqData;
+    QList<WordFreq> wordFreqDisplay;
+    QList<QFrame*> wordFreqFrames;
 
     // email header display
     int emailCount;

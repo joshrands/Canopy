@@ -41,38 +41,43 @@ void SearchWindow::initialize()
     ui->warrantNumberLabel->setText(QString::number(this->warrantNumber));
 
     QFile file(this->filePath);
-    qDebug() << "File size: " << file.size()/1000000000.0;
-    ui->fileSizeLabel->setText(QString::number(file.size()/1000000000.0) + QString(" GB"));
 
-    file.close();
 
-    // parse input file
-    this->emailData = parseEmailWarrant(this->filePath);
-    this->displayEmails = emailData;
+    if (file.exists())
+    {
+        qDebug() << "File size: " << file.size()/1000000000.0;
+        ui->fileSizeLabel->setText(QString::number(file.size()/1000000000.0) + QString(" GB"));
 
-    // set up email header list scroll area
-    ui->emailHeaderList->widget()->setLayout(new QVBoxLayout());
-    ui->emailHeaderList->widget()->layout()->setAlignment(Qt::AlignTop);
+        file.close();
 
-    ui->freqCountScrollArea->widget()->setLayout(new QVBoxLayout());
-    ui->freqCountScrollArea->widget()->layout()->setAlignment(Qt::AlignTop);
+        // parse input file
+        this->emailData = parseEmailWarrant(this->filePath);
+        this->displayEmails = emailData;
 
-    populateEmailHeaders();
+        // set up email header list scroll area
+        ui->emailHeaderList->widget()->setLayout(new QVBoxLayout());
+        ui->emailHeaderList->widget()->layout()->setAlignment(Qt::AlignTop);
 
-    getWordFrequency();
-    populateWordFreq();
+        ui->freqCountScrollArea->widget()->setLayout(new QVBoxLayout());
+        ui->freqCountScrollArea->widget()->layout()->setAlignment(Qt::AlignTop);
 
-    // fill start and end date fields
-    int i = 0;
-    while (!displayEmails.at(i).dateTime.isValid())
-        i++;
-    ui->endDate->setDateTime(displayEmails.at(i).dateTime);
+        populateEmailHeaders();
 
-    i = displayEmails.length() - 1;
-    while (!displayEmails.at(i).dateTime.isValid())
-        i--;
+        getWordFrequency();
+        populateWordFreq();
 
-    ui->startDate->setDateTime(displayEmails.at(i).dateTime);
+        // fill start and end date fields
+        int i = 0;
+        while (!displayEmails.at(i).dateTime.isValid())
+            i++;
+        ui->endDate->setDateTime(displayEmails.at(i).dateTime);
+
+        i = displayEmails.length() - 1;
+        while (!displayEmails.at(i).dateTime.isValid())
+            i--;
+
+        ui->startDate->setDateTime(displayEmails.at(i).dateTime);
+    }
 }
 
 void SearchWindow::populateEmailHeaders()
@@ -233,10 +238,17 @@ void SearchWindow::on_closeButton_clicked()
 
 void SearchWindow::populateWordFreq()
 {
-    // populate gui based off information from getWordFrequency
-    for (int i = 0; i < wordFreqData.size(); i++)
+    // delete existing emails
+    for (int i = 0; i < this->wordFreqFrames.length(); i++)
     {
-        WordFreq word = wordFreqData.at(i);
+        delete wordFreqFrames.at(i);
+    }
+    this->wordFreqFrames.clear();
+
+    // populate gui based off information from getWordFrequency
+    for (int i = 0; i < wordFreqDisplay.size(); i++)
+    {
+        WordFreq word = wordFreqDisplay.at(i);
 
 //        qDebug() << word.word;
         QHBoxLayout* layout = new QHBoxLayout();
@@ -267,6 +279,7 @@ void SearchWindow::populateWordFreq()
         frame->setFixedWidth(230);
 
         ui->freqCountScrollArea->widget()->layout()->addWidget(frame);
+        wordFreqFrames.append(frame);
     }
 }
 
@@ -305,6 +318,8 @@ void SearchWindow::getWordFrequency()
     wordFreqData.append(word1);
     wordFreqData.append(word2);
     wordFreqData.append(word3);
+
+    wordFreqDisplay = wordFreqData;
 }
 
 void SearchWindow::getFilterInput()
@@ -344,4 +359,18 @@ void SearchWindow::sortDisplayEmails()
 {
 //    qSort(displayEmails.begin(), displayEmails.end(), emailLessThan);
     qSort(displayEmails);
+}
+
+void SearchWindow::on_wordFreqFilter_textChanged(const QString &arg1)
+{
+   //qDebug() << arg1;
+   wordFreqDisplay.clear();
+
+   for (int i = 0; i < wordFreqData.length(); i++)
+   {
+        if (wordFreqData.at(i).word.contains(arg1))
+            wordFreqDisplay.append(wordFreqData.at(i));
+   }
+
+   populateWordFreq();
 }

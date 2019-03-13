@@ -33,18 +33,18 @@ void EmailWindow::setEmailData(EmailData email)
     ui->subjectLabel->setText("Subject: " + email.subjectLine);
     ui->dateLabel->setText("Date: " + email.dateString);
 
-    QString htmlString = QStringLiteral("<!DOCTYPE html>"
+    QString errorHTML = QStringLiteral("<!DOCTYPE html>"
             "<html>"
             "<body>"
             ""
-            "<h1>My First Heading</h1>"
+            "<h1>Error</h1>"
             ""
-            "<p>My first paragraph.</p>"
+            "<p>There was an error loading this email's content</p>"
             ""
             "</body>"
             "</html>");
 
-    ui->htmlWindow->setHtml(htmlString);
+    ui->htmlWindow->setHtml(errorHTML);
 }
 
 void EmailWindow::on_backButton_clicked()

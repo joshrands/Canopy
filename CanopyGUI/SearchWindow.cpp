@@ -40,7 +40,7 @@ void SearchWindow::initialize()
     // initialize fields
     ui->suspectNameLabel->setText(this->suspectName);
     ui->warrantNumberLabel->setText(QString::number(this->warrantNumber));
-    ui->dateLabel->setText(QDate::currentDate().toString());
+    ui->dateLabel->setText(QDate::currentDate().toString(QString("MMMM d yyyy")));
 
     QFile file(this->filePath);
 
@@ -336,38 +336,43 @@ void SearchWindow::getWordFrequency()
 //        QString data = "test";
 
         // add email addresses to word count
-        if (words.contains(email.senderAddress))
+        if (email.senderAddress != userEmail)
         {
-            // increment existing
-            int index = words.indexOf(email.senderAddress);
-            wordCounts[index].count = wordCounts.at(index).count + 1;
-        }
-        else
-        {
-            WordFreq word;
-            word.count = 1;
-            word.word = email.senderAddress;
+            if (words.contains(email.senderAddress))
+            {
+                // increment existing
+                int index = words.indexOf(email.senderAddress);
+                wordCounts[index].count = wordCounts.at(index).count + 1;
+            }
+            else
+            {
+                WordFreq word;
+                word.count = 1;
+                word.word = email.senderAddress;
 
-            wordCounts.append(word);
-            words.append(email.senderAddress);
-        }
-
-        if (words.contains(email.receiverAddress))
-        {
-            // increment existing
-            int index = words.indexOf(email.receiverAddress);
-            wordCounts[index].count = wordCounts.at(index).count + 1;
-        }
-        else
-        {
-            WordFreq word;
-            word.count = 1;
-            word.word = email.receiverAddress;
-
-            wordCounts.append(word);
-            words.append(email.receiverAddress);
+                wordCounts.append(word);
+                words.append(email.senderAddress);
+            }
         }
 
+        if (email.receiverAddress != userEmail)
+        {
+            if (words.contains(email.receiverAddress))
+            {
+                // increment existing
+                int index = words.indexOf(email.receiverAddress);
+                wordCounts[index].count = wordCounts.at(index).count + 1;
+            }
+            else
+            {
+                WordFreq word;
+                word.count = 1;
+                word.word = email.receiverAddress;
+
+                wordCounts.append(word);
+                words.append(email.receiverAddress);
+            }
+        }
         // run word frequency count on email content
         // TODO: Call TextAnalysis on this email content
 

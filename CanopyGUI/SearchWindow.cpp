@@ -376,6 +376,43 @@ void SearchWindow::getWordFrequency()
         }
         // run word frequency count on email content
         // TODO: Call TextAnalysis on this email content
+        // getWordFreq(line, &wordCounts, &words);
+        QFile file(email.parentFileName);
+
+        if (file.exists() && file.open(QIODevice::ReadOnly | QIODevice::Text))
+        {
+            QTextStream in(&file);
+
+            for (int i = 0; i < email.textLocation; i++)
+            {
+                in.readLine();
+            }
+
+            QString line;
+            line = in.readLine();
+
+            for (int i = 0; i < email.textLength; i++)
+            {
+                line = in.readLine();
+
+                QString text = line;
+                while (line.length() >= 76)
+                {
+                    if (text == line)
+                    {
+                        text = line.left(75);
+                    }
+                    else
+                    {
+                        text = text + line.left(75);
+                    }
+                    line = in.readLine();
+                }
+
+                getWordFreq(text, &wordCounts, &words);
+            }
+
+        }
 
     }
 

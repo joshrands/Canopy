@@ -3,7 +3,7 @@
 
 #include <QString>
 #include <QList>
-#include "EmailData.h"
+#include "../CanopyData/TextAnalysis.h"
 #include <QTextStream>
 
 enum EmailFileType

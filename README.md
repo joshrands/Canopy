@@ -9,21 +9,19 @@ Created by Ethan Bond, Luke Epp, Josh Rands, and Matt Wojnoski
 
 1. Some MIME headers are a different format than the 'typical' header and our parser misses information
 2. Keyword word bank adds words on new row every time
+3. Word frequency count is very slow and halts the application
+4. HTML with images/color doesn't show up right
+5. No robustness for if an email doesn't have HTML content
 
 ## ToDo
 
 ### GUI
-1. Add search feature for word frequency
-2. Be able to remove keyword filters
+1. Be able to remove keyword filters
 
 ### Data
-1. C++ function for word count from string/char stream
 
 ### Parser
 1. Know email location in meta data
-2. Create parser for .mbox file type
-3. Parse html section of .eml to look normal
-4. Create html string from raw html
 
 ## Latest Features: Canopy Alpha v1.0
 
@@ -36,11 +34,15 @@ Created by Ethan Bond, Luke Epp, Josh Rands, and Matt Wojnoski
 - Word frequency display interface for all emails
 - Word bank for adding keyword filters
 - Take user input for filter data
+- User can search word frequencies
 
 ### Data
 - Filter emails by date
 - Display emails in chronological order
+- Counting word frequency in all email content
 
 ### Parser
 - Created Email Data storage class
 - Parsing MIME header information and displaying in scroll area
+- Created rough parser for MBOX files
+- Improved appearance of HTML content

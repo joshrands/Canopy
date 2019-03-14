@@ -25,6 +25,17 @@ private:
     Ui::EmailWindow *ui;
 
     EmailData email;
+
+    QString errorHTML = QStringLiteral("<!DOCTYPE html>"
+            "<html>"
+            "<body>"
+            ""
+            "<h1>Error</h1>"
+            ""
+            "<p>There was an error loading this email's content</p>"
+            ""
+            "</body>"
+            "</html>");
 };
 
 #endif // EMAILWINDOW_H

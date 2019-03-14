@@ -4,6 +4,7 @@
 #include <QApplication>
 #include <QDesktopWidget>
 #include <QFile>
+#include <QDebug>
 
 EmailWindow::EmailWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -38,18 +39,13 @@ void EmailWindow::setEmailData(EmailData email)
     QFile file(email.parentFileName);
     QTextStream in(&file);
 
+    in.seek(email.htmlLocation);
+    QString line;
+    line = in.readLine();
+    qDebug() << line;
+
     file.close();
 
-    QString errorHTML = QStringLiteral("<!DOCTYPE html>"
-            "<html>"
-            "<body>"
-            ""
-            "<h1>Error</h1>"
-            ""
-            "<p>There was an error loading this email's content</p>"
-            ""
-            "</body>"
-            "</html>");
 
     ui->htmlWindow->setHtml(errorHTML);
 }

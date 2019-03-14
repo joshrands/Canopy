@@ -31,6 +31,9 @@ public:
     int htmlLocation; // byte location of html in parent file
     int htmlLength; // byte length of html in parent file
 
+    int textLocation;
+    int textLength;
+
 private:
 
 };

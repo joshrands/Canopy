@@ -326,9 +326,9 @@ void SearchWindow::getWordFrequency()
     QList<WordFreq> wordCounts;
     QList<QString> words;
 
-    QFile file(this->filePath);
+//    QFile file(this->filePath);
 
-    QTextStream in(&file);
+//    QTextStream in(&file);
 
     for (int i = 0; i < emailData.length(); i++)
     {
@@ -413,17 +413,23 @@ void SearchWindow::getWordFrequency()
             }
 
         }
-
+        file.close();
     }
 
-    file.close();
+//    file.close();
 
     qSort(wordCounts);
-    for (int i = 0; i < wordCounts.size(); i++)
+    int i = 0;
+    while (i < wordCounts.size() && wordCounts[i].count >= 10)
     {
         wordCounts[i].rank = i + 1;
         wordFreqData.append(wordCounts[i]);
+
+        i++;
     }
+
+    wordCounts.clear();
+    words.clear();
 
     /*
     QList<int> values = wordCounts.values();

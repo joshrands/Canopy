@@ -18,7 +18,7 @@ void getWordFreq(QString line, QList<WordFreq>* wordCounts, QList<QString>* word
 
     for (int i = 0; i < list.length(); i++)
     {
-        if (list.at(i).length() > 1 && !badWords.contains(list.at(i)))
+        if (list.at(i).length() > 1)
         {
             if (words->contains(list.at(i)))
             {

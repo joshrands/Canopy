@@ -36,18 +36,46 @@ void EmailWindow::setEmailData(EmailData email)
     ui->dateLabel->setText("Date: " + email.dateString);
 
     // get html
-    QFile file(email.parentFileName);
-    QTextStream in(&file);
+//    qDebug() << email.parentFileName;
 
-    in.seek(email.htmlLocation);
-    QString line;
-    line = in.readLine();
-    qDebug() << line;
+    QFile file(email.parentFileName);
+    if (file.exists())
+        qDebug() << "File exists";
+
+    QString html;
+    if (file.exists() && file.open(QIODevice::ReadOnly | QIODevice::Text))
+    {
+        QTextStream in(&file);
+
+        for (int i = 0; i < email.htmlLocation; i++)
+        {
+            in.readLine();
+        }
+
+        QString line;
+        line = in.readLine();
+
+        html = QString("");
+        for (int i = 0; i < email.htmlLength; i++)
+        {
+            line = in.readLine();
+
+            // parse some html
+            if (line.length() == 76)
+                line = line.left(75);
+
+            html += line;
+        }
+
+    }
+    else
+    {
+        html = errorHTML;
+    }
 
     file.close();
 
-
-    ui->htmlWindow->setHtml(errorHTML);
+    ui->htmlWindow->setHtml(html);
 }
 
 void EmailWindow::on_backButton_clicked()

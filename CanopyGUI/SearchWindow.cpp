@@ -42,6 +42,7 @@ void SearchWindow::initialize()
     ui->warrantNumberLabel->setText(QString::number(this->warrantNumber));
     ui->dateLabel->setText(QDate::currentDate().toString(QString("MMMM d yyyy")));
 
+    qDebug() << this->filePath;
     QFile file(this->filePath);
 
     if (file.exists())

@@ -190,10 +190,10 @@ void parseMIMEContent(EmailData* email, QTextStream* in, QString* line, int* fil
         }
         else if (line->mid(14, 9) == QString("text/html"))
         {
-//            qDebug() << "text/html: " << *fileLoc;
+            qDebug() << "text/html: " << *fileLoc;
             email->htmlLocation = *fileLoc;
 
-//            qDebug() << previousLine;
+            qDebug() << previousLine;
             // get length
             while (!line->isNull() && line->left(previousLine.length()) != previousLine && line->left(10) != QString("X-GM-THRID"))
             {
@@ -247,6 +247,8 @@ QList<EmailData> parseMBOX(QString fileName)
 
         emails.push_back(email);
     }
+
+    file.close();
 
     return emails;
 }

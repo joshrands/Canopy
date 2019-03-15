@@ -158,7 +158,7 @@ void SearchWindow::populateEmailHeaders()
             subjectLabel->setAlignment(Qt::AlignTop);
 
             QLabel* dateLabel = new QLabel();
-            dateLabel->setText(email.dateTime.date().toString());//email.dateTime.date().toString());
+            dateLabel->setText(email.dateTime.toString());//email.dateTime.date().toString());
             dateLabel->setAlignment(Qt::AlignRight);
             dateLabel->setAlignment(Qt::AlignTop);
 

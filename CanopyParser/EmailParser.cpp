@@ -244,7 +244,16 @@ QDateTime parseMIMEDateString(QString dateString)
 
     y = dateString.mid(start, i - start).toInt(); // get only last 2 digits
 
+    // get time
+    i+=1; // move past empty space
+    int h = dateString.mid(i, 2).toInt();
+    i+=3;
+    int min = dateString.mid(i, 2).toInt();
+    i+=3;
+    int s = dateString.mid(i, 2).toInt();
+
     date.setDate(QDate(y, m, d));
+    date.setTime(QTime(h, min, s));
 
     return date;
 }

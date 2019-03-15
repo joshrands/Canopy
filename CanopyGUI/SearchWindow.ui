@@ -44,7 +44,13 @@
       </font>
      </property>
      <property name="text">
-      <string>No image</string>
+      <string/>
+     </property>
+     <property name="pixmap">
+      <pixmap>../images/unknown-user.png</pixmap>
+     </property>
+     <property name="scaledContents">
+      <bool>true</bool>
      </property>
      <property name="alignment">
       <set>Qt::AlignCenter</set>

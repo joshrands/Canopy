@@ -119,6 +119,8 @@ public:
         QFont font;
         font.setKerning(false);
         suspectPortrait->setFont(font);
+        suspectPortrait->setPixmap(QPixmap(QString::fromUtf8("../images/unknown-user.png")));
+        suspectPortrait->setScaledContents(true);
         suspectPortrait->setAlignment(Qt::AlignCenter);
         suspectNameLabel = new QLabel(suspectFrame);
         suspectNameLabel->setObjectName(QStringLiteral("suspectNameLabel"));
@@ -433,7 +435,7 @@ public:
     void retranslateUi(QMainWindow *SearchWindow)
     {
         SearchWindow->setWindowTitle(QApplication::translate("SearchWindow", "SearchWindow", 0));
-        suspectPortrait->setText(QApplication::translate("SearchWindow", "No image", 0));
+        suspectPortrait->setText(QString());
         suspectNameLabel->setText(QApplication::translate("SearchWindow", "Unknown Suspect", 0));
         label_10->setText(QApplication::translate("SearchWindow", "Date Imported", 0));
         label_3->setText(QApplication::translate("SearchWindow", "Source", 0));

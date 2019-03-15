@@ -42,10 +42,12 @@ QList<EmailData> parseEmailWarrant(QString fileName)
 
 void parseEmailString(QString line, QString* address)
 {
+    bool found = false;
     for (int i = 0; i < line.length(); i++)
     {
         if (line.at(i) == '<')
         {
+            found = true;
             // find '>', if not end get next email
             int start = i + 1;
             while (line.at(i) != '>' && i < line.length() - 1)
@@ -61,6 +63,12 @@ void parseEmailString(QString line, QString* address)
             // UPDATE: This shouldn't happen if parsing is done right
         }
     }
+
+    if (!found)
+    {
+        // email not in address book, follows different format
+        *address = line.right(line.length() - 4);
+    }
 }
 
 void parseMIMEHeader(EmailData* email, QTextStream* in, QString* line, int* fileLoc)
@@ -68,8 +76,11 @@ void parseMIMEHeader(EmailData* email, QTextStream* in, QString* line, int* file
     //qDebug() << "Parsing MIME header";
     bool from = false;
     bool to = false;
+    qDebug() << "Parsing header at " << *fileLoc;
     while (!line->isNull() && line->left(12) != QString("Content-Type"))
     {
+//        qDebug() << *line;
+
         if (line->left(5) == "From:")
         {
             from = true;
@@ -79,6 +90,7 @@ void parseMIMEHeader(EmailData* email, QTextStream* in, QString* line, int* file
         }
         else if (line->left(3) == "To:")
         {
+            //qDebug() << *line;
             to = true;
             QString receiver;
             parseEmailString(*line, &receiver);
@@ -102,6 +114,10 @@ void parseMIMEHeader(EmailData* email, QTextStream* in, QString* line, int* file
         *fileLoc = *fileLoc + 1;
     }
 
+//    qDebug() << "Parsed from " << email->senderAddress;
+//    qDebug() << "To: " << email->receiverAddress;
+//    qDebug() << *fileLoc;
+
     if (!(to && from))
     {
         // weird format
@@ -111,64 +127,6 @@ void parseMIMEHeader(EmailData* email, QTextStream* in, QString* line, int* file
 
 void parseMIMEContent(EmailData* email, QTextStream* in, QString* line, int* fileLoc)
 {
-/*
-    int rawPlace;
-    int rawLen;
-    int htmlPlace;
-    int htmlLen;
-    bool isContent=false;
-    bool isPlain=false;
-    bool ishtml=false;
-    while (!line->isNull() && line->left(10) != QString("X-GM-THRID"))
-    {
-        *line = in->readLine();
-
-        if (isContent){
-            if (line->mid(14,10)=="text/plain"){
-                rawPlace= *fileLoc;
-                isPlain=true;
-            }
-            if (line->mid(14,9)=="text/html"){
-                        htmlPlace= *fileLoc;
-                        ishtml= true;
-            }
-        }
-
-        QString boundary;
-        if (line->mid(0,23) == "Content-Type: multipart"){
-            int boundaryStart= line->indexOf(char(34), 23);
-            int boundaryEnd= line->indexOf(char(34),boundaryStart+1);
-            boundary= "--"+line->mid(boundaryStart,boundaryEnd-boundaryStart);
-
-        }
-        if (*line == boundary) {
-            if (isContent) {
-                isContent = false;
-                if (isPlain){
-                    rawLen= *fileLoc-rawPlace;
-                    isPlain=false;
-                }
-                if (ishtml){
-                            htmlLen= *fileLoc-htmlPlace;
-                            ishtml=false;
-                    }
-            }
-            else {
-                isContent = true;
-            }
-        }
-
-        // if line = boundary then put it in content type
-
-
-        *fileLoc = *fileLoc + 1;
-    }
-    email->htmlLocation= htmlPlace;
-    email->htmlLength=htmlLen;
-    email->rawDataLocation=rawPlace;
-    email->rawDataLength=rawLen;
-*/
-
     QString previousLine = *line;
 
     while (!line->isNull() && line->left(10) != QString("X-GM-THRID"))
@@ -190,7 +148,7 @@ void parseMIMEContent(EmailData* email, QTextStream* in, QString* line, int* fil
         }
         else if (line->mid(14, 9) == QString("text/html"))
         {
-            //qDebug() << "text/html: " << *fileLoc;
+            qDebug() << "text/html: " << *fileLoc;
             email->htmlLocation = *fileLoc;
 
             //qDebug() << previousLine;

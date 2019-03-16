@@ -73,10 +73,9 @@ void parseEmailString(QString line, QString* address)
 
 void parseMIMEHeader(EmailData* email, QTextStream* in, QString* line, int* fileLoc)
 {
-    //qDebug() << "Parsing MIME header";
     bool from = false;
     bool to = false;
-    qDebug() << "Parsing header at " << *fileLoc;
+//    qDebug() << "Parsing header at " << *fileLoc;
     while (!line->isNull() && line->left(12) != QString("Content-Type"))
     {
 //        qDebug() << *line;
@@ -121,51 +120,70 @@ void parseMIMEHeader(EmailData* email, QTextStream* in, QString* line, int* file
     if (!(to && from))
     {
         // weird format
-
+        qDebug() << "Unknown format at line: " << *fileLoc;
     }
 }
 
 void parseMIMEContent(EmailData* email, QTextStream* in, QString* line, int* fileLoc)
 {
-    QString previousLine = *line;
+    QString previousLine = QString("");
+
+    email->textLocation = 0;
+    email->textLength = 0;
 
     while (!line->isNull() && line->left(10) != QString("X-GM-THRID"))
     {
+//        qDebug() << previousLine << *fileLoc << ": " << *line;
+
         if (line->mid(14,10) == QString("text/plain"))
         {
-//            qDebug() << "text/plain: " << *fileLoc;
+//            qDebug() << "text/plain: " << *fileLoc << ": " << previousLine;
             email->textLocation = *fileLoc;
 
             // get length
+            QString temp;
             while (!line->isNull() && *line != previousLine && line->left(10) != QString("X-GM-THRID"))
             {
+                temp = *line;
                 *line = in->readLine();
                 *fileLoc = *fileLoc + 1;
             }
 
+            previousLine = temp;
+
+//            qDebug() << "End: " << *fileLoc;
             email->textLength = *fileLoc - email->textLocation;
 //            qDebug() << email->textLength;
         }
         else if (line->mid(14, 9) == QString("text/html"))
         {
-            qDebug() << "text/html: " << *fileLoc;
+//            qDebug() << "text/html: " << *fileLoc << ": " << previousLine;
             email->htmlLocation = *fileLoc;
 
             //qDebug() << previousLine;
             // get length
+            *line = in->readLine();
+            *fileLoc = *fileLoc + 1;
+
+            QString temp;
             while (!line->isNull() && line->left(previousLine.length()) != previousLine && line->left(10) != QString("X-GM-THRID"))
             {
+                temp = *line;
                 *line = in->readLine();
                 *fileLoc = *fileLoc + 1;
             }
+            previousLine = temp;
 
+//            qDebug() << "HTML End: " << *fileLoc;
             email->htmlLength = *fileLoc - email->htmlLocation;
 //            qDebug() << email->htmlLength;
         }
-
-        previousLine = *line;
-        *line = in->readLine();
-        *fileLoc = *fileLoc + 1;
+        else
+        {
+            previousLine = *line;
+            *line = in->readLine();
+            *fileLoc = *fileLoc + 1;
+        }
     }
 }
 

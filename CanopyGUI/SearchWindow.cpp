@@ -390,6 +390,7 @@ void SearchWindow::getWordFrequency()
 
             QString line;
             line = in.readLine();
+            line = in.readLine();
 
             for (int i = 0; i < email.textLength; i++)
             {

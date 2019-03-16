@@ -392,9 +392,12 @@ void SearchWindow::getWordFrequency()
             line = in.readLine();
             line = in.readLine();
 
+//            qDebug() << email.textLocation << " to " << email.textLocation + email.textLength;
+
             for (int i = 0; i < email.textLength; i++)
             {
                 line = in.readLine();
+//                qDebug() << line;
 
                 QString text = line;
                 while (line.length() >= 76)
@@ -410,7 +413,10 @@ void SearchWindow::getWordFrequency()
                     line = in.readLine();
                 }
 
-                getWordFreq(text, &wordCounts, &words);
+                if (line.contains("text/html"))
+                    i = email.textLength;
+                else
+                    getWordFreq(text, &wordCounts, &words);
             }
 
         }

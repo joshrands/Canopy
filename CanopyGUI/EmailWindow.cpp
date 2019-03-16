@@ -63,6 +63,18 @@ void EmailWindow::setEmailData(EmailData email)
             // parse some html
             if (line.length() == 76)
                 line = line.left(75);
+            // TODO: REMOVE THIS
+            if (line.right(1) == "=")
+                line = line.left(line.length() - 2);
+
+            line.replace("=A0","\n");
+            line.replace("=0A","\n");
+            line.replace("=08","\t");
+            line.replace("=09","\t");
+            line.replace("=20"," ");
+            line.remove("=C");
+
+            //            if (line.contains(""))
 
             html += line;
         }

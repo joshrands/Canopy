@@ -10,7 +10,7 @@ QMap<QString, int> getWordCount(QString content)
    return wordCounts;
 }
 
-void getWordFreq(QString line, QList<WordFreq>* wordCounts, QList<QString>* words)
+void getWordFreq(QString line, QList<WordFreq>* wordCounts, QList<QString>* words, EmailData* email)
 {
     QStringList list = line.split(QRegExp("\\s+"), QString::SkipEmptyParts);
 
@@ -37,6 +37,9 @@ void getWordFreq(QString line, QList<WordFreq>* wordCounts, QList<QString>* word
 //        qDebug() << "|" << word << "|";
         if (list.at(i).length() > 1 && !badWords.contains(word))
         {
+            if (!email->keywords.contains(word))
+                email->keywords.append(word);
+
             if (words->contains(word))
             {
                 // increment existing
@@ -54,6 +57,8 @@ void getWordFreq(QString line, QList<WordFreq>* wordCounts, QList<QString>* word
             }
         }
     }
+
+
 }
 
 

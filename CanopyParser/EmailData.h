@@ -34,6 +34,8 @@ public:
     int textLocation;
     int textLength;
 
+    QList<QString> keywords;
+
 private:
 
 };

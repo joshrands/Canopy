@@ -309,6 +309,20 @@ void SearchWindow::applyEmailFilters()
 
         if (!(email.dateTime >= startDateFilter && email.dateTime < endDateFilter))
             valid = false;
+        else if (keywordFilters.size() > 0)
+        {
+            // make sure email has keyword filters
+            valid = false;
+            for (int j = 0; j < keywordFilters.size(); j++)
+            {
+                for (int k = 0; k < email.keywords.size(); k++)
+                {
+                //    qDebug() << email.keywords.at(k);
+                    if (email.keywords.at(k).contains(keywordFilters.at(j)))
+                        valid = true;
+                }
+            }
+        }
 
         if (valid)
             validEmails.append(email);
@@ -394,7 +408,7 @@ void SearchWindow::getWordFrequency()
 
 //            qDebug() << email.textLocation << " to " << email.textLocation + email.textLength;
 
-            for (int i = 0; i < email.textLength; i++)
+            for (int j = 0; j < email.textLength; j++)
             {
                 line = in.readLine();
 //                qDebug() << line;
@@ -414,9 +428,12 @@ void SearchWindow::getWordFrequency()
                 }
 
                 if (line.contains("text/html"))
-                    i = email.textLength;
+                    j = email.textLength;
                 else
-                    getWordFreq(text, &wordCounts, &words);
+                {
+                    getWordFreq(text, &wordCounts, &words, &email);
+                    emailData[i] = email;
+                }
             }
 
         }

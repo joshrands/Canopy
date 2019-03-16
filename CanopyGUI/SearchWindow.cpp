@@ -402,7 +402,7 @@ void SearchWindow::getWordFrequency()
         {
             QTextStream in(&file);
 
-            for (int i = 0; i < email.textLocation; i++)
+            for (int j = 0; j < email.textLocation; j++)
             {
                 in.readLine();
             }

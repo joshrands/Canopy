@@ -15,7 +15,8 @@ WelcomeWindow::WelcomeWindow(QWidget *parent) :
     this->move(x, y);
 
     /**** REMOVE THIS LINE IN RELEASE VERSION ****/
-    ui->evaluateButton->setEnabled(true);
+//    ui->evaluateButton->setEnabled(true);
+    checkEvaluate();
 
     ui->fileFrame->setStyleSheet("background-color: white;");
     ui->browseButton->setStyleSheet("background-color: pale gray;");
@@ -56,11 +57,13 @@ void WelcomeWindow::checkEvaluate()
             && !ui->emailAddressField->text().isEmpty())
     {
         ui->evaluateButton->setEnabled(true);
+        ui->evaluateButton->setText("Evaluate");
     }
     else
     {
         /**** SET THIS FALSE ON RELEASE ****/
-        ui->evaluateButton->setEnabled(true);
+        ui->evaluateButton->setEnabled(false);
+        ui->evaluateButton->setText("Missing info");
     }
 }
 

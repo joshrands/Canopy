@@ -1,4 +1,7 @@
 #include "FrameButton.h"
+#include <QLabel>
+#include <QHBoxLayout>
+#include <QPushButton>
 
 FrameButton::FrameButton()
 {
@@ -38,4 +41,21 @@ void FrameButton::leaveEvent(QEvent *)
 {
 //    qDebug() << "Leave";
     this->setStyleSheet("background-color: white;");
+}
+
+KeywordFrame::KeywordFrame(QString word)
+{
+    QHBoxLayout* layout = new QHBoxLayout();
+    this->setLayout(layout);
+
+    this->word = word;
+
+    QLabel* label = new QLabel(word);
+    label->setAlignment(Qt::AlignLeft);
+
+    button = new QPushButton();
+    button->setText("Remove");
+
+    this->layout()->addWidget(label);
+    this->layout()->addWidget(button);
 }

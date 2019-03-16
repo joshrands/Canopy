@@ -112,4 +112,5 @@ void WelcomeWindow::initialize()
     ui->fileNameLabel->setText(this->fileName);
     ui->suspectNameField->setText(this->suspectName);
     ui->warrantNumberField->setText(QString::number(this->warrantNumber));
+    ui->emailAddressField->setText(this->emailAddress);
 }

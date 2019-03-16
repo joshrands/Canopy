@@ -6,12 +6,15 @@
 #include <QDesktopWidget>
 #include <QtAlgorithms>
 #include <QFile>
+#include <QSignalMapper>
 
 SearchWindow::SearchWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::SearchWindow)
 {
     ui->setupUi(this);
+
+    signalMapper = new QSignalMapper (this) ;
 
     // center window
     QRect screenGeometry = QApplication::desktop()->screenGeometry();
@@ -185,6 +188,8 @@ void SearchWindow::on_backButton_clicked()
     win->setFileName(this->fileName);
     win->setSuspectName(this->suspectName);
     win->setWarrantNumber(this->warrantNumber);
+    win->setFilePath(this->filePath);
+    win->setUserEmail(this->userEmail);
 
     win->initialize();
     win->show();
@@ -307,7 +312,7 @@ void SearchWindow::applyEmailFilters()
         EmailData email = emailData.at(i);
         bool valid = true;
 
-        if (!(email.dateTime >= startDateFilter && email.dateTime < endDateFilter))
+        if (!(email.dateTime > startDateFilter && email.dateTime < endDateFilter))
             valid = false;
         else if (keywordFilters.size() > 0)
         {
@@ -455,27 +460,6 @@ void SearchWindow::getWordFrequency()
     wordCounts.clear();
     words.clear();
 
-    /*
-    QList<int> values = wordCounts.values();
-    qSort(values);
-
-    std::reverse(values.begin(), values.end());
-
-    for (int i = 0; i < values.size(); i++)
-    {
-        WordFreq word(i + 1, wordCounts.key(values.at(i)), values.at(i));
-        wordFreqData.append(word);
-    }
-    */
-/*
-    WordFreq word1(1, QString("rhino"), 22);
-    WordFreq word2(2, QString("tiger"), 15);
-    WordFreq word3(3, QString("cupcake"), 11);
-
-    wordFreqData.append(word1);
-    wordFreqData.append(word2);
-    wordFreqData.append(word3);
-*/
     wordFreqDisplay = wordFreqData;
 }
 
@@ -498,11 +482,17 @@ void SearchWindow::on_addKeywordButton_clicked()
             keywordFilters.append(key);
             // create frame
 
-            QLabel* label = new QLabel();
-            label->setText(key);
+            KeywordFrame* frame = new KeywordFrame(key);
 
-            // TODO: Get this to be on same row
-            ui->keywordBank->layout()->addWidget(label);
+            ui->keywordBank->layout()->addWidget(frame);
+
+            connect(frame->button, SIGNAL(clicked()), signalMapper, SLOT(map()));
+
+            signalMapper->setMapping(frame->button, frame->word);
+
+            connect (signalMapper, SIGNAL(mapped(QString)), this, SLOT(removeKeyword(QString))) ;
+
+            keywordFrames.append(frame);
         }
     }
 }
@@ -514,7 +504,6 @@ bool SearchWindow::emailLessThan(const EmailData* d1, const EmailData* d2)
 
 void SearchWindow::sortDisplayEmails()
 {
-//    qSort(displayEmails.begin(), displayEmails.end(), emailLessThan);
     qSort(displayEmails);
 }
 
@@ -530,4 +519,24 @@ void SearchWindow::on_wordFreqFilter_textChanged(const QString &arg1)
    }
 
    populateWordFreq();
+}
+
+void SearchWindow::removeKeyword(QString word)
+{
+    qDebug() << "Removing keyword filter " << word;
+
+    qDebug() << keywordFrames.size() << keywordFilters.size();
+
+    int index = keywordFilters.indexOf(word);
+    if (index >= 0)
+    {
+        this->keywordFilters.removeAt(index);
+
+        qDebug() << "Deleting frame";
+
+        delete keywordFrames.at(index);
+        keywordFrames.removeAt(index);
+
+        qDebug() << keywordFrames.size() << keywordFilters.size();
+    }
 }

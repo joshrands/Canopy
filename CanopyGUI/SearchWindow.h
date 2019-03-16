@@ -7,6 +7,7 @@
 #include <QHBoxLayout>
 #include <QVBoxLayout>
 #include "FrameButton.h"
+#include <QSignalMapper>
 
 namespace Ui {
 class SearchWindow;
@@ -27,6 +28,9 @@ public:
     void setWarrantNumber(int num) { this->warrantNumber = num; }
     void setFilePath(QString path) { this->filePath = path; }
     void setUserEmail(QString email) { this->userEmail = email; }
+
+public slots:
+    void removeKeyword(QString word);
 
 private slots:
     void on_backButton_clicked();
@@ -71,6 +75,10 @@ private:
     int emailCount;
     QList<FrameButton*> emailFrames;
 
+    // keyword filter display
+    QList<KeywordFrame*> keywordFrames;
+    QSignalMapper* signalMapper;
+
     bool inBtnState;
     bool outBtnState;
 
@@ -83,6 +91,7 @@ private:
     void populateWordFreq(); 	// fill gui for word freq
     void applyEmailFilters();		// perform analytics as specified by user
     void getWordFrequency();	// find word frequency for all words
+
 };
 
 #endif // SEARCHWINDOW_H

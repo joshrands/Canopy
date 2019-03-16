@@ -19,8 +19,8 @@
 
 QT_BEGIN_MOC_NAMESPACE
 struct qt_meta_stringdata_SearchWindow_t {
-    QByteArrayData data[11];
-    char stringdata0[213];
+    QByteArrayData data[13];
+    char stringdata0[232];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -30,20 +30,22 @@ struct qt_meta_stringdata_SearchWindow_t {
 static const qt_meta_stringdata_SearchWindow_t qt_meta_stringdata_SearchWindow = {
     {
 QT_MOC_LITERAL(0, 0, 12), // "SearchWindow"
-QT_MOC_LITERAL(1, 13, 21), // "on_backButton_clicked"
-QT_MOC_LITERAL(2, 35, 0), // ""
-QT_MOC_LITERAL(3, 36, 23), // "on_searchButton_clicked"
-QT_MOC_LITERAL(4, 60, 25), // "on_doSearchButton_clicked"
-QT_MOC_LITERAL(5, 86, 19), // "on_inButton_clicked"
-QT_MOC_LITERAL(6, 106, 20), // "on_outButton_clicked"
-QT_MOC_LITERAL(7, 127, 22), // "on_closeButton_clicked"
-QT_MOC_LITERAL(8, 150, 27), // "on_addKeywordButton_clicked"
-QT_MOC_LITERAL(9, 178, 29), // "on_wordFreqFilter_textChanged"
-QT_MOC_LITERAL(10, 208, 4) // "arg1"
+QT_MOC_LITERAL(1, 13, 13), // "removeKeyword"
+QT_MOC_LITERAL(2, 27, 0), // ""
+QT_MOC_LITERAL(3, 28, 4), // "word"
+QT_MOC_LITERAL(4, 33, 21), // "on_backButton_clicked"
+QT_MOC_LITERAL(5, 55, 23), // "on_searchButton_clicked"
+QT_MOC_LITERAL(6, 79, 25), // "on_doSearchButton_clicked"
+QT_MOC_LITERAL(7, 105, 19), // "on_inButton_clicked"
+QT_MOC_LITERAL(8, 125, 20), // "on_outButton_clicked"
+QT_MOC_LITERAL(9, 146, 22), // "on_closeButton_clicked"
+QT_MOC_LITERAL(10, 169, 27), // "on_addKeywordButton_clicked"
+QT_MOC_LITERAL(11, 197, 29), // "on_wordFreqFilter_textChanged"
+QT_MOC_LITERAL(12, 227, 4) // "arg1"
 
     },
-    "SearchWindow\0on_backButton_clicked\0\0"
-    "on_searchButton_clicked\0"
+    "SearchWindow\0removeKeyword\0\0word\0"
+    "on_backButton_clicked\0on_searchButton_clicked\0"
     "on_doSearchButton_clicked\0on_inButton_clicked\0"
     "on_outButton_clicked\0on_closeButton_clicked\0"
     "on_addKeywordButton_clicked\0"
@@ -57,7 +59,7 @@ static const uint qt_meta_data_SearchWindow[] = {
        7,       // revision
        0,       // classname
        0,    0, // classinfo
-       8,   14, // methods
+       9,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -65,16 +67,18 @@ static const uint qt_meta_data_SearchWindow[] = {
        0,       // signalCount
 
  // slots: name, argc, parameters, tag, flags
-       1,    0,   54,    2, 0x08 /* Private */,
-       3,    0,   55,    2, 0x08 /* Private */,
-       4,    0,   56,    2, 0x08 /* Private */,
-       5,    0,   57,    2, 0x08 /* Private */,
-       6,    0,   58,    2, 0x08 /* Private */,
-       7,    0,   59,    2, 0x08 /* Private */,
-       8,    0,   60,    2, 0x08 /* Private */,
-       9,    1,   61,    2, 0x08 /* Private */,
+       1,    1,   59,    2, 0x0a /* Public */,
+       4,    0,   62,    2, 0x08 /* Private */,
+       5,    0,   63,    2, 0x08 /* Private */,
+       6,    0,   64,    2, 0x08 /* Private */,
+       7,    0,   65,    2, 0x08 /* Private */,
+       8,    0,   66,    2, 0x08 /* Private */,
+       9,    0,   67,    2, 0x08 /* Private */,
+      10,    0,   68,    2, 0x08 /* Private */,
+      11,    1,   69,    2, 0x08 /* Private */,
 
  // slots: parameters
+    QMetaType::Void, QMetaType::QString,    3,
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
@@ -82,7 +86,7 @@ static const uint qt_meta_data_SearchWindow[] = {
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
-    QMetaType::Void, QMetaType::QString,   10,
+    QMetaType::Void, QMetaType::QString,   12,
 
        0        // eod
 };
@@ -93,14 +97,15 @@ void SearchWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id
         SearchWindow *_t = static_cast<SearchWindow *>(_o);
         Q_UNUSED(_t)
         switch (_id) {
-        case 0: _t->on_backButton_clicked(); break;
-        case 1: _t->on_searchButton_clicked(); break;
-        case 2: _t->on_doSearchButton_clicked(); break;
-        case 3: _t->on_inButton_clicked(); break;
-        case 4: _t->on_outButton_clicked(); break;
-        case 5: _t->on_closeButton_clicked(); break;
-        case 6: _t->on_addKeywordButton_clicked(); break;
-        case 7: _t->on_wordFreqFilter_textChanged((*reinterpret_cast< const QString(*)>(_a[1]))); break;
+        case 0: _t->removeKeyword((*reinterpret_cast< QString(*)>(_a[1]))); break;
+        case 1: _t->on_backButton_clicked(); break;
+        case 2: _t->on_searchButton_clicked(); break;
+        case 3: _t->on_doSearchButton_clicked(); break;
+        case 4: _t->on_inButton_clicked(); break;
+        case 5: _t->on_outButton_clicked(); break;
+        case 6: _t->on_closeButton_clicked(); break;
+        case 7: _t->on_addKeywordButton_clicked(); break;
+        case 8: _t->on_wordFreqFilter_textChanged((*reinterpret_cast< const QString(*)>(_a[1]))); break;
         default: ;
         }
     }
@@ -131,13 +136,13 @@ int SearchWindow::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 8)
+        if (_id < 9)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 8;
+        _id -= 9;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 8)
+        if (_id < 9)
             *reinterpret_cast<int*>(_a[0]) = -1;
-        _id -= 8;
+        _id -= 9;
     }
     return _id;
 }

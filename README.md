@@ -16,9 +16,9 @@ Created by Ethan Bond, Luke Epp, Josh Rands, and Matt Wojnoski
 ## ToDo
 
 ### GUI
-1. Be able to remove keyword filters
 
 ### Data
+1. Speed up data analysis
 
 ### Parser
 1. Know email location in meta data
@@ -40,6 +40,7 @@ Created by Ethan Bond, Luke Epp, Josh Rands, and Matt Wojnoski
 - Filter emails by date
 - Display emails in chronological order
 - Counting word frequency in all email content
+- Filter emails by keyword
 
 ### Parser
 - Created Email Data storage class

@@ -55,6 +55,8 @@ public:
         return count > other.count; // sort by namefile
     }
 
+    void setCount(int count) { this->count = count; }
+
     int rank;
     QString word;
     int count;

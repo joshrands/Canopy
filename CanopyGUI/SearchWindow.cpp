@@ -436,7 +436,7 @@ void SearchWindow::getWordFrequency()
                     j = email.textLength;
                 else
                 {
-                    getWordFreq(text, &wordCounts, &words, &email);
+                    getWordFreq(text, &wordCounts, &words, &email, userEmail);
                     emailData[i] = email;
                 }
             }

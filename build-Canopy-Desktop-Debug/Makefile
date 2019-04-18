@@ -55,9 +55,11 @@ SOURCES       = ../CanopyGUI/main.cpp \
 		../CanopyParser/EmailParser.cpp \
 		../CanopyGUI/FrameButton.cpp \
 		../CanopyGUI/EmailWindow.cpp \
-		../CanopyData/TextAnalysis.cpp moc_SearchWindow.cpp \
+		../CanopyData/TextAnalysis.cpp \
+		../CanopyGUI/StartWindow.cpp moc_SearchWindow.cpp \
 		moc_WelcomeWindow.cpp \
-		moc_EmailWindow.cpp
+		moc_EmailWindow.cpp \
+		moc_StartWindow.cpp
 OBJECTS       = main.o \
 		WelcomeWindow.o \
 		SearchWindow.o \
@@ -66,9 +68,11 @@ OBJECTS       = main.o \
 		FrameButton.o \
 		EmailWindow.o \
 		TextAnalysis.o \
+		StartWindow.o \
 		moc_SearchWindow.o \
 		moc_WelcomeWindow.o \
-		moc_EmailWindow.o
+		moc_EmailWindow.o \
+		moc_StartWindow.o
 DIST          = ../images/CanopyLogo-04.png \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/common/unix.conf \
@@ -132,14 +136,16 @@ DIST          = ../images/CanopyLogo-04.png \
 		../CanopyParser/EmailParser.h \
 		../CanopyGUI/FrameButton.h \
 		../CanopyGUI/EmailWindow.h \
-		../CanopyData/TextAnalysis.h ../CanopyGUI/main.cpp \
+		../CanopyData/TextAnalysis.h \
+		../CanopyGUI/StartWindow.h ../CanopyGUI/main.cpp \
 		../CanopyGUI/WelcomeWindow.cpp \
 		../CanopyGUI/SearchWindow.cpp \
 		../CanopyParser/EmailData.cpp \
 		../CanopyParser/EmailParser.cpp \
 		../CanopyGUI/FrameButton.cpp \
 		../CanopyGUI/EmailWindow.cpp \
-		../CanopyData/TextAnalysis.cpp
+		../CanopyData/TextAnalysis.cpp \
+		../CanopyGUI/StartWindow.cpp
 QMAKE_TARGET  = Canopy
 DESTDIR       = #avoid trailing-slash linebreak
 TARGET        = Canopy
@@ -167,7 +173,7 @@ first: all
 
 ####### Build rules
 
-$(TARGET): ui_SearchWindow.h ui_WelcomeWindow.h ui_EmailWindow.h $(OBJECTS)  
+$(TARGET): ui_SearchWindow.h ui_WelcomeWindow.h ui_EmailWindow.h ui_StartWindow.h $(OBJECTS)  
 	$(LINK) $(LFLAGS) -o $(TARGET) $(OBJECTS) $(OBJCOMP) $(LIBS)
 
 Makefile: ../CanopyGUI/Canopy.pro /usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++-64/qmake.conf /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
@@ -305,9 +311,9 @@ dist: distdir FORCE
 distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
-	$(COPY_FILE) --parents ../CanopyGUI/SearchWindow.h ../CanopyGUI/WelcomeWindow.h ../CanopyParser/EmailData.h ../CanopyParser/EmailParser.h ../CanopyGUI/FrameButton.h ../CanopyGUI/EmailWindow.h ../CanopyData/TextAnalysis.h $(DISTDIR)/
-	$(COPY_FILE) --parents ../CanopyGUI/main.cpp ../CanopyGUI/WelcomeWindow.cpp ../CanopyGUI/SearchWindow.cpp ../CanopyParser/EmailData.cpp ../CanopyParser/EmailParser.cpp ../CanopyGUI/FrameButton.cpp ../CanopyGUI/EmailWindow.cpp ../CanopyData/TextAnalysis.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents ../CanopyGUI/SearchWindow.ui ../CanopyGUI/WelcomeWindow.ui ../CanopyGUI/EmailWindow.ui $(DISTDIR)/
+	$(COPY_FILE) --parents ../CanopyGUI/SearchWindow.h ../CanopyGUI/WelcomeWindow.h ../CanopyParser/EmailData.h ../CanopyParser/EmailParser.h ../CanopyGUI/FrameButton.h ../CanopyGUI/EmailWindow.h ../CanopyData/TextAnalysis.h ../CanopyGUI/StartWindow.h $(DISTDIR)/
+	$(COPY_FILE) --parents ../CanopyGUI/main.cpp ../CanopyGUI/WelcomeWindow.cpp ../CanopyGUI/SearchWindow.cpp ../CanopyParser/EmailData.cpp ../CanopyParser/EmailParser.cpp ../CanopyGUI/FrameButton.cpp ../CanopyGUI/EmailWindow.cpp ../CanopyData/TextAnalysis.cpp ../CanopyGUI/StartWindow.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents ../CanopyGUI/SearchWindow.ui ../CanopyGUI/WelcomeWindow.ui ../CanopyGUI/EmailWindow.ui ../CanopyGUI/StartWindow.ui $(DISTDIR)/
 
 
 clean: compiler_clean 
@@ -330,12 +336,13 @@ check: first
 
 compiler_rcc_make_all:
 compiler_rcc_clean:
-compiler_moc_header_make_all: moc_SearchWindow.cpp moc_WelcomeWindow.cpp moc_EmailWindow.cpp
+compiler_moc_header_make_all: moc_SearchWindow.cpp moc_WelcomeWindow.cpp moc_EmailWindow.cpp moc_StartWindow.cpp
 compiler_moc_header_clean:
-	-$(DEL_FILE) moc_SearchWindow.cpp moc_WelcomeWindow.cpp moc_EmailWindow.cpp
+	-$(DEL_FILE) moc_SearchWindow.cpp moc_WelcomeWindow.cpp moc_EmailWindow.cpp moc_StartWindow.cpp
 moc_SearchWindow.cpp: ../CanopyGUI/FrameButton.h \
 		../CanopyGUI/EmailWindow.h \
 		../CanopyParser/EmailParser.h \
+		../CanopyData/TextAnalysis.h \
 		../CanopyParser/EmailData.h \
 		../CanopyGUI/SearchWindow.h
 	/usr/lib/x86_64-linux-gnu/qt5/bin/moc $(DEFINES) -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++-64 -I/home/josh/H4D/Canopy/CanopyGUI -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I. -I/usr/include/c++/5 -I/usr/include/x86_64-linux-gnu/c++/5 -I/usr/include/c++/5/backward -I/usr/lib/gcc/x86_64-linux-gnu/5/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include ../CanopyGUI/SearchWindow.h -o moc_SearchWindow.cpp
@@ -344,20 +351,25 @@ moc_WelcomeWindow.cpp: ../CanopyGUI/SearchWindow.h \
 		../CanopyGUI/FrameButton.h \
 		../CanopyGUI/EmailWindow.h \
 		../CanopyParser/EmailParser.h \
+		../CanopyData/TextAnalysis.h \
 		../CanopyParser/EmailData.h \
 		../CanopyGUI/WelcomeWindow.h
 	/usr/lib/x86_64-linux-gnu/qt5/bin/moc $(DEFINES) -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++-64 -I/home/josh/H4D/Canopy/CanopyGUI -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I. -I/usr/include/c++/5 -I/usr/include/x86_64-linux-gnu/c++/5 -I/usr/include/c++/5/backward -I/usr/lib/gcc/x86_64-linux-gnu/5/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include ../CanopyGUI/WelcomeWindow.h -o moc_WelcomeWindow.cpp
 
 moc_EmailWindow.cpp: ../CanopyParser/EmailParser.h \
+		../CanopyData/TextAnalysis.h \
 		../CanopyParser/EmailData.h \
 		../CanopyGUI/EmailWindow.h
 	/usr/lib/x86_64-linux-gnu/qt5/bin/moc $(DEFINES) -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++-64 -I/home/josh/H4D/Canopy/CanopyGUI -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I. -I/usr/include/c++/5 -I/usr/include/x86_64-linux-gnu/c++/5 -I/usr/include/c++/5/backward -I/usr/lib/gcc/x86_64-linux-gnu/5/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include ../CanopyGUI/EmailWindow.h -o moc_EmailWindow.cpp
 
+moc_StartWindow.cpp: ../CanopyGUI/StartWindow.h
+	/usr/lib/x86_64-linux-gnu/qt5/bin/moc $(DEFINES) -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++-64 -I/home/josh/H4D/Canopy/CanopyGUI -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I. -I/usr/include/c++/5 -I/usr/include/x86_64-linux-gnu/c++/5 -I/usr/include/c++/5/backward -I/usr/lib/gcc/x86_64-linux-gnu/5/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include ../CanopyGUI/StartWindow.h -o moc_StartWindow.cpp
+
 compiler_moc_source_make_all:
 compiler_moc_source_clean:
-compiler_uic_make_all: ui_SearchWindow.h ui_WelcomeWindow.h ui_EmailWindow.h
+compiler_uic_make_all: ui_SearchWindow.h ui_WelcomeWindow.h ui_EmailWindow.h ui_StartWindow.h
 compiler_uic_clean:
-	-$(DEL_FILE) ui_SearchWindow.h ui_WelcomeWindow.h ui_EmailWindow.h
+	-$(DEL_FILE) ui_SearchWindow.h ui_WelcomeWindow.h ui_EmailWindow.h ui_StartWindow.h
 ui_SearchWindow.h: ../CanopyGUI/SearchWindow.ui
 	/usr/lib/x86_64-linux-gnu/qt5/bin/uic ../CanopyGUI/SearchWindow.ui -o ui_SearchWindow.h
 
@@ -366,6 +378,9 @@ ui_WelcomeWindow.h: ../CanopyGUI/WelcomeWindow.ui
 
 ui_EmailWindow.h: ../CanopyGUI/EmailWindow.ui
 	/usr/lib/x86_64-linux-gnu/qt5/bin/uic ../CanopyGUI/EmailWindow.ui -o ui_EmailWindow.h
+
+ui_StartWindow.h: ../CanopyGUI/StartWindow.ui
+	/usr/lib/x86_64-linux-gnu/qt5/bin/uic ../CanopyGUI/StartWindow.ui -o ui_StartWindow.h
 
 compiler_yacc_decl_make_all:
 compiler_yacc_decl_clean:
@@ -381,6 +396,7 @@ main.o: ../CanopyGUI/main.cpp ../CanopyGUI/SearchWindow.h \
 		../CanopyGUI/FrameButton.h \
 		../CanopyGUI/EmailWindow.h \
 		../CanopyParser/EmailParser.h \
+		../CanopyData/TextAnalysis.h \
 		../CanopyParser/EmailData.h \
 		../CanopyGUI/WelcomeWindow.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main.o ../CanopyGUI/main.cpp
@@ -390,6 +406,7 @@ WelcomeWindow.o: ../CanopyGUI/WelcomeWindow.cpp ../CanopyGUI/WelcomeWindow.h \
 		../CanopyGUI/FrameButton.h \
 		../CanopyGUI/EmailWindow.h \
 		../CanopyParser/EmailParser.h \
+		../CanopyData/TextAnalysis.h \
 		../CanopyParser/EmailData.h \
 		ui_WelcomeWindow.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o WelcomeWindow.o ../CanopyGUI/WelcomeWindow.cpp
@@ -398,6 +415,7 @@ SearchWindow.o: ../CanopyGUI/SearchWindow.cpp ../CanopyGUI/SearchWindow.h \
 		../CanopyGUI/FrameButton.h \
 		../CanopyGUI/EmailWindow.h \
 		../CanopyParser/EmailParser.h \
+		../CanopyData/TextAnalysis.h \
 		../CanopyParser/EmailData.h \
 		../CanopyGUI/WelcomeWindow.h \
 		ui_SearchWindow.h
@@ -407,23 +425,31 @@ EmailData.o: ../CanopyParser/EmailData.cpp ../CanopyParser/EmailData.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o EmailData.o ../CanopyParser/EmailData.cpp
 
 EmailParser.o: ../CanopyParser/EmailParser.cpp ../CanopyParser/EmailParser.h \
+		../CanopyData/TextAnalysis.h \
 		../CanopyParser/EmailData.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o EmailParser.o ../CanopyParser/EmailParser.cpp
 
 FrameButton.o: ../CanopyGUI/FrameButton.cpp ../CanopyGUI/FrameButton.h \
 		../CanopyGUI/EmailWindow.h \
 		../CanopyParser/EmailParser.h \
+		../CanopyData/TextAnalysis.h \
 		../CanopyParser/EmailData.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o FrameButton.o ../CanopyGUI/FrameButton.cpp
 
 EmailWindow.o: ../CanopyGUI/EmailWindow.cpp ../CanopyGUI/EmailWindow.h \
 		../CanopyParser/EmailParser.h \
+		../CanopyData/TextAnalysis.h \
 		../CanopyParser/EmailData.h \
 		ui_EmailWindow.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o EmailWindow.o ../CanopyGUI/EmailWindow.cpp
 
-TextAnalysis.o: ../CanopyData/TextAnalysis.cpp ../CanopyData/TextAnalysis.h
+TextAnalysis.o: ../CanopyData/TextAnalysis.cpp ../CanopyData/TextAnalysis.h \
+		../CanopyParser/EmailData.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o TextAnalysis.o ../CanopyData/TextAnalysis.cpp
+
+StartWindow.o: ../CanopyGUI/StartWindow.cpp ../CanopyGUI/StartWindow.h \
+		ui_StartWindow.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o StartWindow.o ../CanopyGUI/StartWindow.cpp
 
 moc_SearchWindow.o: moc_SearchWindow.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_SearchWindow.o moc_SearchWindow.cpp
@@ -433,6 +459,9 @@ moc_WelcomeWindow.o: moc_WelcomeWindow.cpp
 
 moc_EmailWindow.o: moc_EmailWindow.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_EmailWindow.o moc_EmailWindow.cpp
+
+moc_StartWindow.o: moc_StartWindow.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_StartWindow.o moc_StartWindow.cpp
 
 ####### Install
 

@@ -21,7 +21,6 @@
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QLineEdit>
 #include <QtWidgets/QMainWindow>
-#include <QtWidgets/QMenu>
 #include <QtWidgets/QMenuBar>
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QScrollArea>
@@ -97,7 +96,6 @@ public:
     QWidget *layoutWidget1;
     QHBoxLayout *horizontalLayout_2;
     QMenuBar *menuBar;
-    QMenu *menuCanopy_Search;
     QToolBar *mainToolBar;
     QStatusBar *statusBar;
 
@@ -138,7 +136,7 @@ public:
         infoFrame->setFrameShadow(QFrame::Raised);
         label_10 = new QLabel(infoFrame);
         label_10->setObjectName(QStringLiteral("label_10"));
-        label_10->setGeometry(QRect(20, 340, 161, 21));
+        label_10->setGeometry(QRect(20, 340, 221, 21));
         label_10->setFont(font1);
         label_3 = new QLabel(infoFrame);
         label_3->setObjectName(QStringLiteral("label_3"));
@@ -146,7 +144,7 @@ public:
         label_3->setFont(font1);
         emailCountLabel = new QLabel(infoFrame);
         emailCountLabel->setObjectName(QStringLiteral("emailCountLabel"));
-        emailCountLabel->setGeometry(QRect(20, 290, 111, 21));
+        emailCountLabel->setGeometry(QRect(20, 290, 151, 21));
         QFont font2;
         font2.setPointSize(12);
         emailCountLabel->setFont(font2);
@@ -156,7 +154,7 @@ public:
         label->setFont(font1);
         label_8 = new QLabel(infoFrame);
         label_8->setObjectName(QStringLiteral("label_8"));
-        label_8->setGeometry(QRect(20, 260, 121, 21));
+        label_8->setGeometry(QRect(20, 260, 181, 21));
         label_8->setFont(font1);
         warrantNumberLabel = new QLabel(infoFrame);
         warrantNumberLabel->setObjectName(QStringLiteral("warrantNumberLabel"));
@@ -168,15 +166,15 @@ public:
         sourceLabel->setFont(font2);
         fileSizeLabel = new QLabel(infoFrame);
         fileSizeLabel->setObjectName(QStringLiteral("fileSizeLabel"));
-        fileSizeLabel->setGeometry(QRect(20, 210, 111, 21));
+        fileSizeLabel->setGeometry(QRect(20, 210, 191, 21));
         fileSizeLabel->setFont(font2);
         dateLabel = new QLabel(infoFrame);
         dateLabel->setObjectName(QStringLiteral("dateLabel"));
-        dateLabel->setGeometry(QRect(20, 370, 111, 21));
+        dateLabel->setGeometry(QRect(20, 370, 221, 21));
         dateLabel->setFont(font2);
         label_5 = new QLabel(infoFrame);
         label_5->setObjectName(QStringLiteral("label_5"));
-        label_5->setGeometry(QRect(20, 180, 121, 21));
+        label_5->setGeometry(QRect(20, 180, 201, 21));
         label_5->setFont(font1);
         backButton = new QPushButton(centralWidget);
         backButton->setObjectName(QStringLiteral("backButton"));
@@ -415,8 +413,6 @@ public:
         menuBar = new QMenuBar(SearchWindow);
         menuBar->setObjectName(QStringLiteral("menuBar"));
         menuBar->setGeometry(QRect(0, 0, 1308, 22));
-        menuCanopy_Search = new QMenu(menuBar);
-        menuCanopy_Search->setObjectName(QStringLiteral("menuCanopy_Search"));
         SearchWindow->setMenuBar(menuBar);
         mainToolBar = new QToolBar(SearchWindow);
         mainToolBar->setObjectName(QStringLiteral("mainToolBar"));
@@ -425,8 +421,6 @@ public:
         statusBar->setObjectName(QStringLiteral("statusBar"));
         SearchWindow->setStatusBar(statusBar);
 
-        menuBar->addAction(menuCanopy_Search->menuAction());
-
         retranslateUi(SearchWindow);
 
         QMetaObject::connectSlotsByName(SearchWindow);
@@ -434,7 +428,7 @@ public:
 
     void retranslateUi(QMainWindow *SearchWindow)
     {
-        SearchWindow->setWindowTitle(QApplication::translate("SearchWindow", "SearchWindow", 0));
+        SearchWindow->setWindowTitle(QApplication::translate("SearchWindow", "Canopy Email Search Evaluator", 0));
         suspectPortrait->setText(QString());
         suspectNameLabel->setText(QApplication::translate("SearchWindow", "Unknown Suspect", 0));
         label_10->setText(QApplication::translate("SearchWindow", "Date Imported", 0));
@@ -466,7 +460,6 @@ public:
         label_16->setText(QApplication::translate("SearchWindow", "Frequency", 0));
         label_13->setText(QApplication::translate("SearchWindow", "Search:", 0));
         closeButton->setText(QApplication::translate("SearchWindow", "Close", 0));
-        menuCanopy_Search->setTitle(QApplication::translate("SearchWindow", "Canopy Search", 0));
     } // retranslateUi
 
 };

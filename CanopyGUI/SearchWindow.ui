@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>SearchWindow</string>
+   <string>Canopy Email Search Evaluator</string>
   </property>
   <widget class="QWidget" name="centralWidget">
    <widget class="QFrame" name="suspectFrame">
@@ -100,7 +100,7 @@
       <rect>
        <x>20</x>
        <y>340</y>
-       <width>161</width>
+       <width>221</width>
        <height>21</height>
       </rect>
      </property>
@@ -140,7 +140,7 @@
       <rect>
        <x>20</x>
        <y>290</y>
-       <width>111</width>
+       <width>151</width>
        <height>21</height>
       </rect>
      </property>
@@ -178,7 +178,7 @@
       <rect>
        <x>20</x>
        <y>260</y>
-       <width>121</width>
+       <width>181</width>
        <height>21</height>
       </rect>
      </property>
@@ -234,7 +234,7 @@
       <rect>
        <x>20</x>
        <y>210</y>
-       <width>111</width>
+       <width>191</width>
        <height>21</height>
       </rect>
      </property>
@@ -252,7 +252,7 @@
       <rect>
        <x>20</x>
        <y>370</y>
-       <width>111</width>
+       <width>221</width>
        <height>21</height>
       </rect>
      </property>
@@ -270,7 +270,7 @@
       <rect>
        <x>20</x>
        <y>180</y>
-       <width>121</width>
+       <width>201</width>
        <height>21</height>
       </rect>
      </property>
@@ -871,12 +871,6 @@
      <height>22</height>
     </rect>
    </property>
-   <widget class="QMenu" name="menuCanopy_Search">
-    <property name="title">
-     <string>Canopy Search</string>
-    </property>
-   </widget>
-   <addaction name="menuCanopy_Search"/>
   </widget>
   <widget class="QToolBar" name="mainToolBar">
    <attribute name="toolBarArea">

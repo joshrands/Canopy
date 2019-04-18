@@ -10,7 +10,7 @@ QMap<QString, int> getWordCount(QString content)
    return wordCounts;
 }
 
-void getWordFreq(QString line, QList<WordFreq>* wordCounts, QList<QString>* words, EmailData* email)
+void getWordFreq(QString line, QList<WordFreq>* wordCounts, QList<QString>* words, EmailData* email, QString userEmail)
 {
     QStringList list = line.split(QRegExp("\\s+"), QString::SkipEmptyParts);
 
@@ -58,7 +58,45 @@ void getWordFreq(QString line, QList<WordFreq>* wordCounts, QList<QString>* word
         }
     }
 
+    // add email addresses to word count
+/*    if (email->senderAddress != userEmail)
+    {
+        if (words->contains(email->senderAddress))
+        {
+            // increment existing
+            int index = words->indexOf(email->senderAddress);
+            (*wordCounts)[index].count = wordCounts->at(index).count + 1;
+        }
+        else
+        {
+            WordFreq word;
+            word.count = 1;
+            word.word = email->senderAddress;
 
+            wordCounts->append(word);
+            words->append(email->senderAddress);
+        }
+    }
+
+    if (email->receiverAddress != userEmail)
+    {
+        if (words->contains(email->receiverAddress))
+        {
+            // increment existing
+            int index = words->indexOf(email->receiverAddress);
+            (*wordCounts)[index].count = wordCounts->at(index).count + 1;
+        }
+        else
+        {
+            WordFreq word;
+            word.count = 1;
+            word.word = email->receiverAddress;
+
+            wordCounts->append(word);
+            words->append(email->receiverAddress);
+        }
+    }
+    */
 }
 
 

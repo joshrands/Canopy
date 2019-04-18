@@ -19,7 +19,8 @@ SOURCES += main.cpp\
     ../CanopyParser/EmailParser.cpp \
     FrameButton.cpp \
     EmailWindow.cpp \
-    ../CanopyData/TextAnalysis.cpp
+    ../CanopyData/TextAnalysis.cpp \
+    StartWindow.cpp
 
 HEADERS  += SearchWindow.h \
     WelcomeWindow.h \
@@ -27,11 +28,13 @@ HEADERS  += SearchWindow.h \
     ../CanopyParser/EmailParser.h \
     FrameButton.h \
     EmailWindow.h \
-    ../CanopyData/TextAnalysis.h
+    ../CanopyData/TextAnalysis.h \
+    StartWindow.h
 
 FORMS    += SearchWindow.ui \
     WelcomeWindow.ui \
-    EmailWindow.ui
+    EmailWindow.ui \
+    StartWindow.ui
 
 DISTFILES += \
     ../images/CanopyLogo-04.png

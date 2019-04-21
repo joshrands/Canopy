@@ -19,6 +19,18 @@ void parseMBOX(QString dataPath, QString sessionPath)
         qDebug() << "Error opening file: " << dataPath;
         return;
     }
+
+    QTextStream in(&file);
+
+    QString line = in.readLine();
+    int fileLoc = 0;
+    qDebug() << "Opening file";
+    while (!line.isNull())
+    {
+        qDebug() << line;
+        line = in.readLine();
+        fileLoc++;
+    }
 }
 
 void parseFoldersEML(QString dataPath, QString sessionPath)

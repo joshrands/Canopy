@@ -1,5 +1,7 @@
 #include "ContentWindow.h"
 #include "ui_ContentWindow.h"
+#include "../CanopyParser/ParseEmail.h"
+#include <QFuture>
 
 ContentWindow::ContentWindow(QWidget *parent) :
     QFrame(parent),
@@ -21,7 +23,10 @@ EmailContentWindow::EmailContentWindow()
 
 void EmailContentWindow::parseDataFile(QString file)
 {
-
+    if (file.contains(QString(".mbox")))
+    {
+        QFuture<void> future = QtConcurrent::run(parseMBOX, file, this->sessionFilePath);
+    }
 }
 
 HtmlContentWindow::HtmlContentWindow()

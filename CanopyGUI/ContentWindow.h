@@ -2,6 +2,8 @@
 #define CONTENTWINDOW_H
 
 #include <QFrame>
+#include <QThread>
+#include <QtConcurrent/QtConcurrent>
 
 namespace Ui {
 class ContentWindow;
@@ -18,6 +20,8 @@ public:
     virtual void parseDataFile(QString file) = 0;
 
     void setSessionPath(QString path) { this->sessionFilePath = path; }
+
+    QThread thread;
 
 protected:
     Ui::ContentWindow *ui;

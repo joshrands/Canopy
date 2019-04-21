@@ -33,10 +33,12 @@ public:
     void setDataPath(QString val) { this->dataPath = val; }
     void setDataName(QString val) { this->dataName = val; }
     void setSuspectName(QString val) { this->suspectName = val; }
+    void setSessionPath(QString val) { this->sessionPath = val; }
 
     QString getDataPath() { return dataPath; }
     QString getDataName() { return dataName; }
     QString getSuspectName() { return suspectName; }
+    QString getSessionPath() { return sessionPath; }
 
     virtual void createWindow() = 0;
 
@@ -45,6 +47,7 @@ public:
 
 protected:
     QString dataPath;
+    QString sessionPath;
 
     // name given by user
     QString dataName;

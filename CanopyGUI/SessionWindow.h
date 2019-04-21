@@ -21,6 +21,9 @@ public:
 private slots:
     void on_addDataButton_clicked();
 
+    // custom slot
+    void tabButtonPressed();
+
 private:
     Ui::SessionWindow *ui;
 
@@ -30,7 +33,10 @@ private:
     // store content in Data class
     // Data class has a ContentWindow
     QList<Data*> data;
+
     Data* activeData;
+    QString dataFilePath;
+    QString activeDataName;
 
     void displayNewContent();
 };

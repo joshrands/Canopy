@@ -12,3 +12,13 @@ ContentWindow::~ContentWindow()
 {
     delete ui;
 }
+
+EmailContentWindow::EmailContentWindow()
+{
+    ui->title->setText("EMAIL");
+}
+
+HtmlContentWindow::HtmlContentWindow()
+{
+    ui->title->setText(("FACEBOOK"));
+}

@@ -58,7 +58,7 @@ void SessionWindow::addData(Data *data)
     ui->contentTabs->layout()->addWidget(data->tabButton);
 
     data->createWindow();
-//    ui->contentFrame->layout()->addWidget(data->window);
+    ui->contentFrame->layout()->addWidget(data->window);
 
     connect(data->tabButton, SIGNAL(clicked(bool)), this, SLOT(tabButtonPressed()));
 
@@ -80,12 +80,12 @@ void SessionWindow::displayNewContent()
         if (data.at(i)->getDataName() != activeDataName)
         {
             data.at(i)->tabButton->setStyleSheet("background-color: white;");
-//            data.at(i)->window->hide();
+            data.at(i)->window->hide();
         }
         else
         {
             data.at(i)->tabButton->setStyleSheet("background-color: gray;");
-//            data.at(i)->window->show();
+            data.at(i)->window->show();
         }
     }
 }

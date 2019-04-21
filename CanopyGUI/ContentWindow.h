@@ -15,17 +15,21 @@ public:
     explicit ContentWindow(QWidget *parent = 0);
     ~ContentWindow();
 
-private:
+protected:
     Ui::ContentWindow *ui;
 };
 
 class EmailContentWindow : public ContentWindow
 {
+public:
+    EmailContentWindow();
 
 };
 
 class HtmlContentWindow : public ContentWindow
 {
+public:
+    HtmlContentWindow();
 
 };
 

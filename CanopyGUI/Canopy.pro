@@ -20,7 +20,10 @@ SOURCES += main.cpp\
     FrameButton.cpp \
     EmailWindow.cpp \
     ../CanopyData/TextAnalysis.cpp \
-    StartWindow.cpp
+    StartWindow.cpp \
+    AddDataWindow.cpp \
+    SessionWindow.cpp \
+    CaseData.cpp
 
 HEADERS  += SearchWindow.h \
     WelcomeWindow.h \
@@ -29,12 +32,17 @@ HEADERS  += SearchWindow.h \
     FrameButton.h \
     EmailWindow.h \
     ../CanopyData/TextAnalysis.h \
-    StartWindow.h
+    StartWindow.h \
+    AddDataWindow.h \
+    SessionWindow.h \
+    CaseData.h
 
 FORMS    += SearchWindow.ui \
     WelcomeWindow.ui \
     EmailWindow.ui \
-    StartWindow.ui
+    StartWindow.ui \
+    AddDataWindow.ui \
+    SessionWindow.ui
 
 DISTFILES += \
     ../images/CanopyLogo-04.png

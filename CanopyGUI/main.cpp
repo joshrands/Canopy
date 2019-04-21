@@ -1,5 +1,3 @@
-#include "SearchWindow.h"
-#include "WelcomeWindow.h"
 #include "StartWindow.h"
 #include <QApplication>
 

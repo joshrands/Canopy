@@ -56,10 +56,15 @@ SOURCES       = ../CanopyGUI/main.cpp \
 		../CanopyGUI/FrameButton.cpp \
 		../CanopyGUI/EmailWindow.cpp \
 		../CanopyData/TextAnalysis.cpp \
-		../CanopyGUI/StartWindow.cpp moc_SearchWindow.cpp \
+		../CanopyGUI/StartWindow.cpp \
+		../CanopyGUI/AddDataWindow.cpp \
+		../CanopyGUI/SessionWindow.cpp \
+		../CanopyGUI/CaseData.cpp moc_SearchWindow.cpp \
 		moc_WelcomeWindow.cpp \
 		moc_EmailWindow.cpp \
-		moc_StartWindow.cpp
+		moc_StartWindow.cpp \
+		moc_AddDataWindow.cpp \
+		moc_SessionWindow.cpp
 OBJECTS       = main.o \
 		WelcomeWindow.o \
 		SearchWindow.o \
@@ -69,10 +74,15 @@ OBJECTS       = main.o \
 		EmailWindow.o \
 		TextAnalysis.o \
 		StartWindow.o \
+		AddDataWindow.o \
+		SessionWindow.o \
+		CaseData.o \
 		moc_SearchWindow.o \
 		moc_WelcomeWindow.o \
 		moc_EmailWindow.o \
-		moc_StartWindow.o
+		moc_StartWindow.o \
+		moc_AddDataWindow.o \
+		moc_SessionWindow.o
 DIST          = ../images/CanopyLogo-04.png \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/common/unix.conf \
@@ -137,7 +147,10 @@ DIST          = ../images/CanopyLogo-04.png \
 		../CanopyGUI/FrameButton.h \
 		../CanopyGUI/EmailWindow.h \
 		../CanopyData/TextAnalysis.h \
-		../CanopyGUI/StartWindow.h ../CanopyGUI/main.cpp \
+		../CanopyGUI/StartWindow.h \
+		../CanopyGUI/AddDataWindow.h \
+		../CanopyGUI/SessionWindow.h \
+		../CanopyGUI/CaseData.h ../CanopyGUI/main.cpp \
 		../CanopyGUI/WelcomeWindow.cpp \
 		../CanopyGUI/SearchWindow.cpp \
 		../CanopyParser/EmailData.cpp \
@@ -145,7 +158,10 @@ DIST          = ../images/CanopyLogo-04.png \
 		../CanopyGUI/FrameButton.cpp \
 		../CanopyGUI/EmailWindow.cpp \
 		../CanopyData/TextAnalysis.cpp \
-		../CanopyGUI/StartWindow.cpp
+		../CanopyGUI/StartWindow.cpp \
+		../CanopyGUI/AddDataWindow.cpp \
+		../CanopyGUI/SessionWindow.cpp \
+		../CanopyGUI/CaseData.cpp
 QMAKE_TARGET  = Canopy
 DESTDIR       = #avoid trailing-slash linebreak
 TARGET        = Canopy
@@ -173,7 +189,7 @@ first: all
 
 ####### Build rules
 
-$(TARGET): ui_SearchWindow.h ui_WelcomeWindow.h ui_EmailWindow.h ui_StartWindow.h $(OBJECTS)  
+$(TARGET): ui_SearchWindow.h ui_WelcomeWindow.h ui_EmailWindow.h ui_StartWindow.h ui_AddDataWindow.h ui_SessionWindow.h $(OBJECTS)  
 	$(LINK) $(LFLAGS) -o $(TARGET) $(OBJECTS) $(OBJCOMP) $(LIBS)
 
 Makefile: ../CanopyGUI/Canopy.pro /usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++-64/qmake.conf /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
@@ -311,9 +327,9 @@ dist: distdir FORCE
 distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
-	$(COPY_FILE) --parents ../CanopyGUI/SearchWindow.h ../CanopyGUI/WelcomeWindow.h ../CanopyParser/EmailData.h ../CanopyParser/EmailParser.h ../CanopyGUI/FrameButton.h ../CanopyGUI/EmailWindow.h ../CanopyData/TextAnalysis.h ../CanopyGUI/StartWindow.h $(DISTDIR)/
-	$(COPY_FILE) --parents ../CanopyGUI/main.cpp ../CanopyGUI/WelcomeWindow.cpp ../CanopyGUI/SearchWindow.cpp ../CanopyParser/EmailData.cpp ../CanopyParser/EmailParser.cpp ../CanopyGUI/FrameButton.cpp ../CanopyGUI/EmailWindow.cpp ../CanopyData/TextAnalysis.cpp ../CanopyGUI/StartWindow.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents ../CanopyGUI/SearchWindow.ui ../CanopyGUI/WelcomeWindow.ui ../CanopyGUI/EmailWindow.ui ../CanopyGUI/StartWindow.ui $(DISTDIR)/
+	$(COPY_FILE) --parents ../CanopyGUI/SearchWindow.h ../CanopyGUI/WelcomeWindow.h ../CanopyParser/EmailData.h ../CanopyParser/EmailParser.h ../CanopyGUI/FrameButton.h ../CanopyGUI/EmailWindow.h ../CanopyData/TextAnalysis.h ../CanopyGUI/StartWindow.h ../CanopyGUI/AddDataWindow.h ../CanopyGUI/SessionWindow.h ../CanopyGUI/CaseData.h $(DISTDIR)/
+	$(COPY_FILE) --parents ../CanopyGUI/main.cpp ../CanopyGUI/WelcomeWindow.cpp ../CanopyGUI/SearchWindow.cpp ../CanopyParser/EmailData.cpp ../CanopyParser/EmailParser.cpp ../CanopyGUI/FrameButton.cpp ../CanopyGUI/EmailWindow.cpp ../CanopyData/TextAnalysis.cpp ../CanopyGUI/StartWindow.cpp ../CanopyGUI/AddDataWindow.cpp ../CanopyGUI/SessionWindow.cpp ../CanopyGUI/CaseData.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents ../CanopyGUI/SearchWindow.ui ../CanopyGUI/WelcomeWindow.ui ../CanopyGUI/EmailWindow.ui ../CanopyGUI/StartWindow.ui ../CanopyGUI/AddDataWindow.ui ../CanopyGUI/SessionWindow.ui $(DISTDIR)/
 
 
 clean: compiler_clean 
@@ -336,9 +352,9 @@ check: first
 
 compiler_rcc_make_all:
 compiler_rcc_clean:
-compiler_moc_header_make_all: moc_SearchWindow.cpp moc_WelcomeWindow.cpp moc_EmailWindow.cpp moc_StartWindow.cpp
+compiler_moc_header_make_all: moc_SearchWindow.cpp moc_WelcomeWindow.cpp moc_EmailWindow.cpp moc_StartWindow.cpp moc_AddDataWindow.cpp moc_SessionWindow.cpp
 compiler_moc_header_clean:
-	-$(DEL_FILE) moc_SearchWindow.cpp moc_WelcomeWindow.cpp moc_EmailWindow.cpp moc_StartWindow.cpp
+	-$(DEL_FILE) moc_SearchWindow.cpp moc_WelcomeWindow.cpp moc_EmailWindow.cpp moc_StartWindow.cpp moc_AddDataWindow.cpp moc_SessionWindow.cpp
 moc_SearchWindow.cpp: ../CanopyGUI/FrameButton.h \
 		../CanopyGUI/EmailWindow.h \
 		../CanopyParser/EmailParser.h \
@@ -365,11 +381,17 @@ moc_EmailWindow.cpp: ../CanopyParser/EmailParser.h \
 moc_StartWindow.cpp: ../CanopyGUI/StartWindow.h
 	/usr/lib/x86_64-linux-gnu/qt5/bin/moc $(DEFINES) -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++-64 -I/home/josh/H4D/Canopy/CanopyGUI -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I. -I/usr/include/c++/5 -I/usr/include/x86_64-linux-gnu/c++/5 -I/usr/include/c++/5/backward -I/usr/lib/gcc/x86_64-linux-gnu/5/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include ../CanopyGUI/StartWindow.h -o moc_StartWindow.cpp
 
+moc_AddDataWindow.cpp: ../CanopyGUI/AddDataWindow.h
+	/usr/lib/x86_64-linux-gnu/qt5/bin/moc $(DEFINES) -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++-64 -I/home/josh/H4D/Canopy/CanopyGUI -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I. -I/usr/include/c++/5 -I/usr/include/x86_64-linux-gnu/c++/5 -I/usr/include/c++/5/backward -I/usr/lib/gcc/x86_64-linux-gnu/5/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include ../CanopyGUI/AddDataWindow.h -o moc_AddDataWindow.cpp
+
+moc_SessionWindow.cpp: ../CanopyGUI/SessionWindow.h
+	/usr/lib/x86_64-linux-gnu/qt5/bin/moc $(DEFINES) -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++-64 -I/home/josh/H4D/Canopy/CanopyGUI -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I. -I/usr/include/c++/5 -I/usr/include/x86_64-linux-gnu/c++/5 -I/usr/include/c++/5/backward -I/usr/lib/gcc/x86_64-linux-gnu/5/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include ../CanopyGUI/SessionWindow.h -o moc_SessionWindow.cpp
+
 compiler_moc_source_make_all:
 compiler_moc_source_clean:
-compiler_uic_make_all: ui_SearchWindow.h ui_WelcomeWindow.h ui_EmailWindow.h ui_StartWindow.h
+compiler_uic_make_all: ui_SearchWindow.h ui_WelcomeWindow.h ui_EmailWindow.h ui_StartWindow.h ui_AddDataWindow.h ui_SessionWindow.h
 compiler_uic_clean:
-	-$(DEL_FILE) ui_SearchWindow.h ui_WelcomeWindow.h ui_EmailWindow.h ui_StartWindow.h
+	-$(DEL_FILE) ui_SearchWindow.h ui_WelcomeWindow.h ui_EmailWindow.h ui_StartWindow.h ui_AddDataWindow.h ui_SessionWindow.h
 ui_SearchWindow.h: ../CanopyGUI/SearchWindow.ui
 	/usr/lib/x86_64-linux-gnu/qt5/bin/uic ../CanopyGUI/SearchWindow.ui -o ui_SearchWindow.h
 
@@ -382,6 +404,12 @@ ui_EmailWindow.h: ../CanopyGUI/EmailWindow.ui
 ui_StartWindow.h: ../CanopyGUI/StartWindow.ui
 	/usr/lib/x86_64-linux-gnu/qt5/bin/uic ../CanopyGUI/StartWindow.ui -o ui_StartWindow.h
 
+ui_AddDataWindow.h: ../CanopyGUI/AddDataWindow.ui
+	/usr/lib/x86_64-linux-gnu/qt5/bin/uic ../CanopyGUI/AddDataWindow.ui -o ui_AddDataWindow.h
+
+ui_SessionWindow.h: ../CanopyGUI/SessionWindow.ui
+	/usr/lib/x86_64-linux-gnu/qt5/bin/uic ../CanopyGUI/SessionWindow.ui -o ui_SessionWindow.h
+
 compiler_yacc_decl_make_all:
 compiler_yacc_decl_clean:
 compiler_yacc_impl_make_all:
@@ -392,13 +420,7 @@ compiler_clean: compiler_moc_header_clean compiler_uic_clean
 
 ####### Compile
 
-main.o: ../CanopyGUI/main.cpp ../CanopyGUI/SearchWindow.h \
-		../CanopyGUI/FrameButton.h \
-		../CanopyGUI/EmailWindow.h \
-		../CanopyParser/EmailParser.h \
-		../CanopyData/TextAnalysis.h \
-		../CanopyParser/EmailData.h \
-		../CanopyGUI/WelcomeWindow.h
+main.o: ../CanopyGUI/main.cpp ../CanopyGUI/StartWindow.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main.o ../CanopyGUI/main.cpp
 
 WelcomeWindow.o: ../CanopyGUI/WelcomeWindow.cpp ../CanopyGUI/WelcomeWindow.h \
@@ -448,8 +470,22 @@ TextAnalysis.o: ../CanopyData/TextAnalysis.cpp ../CanopyData/TextAnalysis.h \
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o TextAnalysis.o ../CanopyData/TextAnalysis.cpp
 
 StartWindow.o: ../CanopyGUI/StartWindow.cpp ../CanopyGUI/StartWindow.h \
-		ui_StartWindow.h
+		ui_StartWindow.h \
+		../CanopyGUI/AddDataWindow.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o StartWindow.o ../CanopyGUI/StartWindow.cpp
+
+AddDataWindow.o: ../CanopyGUI/AddDataWindow.cpp ../CanopyGUI/AddDataWindow.h \
+		ui_AddDataWindow.h \
+		../CanopyGUI/SessionWindow.h \
+		../CanopyGUI/CaseData.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o AddDataWindow.o ../CanopyGUI/AddDataWindow.cpp
+
+SessionWindow.o: ../CanopyGUI/SessionWindow.cpp ../CanopyGUI/SessionWindow.h \
+		ui_SessionWindow.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o SessionWindow.o ../CanopyGUI/SessionWindow.cpp
+
+CaseData.o: ../CanopyGUI/CaseData.cpp ../CanopyGUI/CaseData.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o CaseData.o ../CanopyGUI/CaseData.cpp
 
 moc_SearchWindow.o: moc_SearchWindow.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_SearchWindow.o moc_SearchWindow.cpp
@@ -462,6 +498,12 @@ moc_EmailWindow.o: moc_EmailWindow.cpp
 
 moc_StartWindow.o: moc_StartWindow.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_StartWindow.o moc_StartWindow.cpp
+
+moc_AddDataWindow.o: moc_AddDataWindow.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_AddDataWindow.o moc_AddDataWindow.cpp
+
+moc_SessionWindow.o: moc_SessionWindow.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_SessionWindow.o moc_SessionWindow.cpp
 
 ####### Install
 

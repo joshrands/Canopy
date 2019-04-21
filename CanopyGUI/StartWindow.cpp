@@ -1,5 +1,6 @@
 #include "StartWindow.h"
 #include "ui_StartWindow.h"
+#include "AddDataWindow.h"
 
 #include <QDesktopWidget>
 
@@ -19,4 +20,14 @@ StartWindow::StartWindow(QWidget *parent) :
 StartWindow::~StartWindow()
 {
     delete ui;
+}
+
+void StartWindow::on_newSessionButton_clicked()
+{
+    AddDataWindow* win = new AddDataWindow(this);
+
+    win->setCreateSession(true);
+    win->show();
+
+    hide();
 }

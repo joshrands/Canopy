@@ -60,7 +60,8 @@ SOURCES       = ../CanopyGUI/main.cpp \
 		../CanopyGUI/SessionWindow.cpp \
 		../CanopyGUI/Data.cpp \
 		../CanopyGUI/ContentWindow.cpp \
-		../CanopyParser/LocalEmailData.cpp moc_SearchWindow.cpp \
+		../CanopyParser/LocalEmailData.cpp \
+		../CanopyParser/ParseEmail.cpp moc_SearchWindow.cpp \
 		moc_WelcomeWindow.cpp \
 		moc_EmailWindow.cpp \
 		moc_StartWindow.cpp \
@@ -80,6 +81,7 @@ OBJECTS       = main.o \
 		Data.o \
 		ContentWindow.o \
 		LocalEmailData.o \
+		ParseEmail.o \
 		moc_SearchWindow.o \
 		moc_WelcomeWindow.o \
 		moc_EmailWindow.o \
@@ -155,7 +157,8 @@ DIST          = ../images/CanopyLogo-04.png \
 		../CanopyGUI/SessionWindow.h \
 		../CanopyGUI/Data.h \
 		../CanopyGUI/ContentWindow.h \
-		../CanopyParser/LocalEmailData.h ../CanopyGUI/main.cpp \
+		../CanopyParser/LocalEmailData.h \
+		../CanopyParser/ParseEmail.h ../CanopyGUI/main.cpp \
 		../CanopyGUI/WelcomeWindow.cpp \
 		../CanopyGUI/SearchWindow.cpp \
 		../CanopyParser/EmailParser.cpp \
@@ -167,7 +170,8 @@ DIST          = ../images/CanopyLogo-04.png \
 		../CanopyGUI/SessionWindow.cpp \
 		../CanopyGUI/Data.cpp \
 		../CanopyGUI/ContentWindow.cpp \
-		../CanopyParser/LocalEmailData.cpp
+		../CanopyParser/LocalEmailData.cpp \
+		../CanopyParser/ParseEmail.cpp
 QMAKE_TARGET  = Canopy
 DESTDIR       = #avoid trailing-slash linebreak
 TARGET        = Canopy
@@ -333,8 +337,8 @@ dist: distdir FORCE
 distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
-	$(COPY_FILE) --parents ../CanopyGUI/SearchWindow.h ../CanopyGUI/WelcomeWindow.h ../CanopyParser/EmailParser.h ../CanopyGUI/FrameButton.h ../CanopyGUI/EmailWindow.h ../CanopyData/TextAnalysis.h ../CanopyGUI/StartWindow.h ../CanopyGUI/AddDataWindow.h ../CanopyGUI/SessionWindow.h ../CanopyGUI/Data.h ../CanopyGUI/ContentWindow.h ../CanopyParser/LocalEmailData.h $(DISTDIR)/
-	$(COPY_FILE) --parents ../CanopyGUI/main.cpp ../CanopyGUI/WelcomeWindow.cpp ../CanopyGUI/SearchWindow.cpp ../CanopyParser/EmailParser.cpp ../CanopyGUI/FrameButton.cpp ../CanopyGUI/EmailWindow.cpp ../CanopyData/TextAnalysis.cpp ../CanopyGUI/StartWindow.cpp ../CanopyGUI/AddDataWindow.cpp ../CanopyGUI/SessionWindow.cpp ../CanopyGUI/Data.cpp ../CanopyGUI/ContentWindow.cpp ../CanopyParser/LocalEmailData.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents ../CanopyGUI/SearchWindow.h ../CanopyGUI/WelcomeWindow.h ../CanopyParser/EmailParser.h ../CanopyGUI/FrameButton.h ../CanopyGUI/EmailWindow.h ../CanopyData/TextAnalysis.h ../CanopyGUI/StartWindow.h ../CanopyGUI/AddDataWindow.h ../CanopyGUI/SessionWindow.h ../CanopyGUI/Data.h ../CanopyGUI/ContentWindow.h ../CanopyParser/LocalEmailData.h ../CanopyParser/ParseEmail.h $(DISTDIR)/
+	$(COPY_FILE) --parents ../CanopyGUI/main.cpp ../CanopyGUI/WelcomeWindow.cpp ../CanopyGUI/SearchWindow.cpp ../CanopyParser/EmailParser.cpp ../CanopyGUI/FrameButton.cpp ../CanopyGUI/EmailWindow.cpp ../CanopyData/TextAnalysis.cpp ../CanopyGUI/StartWindow.cpp ../CanopyGUI/AddDataWindow.cpp ../CanopyGUI/SessionWindow.cpp ../CanopyGUI/Data.cpp ../CanopyGUI/ContentWindow.cpp ../CanopyParser/LocalEmailData.cpp ../CanopyParser/ParseEmail.cpp $(DISTDIR)/
 	$(COPY_FILE) --parents ../CanopyGUI/SearchWindow.ui ../CanopyGUI/WelcomeWindow.ui ../CanopyGUI/EmailWindow.ui ../CanopyGUI/StartWindow.ui ../CanopyGUI/AddDataWindow.ui ../CanopyGUI/SessionWindow.ui ../CanopyGUI/ContentWindow.ui $(DISTDIR)/
 
 
@@ -515,6 +519,9 @@ ContentWindow.o: ../CanopyGUI/ContentWindow.cpp ../CanopyGUI/ContentWindow.h \
 
 LocalEmailData.o: ../CanopyParser/LocalEmailData.cpp ../CanopyParser/LocalEmailData.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o LocalEmailData.o ../CanopyParser/LocalEmailData.cpp
+
+ParseEmail.o: ../CanopyParser/ParseEmail.cpp ../CanopyParser/ParseEmail.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o ParseEmail.o ../CanopyParser/ParseEmail.cpp
 
 moc_SearchWindow.o: moc_SearchWindow.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_SearchWindow.o moc_SearchWindow.cpp

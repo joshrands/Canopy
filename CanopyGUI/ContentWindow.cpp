@@ -15,10 +15,22 @@ ContentWindow::~ContentWindow()
 
 EmailContentWindow::EmailContentWindow()
 {
-    ui->title->setText("EMAIL");
+//    ui->title->setText("EMAIL");
+
+}
+
+void EmailContentWindow::parseDataFile(QString file)
+{
+
 }
 
 HtmlContentWindow::HtmlContentWindow()
 {
-    ui->title->setText(("FACEBOOK"));
+ //   ui->title->setText(("FACEBOOK"));
+
+}
+
+void HtmlContentWindow::parseDataFile(QString file)
+{
+
 }

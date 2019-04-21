@@ -18,17 +18,21 @@ public:
 
     void addData(Data* data);
 
+    void setSessionDirectory(QString path) { this->sessionDirectory = path; }
+
 private slots:
     void on_addDataButton_clicked();
 
     // custom slot
-    void tabButtonPressed();
+    void on_tabButton_clicked();
+
+    void on_quitButton_clicked();
 
 private:
     Ui::SessionWindow *ui;
 
     // path to the session file
-    QString sessionFilePath;
+    QString sessionDirectory;
 
     // store content in Data class
     // Data class has a ContentWindow

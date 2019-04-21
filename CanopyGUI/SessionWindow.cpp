@@ -1,5 +1,6 @@
 #include "AddDataWindow.h"
 #include "ui_SessionWindow.h"
+#include "SessionWindow.h"
 
 #include <QDesktopWidget>
 #include <QStringList>
@@ -64,7 +65,7 @@ void SessionWindow::addData(Data *data)
     data->createWindow();
     ui->contentScrollArea->layout()->addWidget(data->window);
 
-    connect(data->tabButton, SIGNAL(clicked(bool)), this, SLOT(tabButtonPressed()));
+    connect(data->tabButton, SIGNAL(clicked(bool)), this, SLOT(on_tabButton_clicked()));
 
     displayNewContent();
 }
@@ -94,7 +95,7 @@ void SessionWindow::displayNewContent()
     }
 }
 
-void SessionWindow::tabButtonPressed()
+void SessionWindow::on_tabButton_clicked()
 {
     qDebug() << "Pressed";
     DataTabButton *btn = (DataTabButton*)QObject::sender();
@@ -104,3 +105,9 @@ void SessionWindow::tabButtonPressed()
     displayNewContent();
 }
 
+
+void SessionWindow::on_quitButton_clicked()
+{
+    // TODO: Warn would you like to save?
+    QApplication::quit();
+}

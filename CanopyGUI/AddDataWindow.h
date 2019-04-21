@@ -19,6 +19,7 @@ public:
 
     void setCreateSession(bool val);
     void setSessionWindow(SessionWindow* win) { this->sessionWindow = win; }
+    void setSessionPath(QString path) { this->sessionPath = path; }
 
 private slots:
     void on_browseButton_clicked();
@@ -32,6 +33,7 @@ private:
 
     bool session;
     SessionWindow* sessionWindow;
+    QString sessionPath;
 
     QString dataPath;
     QString dataName;

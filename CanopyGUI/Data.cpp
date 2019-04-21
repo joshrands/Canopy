@@ -16,10 +16,12 @@ Data::Data()
 void EmailData::createWindow()
 {
     window = new EmailContentWindow();
+    window->parseDataFile(this->dataPath);
 }
 
 void HtmlData::createWindow()
 {
     window = new HtmlContentWindow();
+    window->parseDataFile(this->dataPath);
 }
 

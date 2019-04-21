@@ -21,7 +21,6 @@ public:
     ContentWindow* window;
     QMainWindow* session;
     Data* data;
-
 };
 
 class Data

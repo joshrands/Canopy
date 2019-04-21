@@ -127,6 +127,7 @@ void AddDataWindow::on_createSessionButton_clicked()
     data->setDataName(ui->warrantNameLineEdit->text());
     data->setSuspectName(ui->suspectNameLineEdit->text());
 
+    sessionWindow->setSessionDirectory(sessionPath);
     sessionWindow->addData(data);
 
     sessionWindow->show();

@@ -24,7 +24,8 @@ SOURCES += main.cpp\
     SessionWindow.cpp \
     Data.cpp \
     ContentWindow.cpp \
-    ../CanopyParser/LocalEmailData.cpp
+    ../CanopyParser/LocalEmailData.cpp \
+    ../CanopyParser/ParseEmail.cpp
 
 HEADERS  += SearchWindow.h \
     WelcomeWindow.h \
@@ -37,7 +38,8 @@ HEADERS  += SearchWindow.h \
     SessionWindow.h \
     Data.h \
     ContentWindow.h \
-    ../CanopyParser/LocalEmailData.h
+    ../CanopyParser/LocalEmailData.h \
+    ../CanopyParser/ParseEmail.h
 
 FORMS    += SearchWindow.ui \
     WelcomeWindow.ui \

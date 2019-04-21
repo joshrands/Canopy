@@ -1,6 +1,6 @@
-#include "EmailData.h"
+#include "LocalEmailData.h"
 
-EmailData::EmailData()
+LocalEmailData::LocalEmailData()
 {
     // default constructor
 }

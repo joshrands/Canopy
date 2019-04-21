@@ -13,16 +13,16 @@ enum EmailFileType
     NONE
 };
 
-QList<EmailData> parseEmailWarrant(QString fileName);
+QList<LocalEmailData> parseEmailWarrant(QString fileName);
 
 // specific file parsers
-QList<EmailData> parseMBOX(QString fileName);
+QList<LocalEmailData> parseMBOX(QString fileName);
 
 void parseEmailString(QString line, QString* address);
 
-void parseMIMEHeader(EmailData* email, QTextStream* in, QString* line, int* fileLoc);
+void parseMIMEHeader(LocalEmailData* email, QTextStream* in, QString* line, int* fileLoc);
 
-void parseMIMEContent(EmailData* email, QTextStream* in, QString* line, int* fileLoc);
+void parseMIMEContent(LocalEmailData* email, QTextStream* in, QString* line, int* fileLoc);
 
 QDateTime parseMIMEDateString(QString dateString);
 int getMonthIndex(QString month);

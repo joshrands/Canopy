@@ -18,7 +18,7 @@ class FrameButton : public QFrame
 public:
     FrameButton();
 
-    EmailData email;
+    LocalEmailData email;
 
 protected:
     void mousePressEvent(QMouseEvent * event);

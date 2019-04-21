@@ -15,7 +15,6 @@ TEMPLATE = app
 SOURCES += main.cpp\
     WelcomeWindow.cpp \
     SearchWindow.cpp \
-    ../CanopyParser/EmailData.cpp \
     ../CanopyParser/EmailParser.cpp \
     FrameButton.cpp \
     EmailWindow.cpp \
@@ -23,11 +22,12 @@ SOURCES += main.cpp\
     StartWindow.cpp \
     AddDataWindow.cpp \
     SessionWindow.cpp \
-    CaseData.cpp
+    Data.cpp \
+    ContentWindow.cpp \
+    ../CanopyParser/LocalEmailData.cpp
 
 HEADERS  += SearchWindow.h \
     WelcomeWindow.h \
-    ../CanopyParser/EmailData.h \
     ../CanopyParser/EmailParser.h \
     FrameButton.h \
     EmailWindow.h \
@@ -35,14 +35,17 @@ HEADERS  += SearchWindow.h \
     StartWindow.h \
     AddDataWindow.h \
     SessionWindow.h \
-    CaseData.h
+    Data.h \
+    ContentWindow.h \
+    ../CanopyParser/LocalEmailData.h
 
 FORMS    += SearchWindow.ui \
     WelcomeWindow.ui \
     EmailWindow.ui \
     StartWindow.ui \
     AddDataWindow.ui \
-    SessionWindow.ui
+    SessionWindow.ui \
+    ContentWindow.ui
 
 DISTFILES += \
     ../images/CanopyLogo-04.png

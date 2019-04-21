@@ -2,6 +2,7 @@
 #define SESSIONWINDOW_H
 
 #include <QMainWindow>
+#include <Data.h> // also has ContentWindow
 
 namespace Ui {
 class SessionWindow;
@@ -15,8 +16,23 @@ public:
     explicit SessionWindow(QWidget *parent = 0);
     ~SessionWindow();
 
+    void addData(Data* data);
+
+private slots:
+    void on_addDataButton_clicked();
+
 private:
     Ui::SessionWindow *ui;
+
+    // path to the session file
+    QString sessionFilePath;
+
+    // store content in Data class
+    // Data class has a ContentWindow
+    QList<Data*> data;
+    Data* activeData;
+
+    void displayNewContent();
 };
 
 #endif // SESSIONWINDOW_H

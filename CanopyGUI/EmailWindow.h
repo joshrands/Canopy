@@ -16,7 +16,7 @@ public:
     explicit EmailWindow(QWidget *parent = 0);
     ~EmailWindow();
 
-    void setEmailData(EmailData email);
+    void setEmailData(LocalEmailData email);
 
 private slots:
     void on_backButton_clicked();
@@ -24,7 +24,7 @@ private slots:
 private:
     Ui::EmailWindow *ui;
 
-    EmailData email;
+    LocalEmailData email;
 
     QString errorHTML = QStringLiteral("<!DOCTYPE html>"
             "<html>"

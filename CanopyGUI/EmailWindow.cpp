@@ -26,7 +26,7 @@ EmailWindow::~EmailWindow()
     delete ui;
 }
 
-void EmailWindow::setEmailData(EmailData email)
+void EmailWindow::setEmailData(LocalEmailData email)
 {
     this->email = email;
 

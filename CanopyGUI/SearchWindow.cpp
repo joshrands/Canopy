@@ -100,10 +100,10 @@ void SearchWindow::populateEmailHeaders()
     // put emails in chronological order
     sortDisplayEmails();
 
-    QList<EmailData> validEmails;
+    QList<LocalEmailData> validEmails;
     for (int i = 0; i < this->displayEmails.length(); i++)
     {
-        EmailData email = this->displayEmails.at(i);
+        LocalEmailData email = this->displayEmails.at(i);
 
         // should we display this email?
         bool displayEmail = false;
@@ -305,11 +305,11 @@ void SearchWindow::applyEmailFilters()
      // call data analytics functions on email content
     int n = emailData.size();
 
-    QList<EmailData> validEmails;
+    QList<LocalEmailData> validEmails;
     for (int i = 0; i < n; i++)
     {
         // make sure email is within date range
-        EmailData email = emailData.at(i);
+        LocalEmailData email = emailData.at(i);
         bool valid = true;
 
         if (!(email.dateTime > startDateFilter && email.dateTime < endDateFilter))
@@ -352,7 +352,7 @@ void SearchWindow::getWordFrequency()
     for (int i = 0; i < emailData.length(); i++)
     {
         // get data from content
-        EmailData email = emailData.at(i);
+        LocalEmailData email = emailData.at(i);
 //        QString data = "test";
 
         // add email addresses to word count
@@ -497,7 +497,7 @@ void SearchWindow::on_addKeywordButton_clicked()
     }
 }
 
-bool SearchWindow::emailLessThan(const EmailData* d1, const EmailData* d2)
+bool SearchWindow::emailLessThan(const LocalEmailData* d1, const LocalEmailData* d2)
 {
     return (d1->dateTime < d2->dateTime);
 }

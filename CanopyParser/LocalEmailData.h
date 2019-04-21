@@ -8,12 +8,12 @@ Stores important identifier information for email and pointers to where data is 
 
 using namespace std;
 
-class EmailData
+class LocalEmailData
 {
 public:
-    EmailData(); // default constructor
+    LocalEmailData(); // default constructor
 
-    bool operator<(const EmailData& other) const {
+    bool operator<(const LocalEmailData& other) const {
         return dateTime > other.dateTime; // sort by namefile
     }
 

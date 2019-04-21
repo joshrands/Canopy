@@ -1,7 +1,7 @@
 #include <QMap>
 #include <QString>
-#include "../CanopyParser/EmailData.h"
+#include "../CanopyParser/LocalEmailData.h"
 
 QMap<QString, int> getWordCount(QString content);
 
-void getWordFreq(QString line, QList<WordFreq>* wordCounts, QList<QString>* words, EmailData* email, QString userEmail);
+void getWordFreq(QString line, QList<WordFreq>* wordCounts, QList<QString>* words, LocalEmailData* email, QString userEmail);

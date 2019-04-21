@@ -52,8 +52,8 @@ private slots:
 private:
     Ui::SearchWindow *ui;
 
-    QList<EmailData> emailData;
-    QList<EmailData> displayEmails;
+    QList<LocalEmailData> emailData;
+    QList<LocalEmailData> displayEmails;
 
     QString filePath;
     QString fileName;
@@ -86,7 +86,7 @@ private:
 
     void populateEmailHeaders(); // fill header fields for email in GUI
     void sortDisplayEmails();	// put display emails in chronological order
-    bool emailLessThan(const EmailData* d1, const EmailData* d2);
+    bool emailLessThan(const LocalEmailData* d1, const LocalEmailData* d2);
 
     void populateWordFreq(); 	// fill gui for word freq
     void applyEmailFilters();		// perform analytics as specified by user

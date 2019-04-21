@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include <QWidget>
+#include <SessionWindow.h>
 
 namespace Ui {
 class AddDataWindow;
@@ -17,6 +18,7 @@ public:
     ~AddDataWindow();
 
     void setCreateSession(bool val);
+    void setSessionWindow(SessionWindow* win) { this->sessionWindow = win; }
 
 private slots:
     void on_browseButton_clicked();
@@ -29,6 +31,7 @@ private:
     Ui::AddDataWindow *ui;
 
     bool session;
+    SessionWindow* sessionWindow;
 
     QString dataPath;
     QString dataName;

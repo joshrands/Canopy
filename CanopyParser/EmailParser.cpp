@@ -10,7 +10,7 @@
 
 using namespace std;
 
-QList<EmailData> parseEmailWarrant(QString fileName)
+QList<LocalEmailData> parseEmailWarrant(QString fileName)
 {
     qDebug() << "Parsing email warrant";
     EmailFileType type;
@@ -35,7 +35,7 @@ QList<EmailData> parseEmailWarrant(QString fileName)
         break;
 
     default:
-        return QList<EmailData>();
+        return QList<LocalEmailData>();
         break;
     }
 }
@@ -71,7 +71,7 @@ void parseEmailString(QString line, QString* address)
     }
 }
 
-void parseMIMEHeader(EmailData* email, QTextStream* in, QString* line, int* fileLoc)
+void parseMIMEHeader(LocalEmailData* email, QTextStream* in, QString* line, int* fileLoc)
 {
     bool from = false;
     bool to = false;
@@ -124,7 +124,7 @@ void parseMIMEHeader(EmailData* email, QTextStream* in, QString* line, int* file
     }
 }
 
-void parseMIMEContent(EmailData* email, QTextStream* in, QString* line, int* fileLoc)
+void parseMIMEContent(LocalEmailData* email, QTextStream* in, QString* line, int* fileLoc)
 {
     QString previousLine = QString("");
 
@@ -187,10 +187,10 @@ void parseMIMEContent(EmailData* email, QTextStream* in, QString* line, int* fil
     }
 }
 
-QList<EmailData> parseMBOX(QString fileName)
+QList<LocalEmailData> parseMBOX(QString fileName)
 {
     // parse mbox and create EmailData objects
-    QList<EmailData> emails;
+    QList<LocalEmailData> emails;
 
     // open the file
     QFile file(fileName);
@@ -208,7 +208,7 @@ QList<EmailData> parseMBOX(QString fileName)
     qDebug() << "Opening file";
     while (!line.isNull())
     {
-        EmailData email;
+        LocalEmailData email;
         email.parentFileName = fileName;
         email.subjectLine = QString("NO SUBJECT");
         email.senderAddress = QString("NO ADDRESS");

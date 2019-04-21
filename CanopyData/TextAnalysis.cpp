@@ -10,7 +10,7 @@ QMap<QString, int> getWordCount(QString content)
    return wordCounts;
 }
 
-void getWordFreq(QString line, QList<WordFreq>* wordCounts, QList<QString>* words, EmailData* email, QString userEmail)
+void getWordFreq(QString line, QList<WordFreq>* wordCounts, QList<QString>* words, LocalEmailData* email, QString userEmail)
 {
     QStringList list = line.split(QRegExp("\\s+"), QString::SkipEmptyParts);
 

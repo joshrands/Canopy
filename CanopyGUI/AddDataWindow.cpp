@@ -1,7 +1,7 @@
 #include "AddDataWindow.h"
 #include "ui_AddDataWindow.h"
 #include "SessionWindow.h"
-#include "CaseData.h"
+#include "Data.h"
 
 #include <QDesktopWidget>
 #include <QFileDialog>
@@ -33,7 +33,7 @@ AddDataWindow::~AddDataWindow()
 
 void AddDataWindow::populateProviderBox()
 {
-    QStringList list = CaseData::types;//(QStringList() << "Gmail" << "Facebook");
+    QStringList list = Data::types;//(QStringList() << "Gmail" << "Facebook");
     ui->providerComboxBox->addItems(list);
 }
 
@@ -92,17 +92,44 @@ bool AddDataWindow::checkValidFields()
         return false;
     if (this->dataPath == QString(""))
         return false;
+    if (ui->warrantNameLineEdit->text() == QString(""))
+        return false;
 
     return true;
 }
 
 void AddDataWindow::on_createSessionButton_clicked()
 {
-    qDebug() << "Creating new session..." << endl;
+    if (session)
+    {
+        qDebug() << "Creating new session..." << endl;
 
-    SessionWindow* session = new SessionWindow();
+        sessionWindow = new SessionWindow();
+    }
 
-    session->show();
+    // pass all data on new data to session
+    Data* data;
+
+    // MAKE CHANGES HERE FOR NEW FILE TYPES
+    // get type of data searching for
+    QString dataType = ui->providerComboxBox->currentText();
+
+    if (dataType == QString("Gmail"))
+    {
+        data = new EmailData();
+    }
+    else if (dataType == QString("Facebook"))
+    {
+        data = new HtmlData();
+    }
+
+    data->setDataPath(this->dataPath);
+    data->setDataName(ui->warrantNameLineEdit->text());
+    data->setSuspectName(ui->suspectNameLineEdit->text());
+
+    sessionWindow->addData(data);
+
+    sessionWindow->show();
     this->close();
 }
 
@@ -125,4 +152,7 @@ void AddDataWindow::setCreateSession(bool val)
 void AddDataWindow::on_cancelButton_clicked()
 {
     qDebug() << "Canceling data add";
+
+    sessionWindow->show();
+    this->close();
 }

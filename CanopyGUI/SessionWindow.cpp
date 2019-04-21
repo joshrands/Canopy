@@ -5,6 +5,7 @@
 #include <QStringList>
 #include <QDebug>
 #include <QPushButton>
+#include <QVBoxLayout>
 
 SessionWindow::SessionWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -25,6 +26,9 @@ SessionWindow::SessionWindow(QWidget *parent) :
                                           "Alphabetical";
 
     ui->sortComboBox->addItems(sortBy);
+
+    QVBoxLayout* layout = new QVBoxLayout();
+    ui->contentScrollArea->setLayout(layout);
 }
 
 SessionWindow::~SessionWindow()
@@ -58,7 +62,7 @@ void SessionWindow::addData(Data *data)
     ui->contentTabs->layout()->addWidget(data->tabButton);
 
     data->createWindow();
-    ui->contentFrame->layout()->addWidget(data->window);
+    ui->contentScrollArea->layout()->addWidget(data->window);
 
     connect(data->tabButton, SIGNAL(clicked(bool)), this, SLOT(tabButtonPressed()));
 

@@ -426,26 +426,20 @@
        </widget>
       </item>
       <item>
-       <widget class="QFrame" name="contentFrame">
-        <property name="minimumSize">
-         <size>
-          <width>0</width>
-          <height>300</height>
-         </size>
+       <widget class="QScrollArea" name="contentFrame">
+        <property name="widgetResizable">
+         <bool>true</bool>
         </property>
-        <property name="maximumSize">
-         <size>
-          <width>1500</width>
-          <height>1500</height>
-         </size>
-        </property>
-        <property name="frameShape">
-         <enum>QFrame::StyledPanel</enum>
-        </property>
-        <property name="frameShadow">
-         <enum>QFrame::Raised</enum>
-        </property>
-        <layout class="QVBoxLayout" name="verticalLayout_3"/>
+        <widget class="QWidget" name="contentScrollArea">
+         <property name="geometry">
+          <rect>
+           <x>0</x>
+           <y>0</y>
+           <width>706</width>
+           <height>568</height>
+          </rect>
+         </property>
+        </widget>
        </widget>
       </item>
      </layout>

@@ -23,7 +23,7 @@ public:
     void setSessionDirectory(QString path) { this->sessionDirectory = path;
                                            QDir().mkdir(path + "/session");
                                            QDir().mkdir(path + "/session/working");
-                                           //QDir().mkdir(path + "/session/data");
+                                           QDir().mkdir(path + "/session/engine");
                                            }
 
 private slots:

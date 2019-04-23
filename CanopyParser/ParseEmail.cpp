@@ -13,17 +13,36 @@ void parseMBOX(QString dataPath, QString sessionPath, QString contentName)
              << " and storing in " << sessionPath;
 
     // make folder for can data
+    QString dir = QString(sessionPath + "/session/" + contentName);
+    QDir().mkdir(dir);
+    // make .can and .ins files
+    QFile canFile(dir + "/" + contentName + ".can");
+    QFile insFile(dir + "/" + contentName + ".ins");
+    QFile txtFile(sessionPath + "/session/working/" + contentName + ".txt");
+
+    if (!canFile.open(QIODevice::WriteOnly))
+    {
+        qDebug() << "Error creating .can file.";
+    }
+    if (!insFile.open(QIODevice::WriteOnly))
+    {
+        qDebug() << "Error creating .ins file.";
+    }
+    if (!txtFile.open(QIODevice::WriteOnly))
+    {
+        qDebug() << "Error creating .txt file.";
+    }
 
     // open data file
-    QFile file(dataPath);
+    QFile dataFile(dataPath);
 
-    if (!file.open(QIODevice::ReadOnly | QIODevice::Text))
+    if (!dataFile.open(QIODevice::ReadOnly | QIODevice::Text))
     {
         qDebug() << "Error opening file: " << dataPath;
         return;
     }
 
-    QTextStream in(&file);
+    QTextStream in(&dataFile);
 
     QString line = in.readLine();
     int fileLoc = 0;

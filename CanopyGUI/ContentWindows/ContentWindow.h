@@ -20,6 +20,7 @@ public:
     virtual void parseDataFile(QString file) = 0;
 
     void setSessionPath(QString path) { this->sessionFilePath = path; }
+    void setContentName(QString name) { this->contentName = name; }
 
     QThread thread;
 
@@ -28,6 +29,7 @@ protected:
 
     QString dataFilePath;
     QString sessionFilePath;
+    QString contentName;
 };
 
 class EmailContentWindow : public ContentWindow

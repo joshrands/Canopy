@@ -17,6 +17,7 @@ void EmailData::createWindow()
 {
     window = new EmailContentWindow();
     window->setSessionPath(this->sessionPath);
+    window->setContentName(this->dataName);
     window->parseDataFile(this->dataPath);
 }
 
@@ -24,6 +25,7 @@ void HtmlData::createWindow()
 {
     window = new HtmlContentWindow();
     window->setSessionPath(this->sessionPath);
+    window->setContentName(this->dataName);
     window->parseDataFile(this->dataPath);
 }
 

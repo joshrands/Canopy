@@ -6,6 +6,7 @@
 #include <QDesktopWidget>
 #include <QFileDialog>
 #include <QDebug>
+#include <QDir>
 
 AddDataWindow::AddDataWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -82,7 +83,7 @@ void AddDataWindow::on_browseButton_clicked()
     }
     else
     {
-        ui->createSessionButton->setEnabled(false);
+        ui->createSessionButton->setEnabled(true); // TODO: MAKE THIS FALSE
     }
 }
 

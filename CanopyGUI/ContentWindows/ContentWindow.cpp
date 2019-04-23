@@ -25,7 +25,11 @@ void EmailContentWindow::parseDataFile(QString file)
 {
     if (file.contains(QString(".mbox")))
     {
-        QFuture<void> future = QtConcurrent::run(parseMBOX, file, this->sessionFilePath);
+        // start a thread to parse this file
+        QFuture<void> future = QtConcurrent::run(parseMBOX,
+                                                 file,
+                                                 this->sessionFilePath,
+                                                 this->contentName);
     }
 }
 

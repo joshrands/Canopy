@@ -1,7 +1,9 @@
 #ifndef SESSIONWINDOW_H
 #define SESSIONWINDOW_H
 
+#include <QDir>
 #include <QMainWindow>
+
 #include <Data.h> // also has ContentWindow
 
 namespace Ui {
@@ -18,7 +20,11 @@ public:
 
     void addData(Data* data);
 
-    void setSessionDirectory(QString path) { this->sessionDirectory = path; }
+    void setSessionDirectory(QString path) { this->sessionDirectory = path;
+                                           QDir().mkdir(path + "/session");
+                                           QDir().mkdir(path + "/session/working");
+                                           //QDir().mkdir(path + "/session/data");
+                                           }
 
 private slots:
     void on_addDataButton_clicked();

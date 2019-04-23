@@ -6,7 +6,7 @@
 #include <QFrame>
 #include <QDebug>
 #include <QMouseEvent>
-#include "EmailWindow.h"
+#include "Alpha1.0/EmailWindow.h"
 #include <QPushButton>
 
 /*

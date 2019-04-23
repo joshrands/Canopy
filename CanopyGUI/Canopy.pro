@@ -13,41 +13,41 @@ TEMPLATE = app
 
 
 SOURCES += main.cpp\
-    WelcomeWindow.cpp \
-    SearchWindow.cpp \
+    ./Alpha1.0/WelcomeWindow.cpp \
+    ./Alpha1.0/SearchWindow.cpp \
     ../CanopyParser/EmailParser.cpp \
-    FrameButton.cpp \
-    EmailWindow.cpp \
+    ./CustomWidgets/FrameButton.cpp \
+    ./Alpha1.0/EmailWindow.cpp \
     ../CanopyData/TextAnalysis.cpp \
     StartWindow.cpp \
     AddDataWindow.cpp \
     SessionWindow.cpp \
     Data.cpp \
-    ContentWindow.cpp \
+    ./ContentWindows/ContentWindow.cpp \
     ../CanopyParser/LocalEmailData.cpp \
     ../CanopyParser/ParseEmail.cpp
 
-HEADERS  += SearchWindow.h \
-    WelcomeWindow.h \
+HEADERS  += ./Alpha1.0/SearchWindow.h \
+    ./Alpha1.0/WelcomeWindow.h \
     ../CanopyParser/EmailParser.h \
-    FrameButton.h \
-    EmailWindow.h \
+    ./CustomWidgets/FrameButton.h \
+    ./Alpha1.0/EmailWindow.h \
     ../CanopyData/TextAnalysis.h \
     StartWindow.h \
     AddDataWindow.h \
     SessionWindow.h \
     Data.h \
-    ContentWindow.h \
+    ./ContentWindows/ContentWindow.h \
     ../CanopyParser/LocalEmailData.h \
     ../CanopyParser/ParseEmail.h
 
-FORMS    += SearchWindow.ui \
-    WelcomeWindow.ui \
-    EmailWindow.ui \
+FORMS    += ./Alpha1.0/SearchWindow.ui \
+    ./Alpha1.0/WelcomeWindow.ui \
+    ./Alpha1.0/EmailWindow.ui \
     StartWindow.ui \
     AddDataWindow.ui \
     SessionWindow.ui \
-    ContentWindow.ui
+    ./ContentWindows/ContentWindow.ui
 
 DISTFILES += \
     ../images/CanopyLogo-04.png

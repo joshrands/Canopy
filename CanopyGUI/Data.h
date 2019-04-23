@@ -7,7 +7,7 @@
  *
 */
 
-#include <ContentWindow.h>
+#include <./ContentWindows/ContentWindow.h>
 
 #include <QStringList>
 #include <QPushButton>

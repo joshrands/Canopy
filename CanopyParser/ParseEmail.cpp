@@ -7,9 +7,12 @@
 #include <QTime>
 #include <QMap>
 
-void parseMBOX(QString dataPath, QString sessionPath)
+void parseMBOX(QString dataPath, QString sessionPath, QString contentName)
 {
-    qDebug() << "Parsing " << dataPath << " and storing in " << sessionPath;
+    qDebug() << "Parsing " << contentName << " from " << dataPath
+             << " and storing in " << sessionPath;
+
+    // make folder for can data
 
     // open data file
     QFile file(dataPath);

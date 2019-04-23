@@ -31,7 +31,7 @@ QList<LocalEmailData> parseEmailWarrant(QString fileName)
     {
     case MBOX:
         qDebug() << "Parsing MBOX";
-        return parseMBOX(fileName);
+ //       return parseMBOX(fileName);
         break;
 
     default:
@@ -40,6 +40,7 @@ QList<LocalEmailData> parseEmailWarrant(QString fileName)
     }
 }
 
+/*
 void parseEmailString(QString line, QString* address)
 {
     bool found = false;
@@ -295,3 +296,4 @@ int getMonthIndex(QString month)
 
     return months.value(month);
 }
+*/

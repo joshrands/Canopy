@@ -1,9 +1,8 @@
-# Canopy Alpha v1.0
+# Canopy Alpha v2.0
 
 ### A software solution to viewing email search warrants
 
-Created by Ethan Bond, Luke Epp, Josh Rands, and Matt Wojnoski  
-2/27/2019
+Created by Canopy Intelligence
 
 ## Bugs
 
@@ -16,14 +15,39 @@ Created by Ethan Bond, Luke Epp, Josh Rands, and Matt Wojnoski
 ## ToDo
 
 ### GUI
+1. Loosen rigidness of welcome window
+2. Remove different window for search
+3. Open emails in content window
+4. Make coloring on inbox/outbox more user friendly
+5. Be able to 'flag' emails as "important" or "do not read again"
+6. Autocomplete typing in search bar
+7. Fix HTML display
+8. Vectorize all windows
+9. Remove 'x' in upper left corner
+10. Sort data by hierarchical folders - inboxes or FB data
+11. More flexible sorting options
+12. Number emails
+13. Be able to add multiple warrants to one session
+14. Add threading for data parsing
 
 ### Data
 1. Speed up data analysis
+2. Be able to save/load a session
+3. Break input files into working .can, .ses, and .ins files
+4. Identify spam emails
 
 ### Parser
-1. Know email location in meta data
+1. Clean up HTML parsing
+2. Be able to view attachments
+3. Get content (string data) out of facebook HTML data
 
-## Latest Features: Canopy Alpha v1.0
+## Latest Features: Canopy Alpha v2.0
+
+
+## Past Releases
+
+Canopy Alpha Features v1.0
+3/18/2019
 
 ### GUI
 - Welcome Window and Search Window interface

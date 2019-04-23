@@ -2,7 +2,7 @@
 
 ### A software solution to viewing email search warrants
 
-Created by Canopy Intelligence
+Created by Canopy Intelligence LLC
 
 ## Bugs
 
@@ -15,19 +15,19 @@ Created by Canopy Intelligence
 ## ToDo
 
 ### GUI
-1. Loosen rigidness of welcome window
-2. Remove different window for search
+~~1. Loosen rigidness of welcome window~~
+~~2. Remove different window for search~~
 3. Open emails in content window
 4. Make coloring on inbox/outbox more user friendly
 5. Be able to 'flag' emails as "important" or "do not read again"
 6. Autocomplete typing in search bar
 7. Fix HTML display
-8. Vectorize all windows
+~~8. Vectorize all windows~~
 9. Remove 'x' in upper left corner
 10. Sort data by hierarchical folders - inboxes or FB data
 11. More flexible sorting options
 12. Number emails
-13. Be able to add multiple warrants to one session
+~~13. Be able to add multiple warrants to one session~~
 14. Add threading for data parsing
 
 ### Data
@@ -37,11 +37,23 @@ Created by Canopy Intelligence
 4. Identify spam emails
 
 ### Parser
-1. Clean up HTML parsing
+~~1. Clean up HTML parsing~~
 2. Be able to view attachments
 3. Get content (string data) out of facebook HTML data
 
 ## Latest Features: Canopy Alpha v2.0
+
+### GUI
+- Loosen rigidness of welcome window
+- Remove different window for search
+- Vectorize all windows
+- Be able to add multiple warrants to one session
+
+### Data
+
+### Parser
+- Improved HTML parsing from MIME input files
+
 
 
 ## Past Releases

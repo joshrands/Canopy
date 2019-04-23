@@ -16,16 +16,16 @@ Data::Data()
 void EmailData::createWindow()
 {
     window = new EmailContentWindow();
-    window->setSessionPath(this->sessionPath);
-    window->setContentName(this->dataName);
+    //window->setSessionPath(this->sessionPath);
+    //window->setContentName(this->dataName);
+    window->initializeDir(this->sessionPath, this->dataName);
     window->parseDataFile(this->dataPath);
 }
 
 void HtmlData::createWindow()
 {
     window = new HtmlContentWindow();
-    window->setSessionPath(this->sessionPath);
-    window->setContentName(this->dataName);
+    window->initializeDir(this->sessionPath, this->dataName);
     window->parseDataFile(this->dataPath);
 }
 

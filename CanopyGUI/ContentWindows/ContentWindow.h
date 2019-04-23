@@ -19,8 +19,9 @@ public:
 
     virtual void parseDataFile(QString file) = 0;
 
-    void setSessionPath(QString path) { this->sessionFilePath = path; }
-    void setContentName(QString name) { this->contentName = name; }
+//    void setSessionPath(QString path) { this->sessionFilePath = path; }
+//    void setContentName(QString name) { this->contentName = name; }
+    void initializeDir(QString sessionPath, QString name);
 
     QThread thread;
 

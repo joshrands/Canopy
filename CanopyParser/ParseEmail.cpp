@@ -7,40 +7,59 @@
 #include <QTime>
 #include <QMap>
 
-void parseMBOX(QString dataPath, QString sessionPath, QString contentName)
+/*
+void parseMBOX(QFile* dataFile, QFile* canFile, QFile* insFile, QFile* txtFile)
 {
-    qDebug() << "Parsing " << contentName << " from " << dataPath
-             << " and storing in " << sessionPath;
+    QTextStream in(dataFile);
 
-    // make folder for can data
-    QString dir = QString(sessionPath + "/session/" + contentName);
-    QDir().mkdir(dir);
-    // make .can and .ins files
-    QFile canFile(dir + "/" + contentName + ".can");
-    QFile insFile(dir + "/" + contentName + ".ins");
-    QFile txtFile(sessionPath + "/session/working/" + contentName + ".txt");
+    qDebug() << "Reading line by line";
 
-    if (!canFile.open(QIODevice::WriteOnly))
+    QString line = in.readLine();
+    int fileLoc = 0;
+
+    while (!line.isNull())
     {
-        qDebug() << "Error creating .can file.";
+        qDebug() << line;
+        line = in.readLine();
+        fileLoc++;
     }
-    if (!insFile.open(QIODevice::WriteOnly))
-    {
-        qDebug() << "Error creating .ins file.";
-    }
-    if (!txtFile.open(QIODevice::WriteOnly))
-    {
-        qDebug() << "Error creating .txt file.";
-    }
+}
+*/
+
+void parseMBOX(QString dataFilePath, QString sessionFilePath, QString contentName)
+{
+    qDebug() << "Parsing " << contentName << " from " << dataFilePath
+             << " and storing in " << sessionFilePath;
 
     // open data file
-    QFile dataFile(dataPath);
+    QFile dataFile(dataFilePath);
 
     if (!dataFile.open(QIODevice::ReadOnly | QIODevice::Text))
     {
-        qDebug() << "Error opening file: " << dataPath;
+        qDebug() << "Error opening file: " << dataFilePath;
         return;
     }
+
+    // open can, ins, and txt files
+    QString dir = sessionFilePath + "/session/" + contentName + "/";
+
+    QFile canFile(dir + contentName + ".can");
+    if (!canFile.open(QIODevice::WriteOnly | QIODevice::Text))
+    {
+        qDebug() << "Error opening can file";
+    }
+    QFile insFile(dir + contentName + ".ins");
+    if (!insFile.open(QIODevice::WriteOnly | QIODevice::Text))
+    {
+        qDebug() << "Error opening ins file";
+    }
+    QFile txtFile(sessionFilePath + "/session/working/" + contentName + ".txt");
+    if (!txtFile.open(QIODevice::WriteOnly | QIODevice::Text))
+    {
+        qDebug() << "Error opening txt file";
+    }
+
+    qDebug() << "Files created. Parsing...";
 
     QTextStream in(&dataFile);
 

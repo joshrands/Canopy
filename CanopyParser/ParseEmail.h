@@ -23,6 +23,7 @@ QString parseMIMEHeader(QTextStream *dataFile, QTextStream *canFile,
 int parseMIMEContent(QTextStream *dataFile, QTextStream *canFile, QTextStream *insFile, QTextStream *txtFile,
                       QString *line, int *fileLoc);
 
+QString cleanHTML(QString html);
 void parseEmailString(QString line, QString* address);
 QDateTime parseMIMEDateString(QString dateString);
 int getMonthIndex(QString month);

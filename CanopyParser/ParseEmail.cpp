@@ -186,27 +186,6 @@ QString parseMIMEHeader(QTextStream *dataFile, QTextStream *canFile,
 //    qDebug() << data;
 
     return data;
-
-    // split data if over
-    /*if (data.length() < LINE_LENGTH)
-    {
-        // pad with zeros
-        // write data to file
-        *canFile << data;
-        for (int i = data.length(); i < LINE_LENGTH; i++)
-            *canFile << 0x00;
-        *canFile << endl;
-    }
-    else
-    {
-        // split data
-        for (int i = 0; i < data.length() - LINE_LENGTH; i += LINE_LENGTH)
-        {
-
-        }
-        // pad last one with zeros
-    }
-    */
 }
 
 int parseMIMEContent(QTextStream *dataFile, QTextStream *canFile, QTextStream *insFile, QTextStream *txtFile,
@@ -272,10 +251,28 @@ int parseMIMEContent(QTextStream *dataFile, QTextStream *canFile, QTextStream *i
 
             int end = *fileLoc;
 
-            qDebug() << html;
+//            qDebug() << html;
+            html = cleanHTML(html);
             // write html to .txt file using padding
 
-            int numLines = html.length() / LINE_LENGTH;
+            int numLines = html.length() / LINE_LENGTH + 1; // + 1 for header
+
+            // write header information
+            QString header = QString("email,") + QString::number(numLines) + QString(",");
+
+            *txtFile << header;
+
+            for (int i = header.length(); i < LINE_LENGTH; i++)
+                *txtFile << 0x00;
+
+            *txtFile << endl;
+
+            // pad html
+            if (html.length() == 0)
+                html += QString::number(0x00);
+
+            while (html.length() % LINE_LENGTH != 0)
+                html += QString::number(0x00);
 
             // split data
             for (int i = 0; i < numLines; i++)
@@ -283,12 +280,10 @@ int parseMIMEContent(QTextStream *dataFile, QTextStream *canFile, QTextStream *i
                 *txtFile << html.mid(i*LINE_LENGTH, LINE_LENGTH) << endl;
             }
 
-            *txtFile << html.mid(numLines * LINE_LENGTH, html.length() - (numLines*LINE_LENGTH));
-            for (int i = html.length() - numLines * LINE_LENGTH; i < LINE_LENGTH; i++)
-                *txtFile << 0x00;
-            *txtFile << endl;
+            qDebug() << "Remaining: " << html.length() - (numLines - 1)*LINE_LENGTH;
+            qDebug() << html.length() << " : " << numLines*LINE_LENGTH;
 
-            contentLength = numLines;
+            contentLength = numLines + 1;
         }
         else
         {
@@ -299,6 +294,11 @@ int parseMIMEContent(QTextStream *dataFile, QTextStream *canFile, QTextStream *i
     }
 
     return contentLength;
+}
+
+QString cleanHTML(QString html)
+{
+    return html;
 }
 
 void parseEmailString(QString line, QString* address)

@@ -42,6 +42,7 @@ void SessionWindow::on_addDataButton_clicked()
     // show add data window
     AddDataWindow* win = new AddDataWindow();
 
+    win->setSessionPath(this->sessionDirectory);
     win->setCreateSession(false);
     win->setSessionWindow(this);
 

@@ -197,10 +197,14 @@ void parseMIMEHeader(QTextStream *dataFile, QTextStream *canFile,
 void parseMIMEContent(QTextStream *dataFile, QTextStream *canFile, QTextStream *insFile, QTextStream *txtFile,
                       QString *line, int *fileLoc)
 {
+    QString previousLocation = QString("");
 
     while (!line->isNull() && line->left(10) != QString("X-GM-THRID"))
     {
+
+
         *line = dataFile->readLine();
+        *fileLoc++;
     }
 }
 

@@ -72,14 +72,39 @@ void parseMBOX(QString dataFilePath, QString sessionFilePath, QString contentNam
     QString line = in.readLine();
     int fileLoc = 0;
     qDebug() << "Opening file";
+
+    int workingLine = 0;
     while (!line.isNull())
     {
 //        qDebug() << line;
 
         // parse content to can file
-        parseMIMEHeader(&in, &can, &line, &fileLoc, dataFilePath);
-        parseMIMEContent(&in, &can, &ins, &txt,
+        QString data = parseMIMEHeader(&in, &can, &line, &fileLoc, dataFilePath);
+        int contentLength = parseMIMEContent(&in, &can, &ins, &txt,
                          &line, &fileLoc);
+
+        qDebug() << "Email processed";
+
+        // add working file line location of html data
+        data = QString::number(workingLine) + "," + data;
+        workingLine += contentLength;
+
+        int numLines = data.length() / LINE_LENGTH;
+        data = QString::number(numLines) + "," + data;
+
+        qDebug() << data;
+
+        // split data
+        for (int i = 0; i < numLines; i++)
+        {
+            // write LINE_LENGTH chunks
+            can << data.mid(i*LINE_LENGTH, LINE_LENGTH) << endl;
+        }
+
+        can << data.mid(numLines * LINE_LENGTH, data.length() - (numLines*LINE_LENGTH));
+        for (int i = data.length() - numLines * LINE_LENGTH; i < LINE_LENGTH; i++)
+            can << 0x00;
+        can << endl;
 
         line = in.readLine();
         fileLoc++;
@@ -97,7 +122,7 @@ void parseFoldersEML(QString dataPath, QString sessionPath)
  * Helper functions
 *****************************/
 
-void parseMIMEHeader(QTextStream *dataFile, QTextStream *canFile,
+QString parseMIMEHeader(QTextStream *dataFile, QTextStream *canFile,
                      QString *line, int *fileLoc, QString fileName)
 {
     int startLoc = *fileLoc;
@@ -155,22 +180,12 @@ void parseMIMEHeader(QTextStream *dataFile, QTextStream *canFile,
     // subject
     data += subject;
 
-    int numLines = data.length() / LINE_LENGTH;
-    data = QString::number(numLines) + "," + data;
+    //int numLines = data.length() / LINE_LENGTH;
+    //data = QString::number(numLines) + "," + data;
 
-    qDebug() << data;
+//    qDebug() << data;
 
-    // split data
-    for (int i = 0; i < numLines; i++)
-    {
-        // write LINE_LENGTH chunks
-        *canFile << data.mid(i*LINE_LENGTH, LINE_LENGTH) << endl;
-    }
-
-    *canFile << data.mid(numLines * LINE_LENGTH, data.length() - (numLines*LINE_LENGTH));
-    for (int i = data.length() - numLines * LINE_LENGTH; i < LINE_LENGTH; i++)
-        *canFile << 0x00;
-    *canFile << endl;
+    return data;
 
     // split data if over
     /*if (data.length() < LINE_LENGTH)
@@ -194,18 +209,96 @@ void parseMIMEHeader(QTextStream *dataFile, QTextStream *canFile,
     */
 }
 
-void parseMIMEContent(QTextStream *dataFile, QTextStream *canFile, QTextStream *insFile, QTextStream *txtFile,
+int parseMIMEContent(QTextStream *dataFile, QTextStream *canFile, QTextStream *insFile, QTextStream *txtFile,
                       QString *line, int *fileLoc)
 {
-    QString previousLocation = QString("");
+    QString previousLine = QString("");
+
+    int contentLoc = 0;
+    int contentLength;
+
+    QString text;
+    QString html;
 
     while (!line->isNull() && line->left(10) != QString("X-GM-THRID"))
     {
+        if (line->mid(14,10) == QString("text/plain"))
+        {
 
+            //            email->textLocation = *fileLoc;
+            int start = *fileLoc;
+            text = QString("");
 
-        *line = dataFile->readLine();
-        *fileLoc++;
+            // get length
+            QString temp;
+            while (!line->isNull() && *line != previousLine && line->left(10) != QString("X-GM-THRID"))
+            {
+                temp = *line;
+                text += temp;
+                *line = dataFile->readLine();
+                *fileLoc = *fileLoc + 1;
+            }
+
+            previousLine = temp;
+
+            int end = *fileLoc;
+
+            // TODO: What with raw content? Write to engine
+//            qDebug() << text;
+
+            // write text to txtFile
+
+//            *txtFile << text;
+ //           *txtFile << "\n";
+        }
+        else if (line->mid(14, 9) == QString("text/html"))
+        {
+            int start = *fileLoc;
+            QString html = QString("");
+
+            // get length
+            *line = dataFile->readLine();
+            *fileLoc = *fileLoc + 1;
+
+            QString temp;
+            while (!line->isNull() && line->left(previousLine.length()) != previousLine && line->left(10) != QString("X-GM-THRID"))
+            {
+                temp = *line;
+                html += temp;
+                *line = dataFile->readLine();
+                *fileLoc = *fileLoc + 1;
+            }
+            previousLine = temp;
+
+            int end = *fileLoc;
+
+            qDebug() << html;
+            // write html to .txt file using padding
+
+            int numLines = html.length() / LINE_LENGTH;
+
+            // split data
+            for (int i = 0; i < numLines; i++)
+            {
+                *txtFile << html.mid(i*LINE_LENGTH, LINE_LENGTH) << endl;
+            }
+
+            *txtFile << html.mid(numLines * LINE_LENGTH, html.length() - (numLines*LINE_LENGTH));
+            for (int i = html.length() - numLines * LINE_LENGTH; i < LINE_LENGTH; i++)
+                *txtFile << 0x00;
+            *txtFile << endl;
+
+            contentLength = numLines;
+        }
+        else
+        {
+            previousLine = *line;
+            *line = dataFile->readLine();
+            *fileLoc = *fileLoc + 1;
+        }
     }
+
+    return contentLength;
 }
 
 void parseEmailString(QString line, QString* address)

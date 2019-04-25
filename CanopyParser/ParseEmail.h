@@ -14,10 +14,13 @@ void parseMBOX(QString dataFilePath, QString sessionFilePath, QString contentNam
 
 void parseFoldersEML(QString dataPath, QString sessionPath);
 
-void parseMIMEHeader(QTextStream *dataFile, QTextStream *canFile,
+// return .can data string
+QString parseMIMEHeader(QTextStream *dataFile, QTextStream *canFile,
                      QString *line, int *fileLoc, QString fileName);
 
-void parseMIMEContent(QTextStream *dataFile, QTextStream *canFile, QTextStream *insFile, QTextStream *txtFile,
+// return .txt line number of content
+// return length of data so other function can determine location
+int parseMIMEContent(QTextStream *dataFile, QTextStream *canFile, QTextStream *insFile, QTextStream *txtFile,
                       QString *line, int *fileLoc);
 
 void parseEmailString(QString line, QString* address);

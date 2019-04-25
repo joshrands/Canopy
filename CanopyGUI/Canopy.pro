@@ -39,7 +39,8 @@ HEADERS  += ./Alpha1.0/SearchWindow.h \
     Data.h \
     ./ContentWindows/ContentWindow.h \
     ../CanopyParser/LocalEmailData.h \
-    ../CanopyParser/ParseEmail.h
+    ../CanopyParser/ParseEmail.h \
+    ContentWindows/EmailContentWindow.h
 
 FORMS    += ./Alpha1.0/SearchWindow.ui \
     ./Alpha1.0/WelcomeWindow.ui \

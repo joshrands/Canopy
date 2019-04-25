@@ -76,14 +76,12 @@ void parseMBOX(QString dataFilePath, QString sessionFilePath, QString contentNam
     int workingLine = 0;
     while (!line.isNull())
     {
-//        qDebug() << line;
-
         // parse content to can file
         QString data = parseMIMEHeader(&in, &can, &line, &fileLoc, dataFilePath);
         int contentLength = parseMIMEContent(&in, &can, &ins, &txt,
                          &line, &fileLoc);
 
-        qDebug() << "Email processed";
+//        qDebug() << "Email processed";
 
         // add working file line location of html data
         data = QString::number(workingLine) + "," + data;
@@ -92,7 +90,7 @@ void parseMBOX(QString dataFilePath, QString sessionFilePath, QString contentNam
         int numLines = data.length() / LINE_LENGTH;
         data = QString::number(numLines) + "," + data;
 
-        qDebug() << data;
+//        qDebug() << data;
 
         // split data
         for (int i = 0; i < numLines; i++)
@@ -162,10 +160,10 @@ QString parseMIMEHeader(QTextStream *dataFile, QTextStream *canFile,
         *fileLoc = *fileLoc + 1;
     }
 
-    qDebug() << "sender: " << sender;
-    qDebug() << "receiver: " << receiver;
-    qDebug() << "subject: " << subject;
-    qDebug() << "date: " << date;
+    //qDebug() << "sender: " << sender;
+    //qDebug() << "receiver: " << receiver;
+    //qDebug() << "subject: " << subject;
+    //qDebug() << "date: " << date;
 
     // write to can file
     QString data = "email,";
@@ -280,8 +278,8 @@ int parseMIMEContent(QTextStream *dataFile, QTextStream *canFile, QTextStream *i
                 *txtFile << html.mid(i*LINE_LENGTH, LINE_LENGTH) << endl;
             }
 
-            qDebug() << "Remaining: " << html.length() - (numLines - 1)*LINE_LENGTH;
-            qDebug() << html.length() << " : " << numLines*LINE_LENGTH;
+            //qDebug() << "Remaining: " << html.length() - (numLines - 1)*LINE_LENGTH;
+            //qDebug() << html.length() << " : " << numLines*LINE_LENGTH;
 
             contentLength = numLines + 1;
         }

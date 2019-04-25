@@ -22,6 +22,7 @@ public:
 //    void setSessionPath(QString path) { this->sessionFilePath = path; }
 //    void setContentName(QString name) { this->contentName = name; }
     void initializeDir(QString sessionPath, QString name);
+    QString getContentName() { return this->contentName; }
 
     QThread thread;
 
@@ -38,7 +39,14 @@ class EmailContentWindow : public ContentWindow
 public:
     EmailContentWindow();
 
+    const int EMAILS_PER_PAGE = 50;
+
     void parseDataFile(QString file);
+
+private:
+    int page;
+
+    void loadPage(int num);
 };
 
 class HtmlContentWindow : public ContentWindow

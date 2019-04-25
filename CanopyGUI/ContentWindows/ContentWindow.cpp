@@ -1,7 +1,11 @@
 #include "ContentWindow.h"
 #include "ui_ContentWindow.h"
 #include "../CanopyParser/ParseEmail.h"
+
+#include "./CustomWidgets/FrameButton.h"
 #include <QFuture>
+#include <QLabel>
+#include <QHBoxLayout>
 
 ContentWindow::ContentWindow(QWidget *parent) :
     QFrame(parent),
@@ -48,8 +52,29 @@ void ContentWindow::initializeDir(QString sessionPath, QString contentName)
 
 EmailContentWindow::EmailContentWindow()
 {
-//    ui->title->setText("EMAIL");
+    this->page = 0;
+    // create subfolders on top
+    // create tab button
 
+    // create title bar
+    QLabel* emailTitle = new QLabel();
+    emailTitle->setText(QString("Email"));
+
+    QLabel* subjectTitle = new QLabel();
+    subjectTitle->setText(QString("Subject Header"));
+
+    QLabel* dateTitle = new QLabel();
+    dateTitle->setText(QString("Date"));
+
+    QHBoxLayout* layout = new QHBoxLayout();
+    ui->headerFrame->setLayout(layout);
+
+    ui->headerFrame->layout()->addWidget(emailTitle);
+    ui->headerFrame->layout()->addWidget(subjectTitle);
+    ui->headerFrame->layout()->addWidget(dateTitle);
+
+    // load emails!
+    qDebug() << "Loading " << this->contentName;
 }
 
 void EmailContentWindow::parseDataFile(QString file)

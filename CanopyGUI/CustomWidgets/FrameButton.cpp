@@ -18,14 +18,15 @@ void FrameButton::mousePressEvent(QMouseEvent* event)
     {
         clickPoint = event->pos();
 
+        qDebug() << "clicked";
         // open email window
-        EmailWindow* win = new EmailWindow();
-        win->setEmailData(this->email);
+//        EmailWindow* win = new EmailWindow();
+//        win->setEmailData(this->email);
 
-        Qt::WindowFlags flags = windowFlags();
-        win->setWindowFlags(flags | Qt::WindowStaysOnTopHint);
+        //Qt::WindowFlags flags = windowFlags();
+        //win->setWindowFlags(flags | Qt::WindowStaysOnTopHint);
 
-        win->show();
+        //win->show();
     }
 }
 

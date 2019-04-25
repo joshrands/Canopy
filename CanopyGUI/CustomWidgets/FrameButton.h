@@ -6,7 +6,7 @@
 #include <QFrame>
 #include <QDebug>
 #include <QMouseEvent>
-#include "Alpha1.0/EmailWindow.h"
+//#include "Alpha1.0/EmailWindow.h"
 #include <QPushButton>
 
 /*
@@ -18,7 +18,7 @@ class FrameButton : public QFrame
 public:
     FrameButton();
 
-    LocalEmailData email;
+//    LocalEmailData email;
 
 protected:
     void mousePressEvent(QMouseEvent * event);

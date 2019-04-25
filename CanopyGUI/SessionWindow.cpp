@@ -92,6 +92,7 @@ void SessionWindow::displayNewContent()
         {
             data.at(i)->tabButton->setStyleSheet("background-color: gray;");
             data.at(i)->window->show();
+//            qDebug() << data.at(i)->window->getContentName();
         }
     }
 }

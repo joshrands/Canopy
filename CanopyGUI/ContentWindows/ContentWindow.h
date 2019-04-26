@@ -64,10 +64,12 @@ public:
 
     void parseDataFile(QString file);
 
+    void addHeaderFrame(EmailHeaderFrame* frame);
+
     int page;
     void loadPage(int num);
     QList<EmailCan> currentPage;
-    QList<FrameButton> headerButtons;
+    QList<EmailHeaderFrame> headerButtons;
 };
 
 class HtmlContentWindow : public ContentWindow

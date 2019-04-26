@@ -155,14 +155,14 @@ QString parseMIMEHeader(QTextStream *dataFile, QTextStream *canFile,
     // receive
     data += receiver + ",";
     // date
-    data += "\"" + date + "\",";
+    data += QString("\\\"") + date + QString("\\\",");
     // subject
-    data += subject + ",";
+    data += QString("\\\"") + subject + QString("\\\",");
 
     //int numLines = data.length() / LINE_LENGTH;
     //data = QString::number(numLines) + "," + data;
 
-//    qDebug() << data;
+    qDebug() << data;
 
     return data;
 }

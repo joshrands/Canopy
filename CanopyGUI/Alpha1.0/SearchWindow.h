@@ -6,9 +6,10 @@
 #include <QFrame>
 #include <QHBoxLayout>
 #include <QVBoxLayout>
-#include "FrameButton.h"
+#include "./CustomWidgets/FrameButton.h"
 #include <QSignalMapper>
 
+/*
 namespace Ui {
 class SearchWindow;
 }
@@ -52,8 +53,8 @@ private slots:
 private:
     Ui::SearchWindow *ui;
 
-    QList<LocalEmailData> emailData;
-    QList<LocalEmailData> displayEmails;
+    QList<EmailData> emailData;
+    QList<EmailData> displayEmails;
 
     QString filePath;
     QString fileName;
@@ -93,5 +94,5 @@ private:
     void getWordFrequency();	// find word frequency for all words
 
 };
-
+*/
 #endif // SEARCHWINDOW_H

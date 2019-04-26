@@ -6,8 +6,10 @@
 #include <QFrame>
 #include <QDebug>
 #include <QMouseEvent>
-//#include "Alpha1.0/EmailWindow.h"
 #include <QPushButton>
+#include <QLabel>
+
+//#include "Data.h"
 
 /*
  * Frame button class that is a frame but has button capabilities
@@ -26,10 +28,40 @@ protected:
     void enterEvent(QEvent *);
     void leaveEvent(QEvent *);
 
-private:
+    virtual void onClick() = 0;
+
     QPoint lastPoint;
     QPoint clickPoint;
 
+};
+
+class EmailHeaderFrame : public FrameButton
+{
+public:
+    void setEmailData(QString sender, QString receiver,
+                      QString header, QString date);
+
+    void setContentFileInfo(QString file, int line) { this->contentFile = file;
+                                                      this->contentLine = line; }
+
+    void displaySender();
+    void displayReceiver();
+
+protected:
+    void onClick();
+
+    QLabel* sendLabel;
+    QLabel* receiveLabel;
+    QLabel* headerLabel;
+    QLabel* dateLabel;
+
+    QString sender;
+    QString receiver;
+    QString header;
+    QString date;
+
+    QString contentFile;
+    int contentLine;
 };
 
 class KeywordFrame : public QFrame

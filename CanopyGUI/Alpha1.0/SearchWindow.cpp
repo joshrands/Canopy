@@ -8,6 +8,7 @@
 #include <QFile>
 #include <QSignalMapper>
 
+/*
 SearchWindow::SearchWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::SearchWindow)
@@ -540,3 +541,4 @@ void SearchWindow::removeKeyword(QString word)
         qDebug() << keywordFrames.size() << keywordFilters.size();
     }
 }
+*/

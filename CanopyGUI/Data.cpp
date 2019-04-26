@@ -22,31 +22,73 @@ void EmailData::createWindow()
     window->parseDataFile(this->dataPath);
 }
 
-QStringList splitCanLine(QString line)
+QStringList splitCanData(QTextStream* in, QString* line)
 {
+    // get length
+    int i = 0;
+    while (line->at(i) != ',')
+        i++;
 
+    int numLines = line->left(i).toInt();
+//    qDebug() << numLines;
+
+    QStringList data;
+    data << QString::number(numLines);
+
+    for (i = 0; i < numLines; i++)
+    {
+        *line = *line + in->readLine();
+    }
+
+    qDebug() << *line;
+    for (int i = 0; i < line->length(); i++)
+    {
+        // get string stuff
+        int start = i;
+//        qDebug() << line->mid(i, 1);
+//        qDebug() << QString("\"");
+        if (QString(line->at(i)) == QString("\\"))
+        {
+            qDebug() << "Special processing";
+            // requires special processing
+            start = ++i;
+            while (line->mid(i, 2) != QString("\\\""))
+                i++;
+        }
+        else
+        {
+            while (line->at(i) != ',' && i < line->length() - 1)
+                i++;
+        }
+
+        QString column = line->mid(start, i-start);
+        qDebug() << column;
+        data << column;
+    }
+
+//    *line = in->readLine();
+
+    return data;
 }
 
 EmailCan* getEmailCan(QTextStream* in, int* fileLoc, QString* line)
 {
     EmailCan* email = new EmailCan;
 
-    //*line = in->readLine();
-    qDebug() << *line;
-    QStringList canData = line->split(",");
+    QStringList canData = splitCanData(in, line);//line->split(",");
 
-    qDebug() << canData.at(0);
-    int numLines = canData.at(0).toInt();
-
-    for (int i = 1; i <= numLines; i++)
-    {
-        *line = in->readLine();
-        canData << line->split(",");
-    }
-
-    qDebug() << canData.length();
     for (int i = 0; i < canData.length(); i++)
         qDebug() << canData.at(i);
+
+    email->sender = canData.at(6);
+    email->receiver = canData.at(7);
+    email->subject = canData.at(9);
+    email->date = canData.at(8);
+    // TODO: Get datetime
+
+    // TODO: Set txtFilePath
+
+    return email;
 }
 
 void EmailData::getCanData(int start, int num)
@@ -86,6 +128,17 @@ void EmailData::getCanData(int start, int num)
 //            line = can.readLine();
 //            fileLoc++;
             EmailCan* email = getEmailCan(&can, &fileLoc, &line);
+            // display email can
+            EmailHeaderFrame* frame = new EmailHeaderFrame();
+
+            QString sender(email->sender);
+            QString receiver(email->receiver);
+            QString header(email->subject);
+            QString date(email->date);
+            frame->setEmailData(sender, receiver, header, date);
+            frame->displaySender();
+
+            ((EmailContentWindow*)this->window)->addHeaderFrame(frame);
 
             line = can.readLine();
             count++;

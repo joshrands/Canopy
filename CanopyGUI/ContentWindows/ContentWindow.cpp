@@ -5,6 +5,7 @@
 #include <QFuture>
 #include <QLabel>
 #include <QHBoxLayout>
+#include <QVBoxLayout>
 
 ContentWindow::ContentWindow(QWidget *parent) :
     QFrame(parent),
@@ -73,6 +74,9 @@ EmailContentWindow::EmailContentWindow()
     ui->headerFrame->layout()->addWidget(subjectTitle);
     ui->headerFrame->layout()->addWidget(dateTitle);
 
+    QVBoxLayout* vLayout = new QVBoxLayout();
+    ui->content->setLayout(vLayout);
+
     // load emails!
     qDebug() << "Loading " << this->contentName;
 }
@@ -90,6 +94,11 @@ void EmailContentWindow::parseDataFile(QString file)
                                                  this->sessionFilePath,
                                                  this->contentName);
     }
+}
+
+void EmailContentWindow::addHeaderFrame(EmailHeaderFrame *frame)
+{
+    ui->content->layout()->addWidget(frame);
 }
 
 HtmlContentWindow::HtmlContentWindow()

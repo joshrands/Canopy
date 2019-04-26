@@ -80,7 +80,7 @@ void WelcomeWindow::on_warrantNumberField_editingFinished()
 void WelcomeWindow::on_evaluateButton_clicked()
 {
     this->getFieldValues(); // get variable valeus from fields
-
+/*
     SearchWindow* win = new SearchWindow(this);
     win->setFileName(this->fileName);
     win->setSuspectName(this->suspectName);
@@ -91,7 +91,7 @@ void WelcomeWindow::on_evaluateButton_clicked()
     // emails are parsed in initialize function
     win->initialize();
     win->show();
-
+*/
     hide();
 }
 

@@ -19,6 +19,8 @@ void FrameButton::mousePressEvent(QMouseEvent* event)
         clickPoint = event->pos();
 
         qDebug() << "clicked";
+
+        this->onClick();
         // open email window
 //        EmailWindow* win = new EmailWindow();
 //        win->setEmailData(this->email);
@@ -46,6 +48,52 @@ void FrameButton::leaveEvent(QEvent *)
 {
 //    qDebug() << "Leave";
     this->setStyleSheet("background-color: white;");
+}
+
+void EmailHeaderFrame::onClick()
+{
+    qDebug() << "Email clicked";
+}
+
+void EmailHeaderFrame::setEmailData(QString sender, QString receiver,
+                                    QString header, QString date)
+{
+    QHBoxLayout* layout = new QHBoxLayout();
+    this->setLayout(layout);
+    this->setStyleSheet("background-color: white;");
+
+    this->sender = sender;
+    sendLabel = new QLabel();
+    sendLabel->setText(sender);
+
+    this->receiver = receiver;
+    receiveLabel = new QLabel();
+    receiveLabel->setText(receiver);
+
+    this->header = header;
+    headerLabel = new QLabel();
+    headerLabel->setText(header);
+
+    this->date = date;
+    dateLabel = new QLabel();
+    dateLabel->setText(date);
+
+    //this->layout()->addWidget(sendLabel);
+    //this->layout()->addWidget(receiveLabel);
+}
+
+void EmailHeaderFrame::displaySender()
+{
+    this->layout()->addWidget(sendLabel);
+    this->layout()->addWidget(headerLabel);
+    this->layout()->addWidget(dateLabel);
+}
+
+void EmailHeaderFrame::displayReceiver()
+{
+    this->layout()->addWidget(receiveLabel);
+    this->layout()->addWidget(headerLabel);
+    this->layout()->addWidget(dateLabel);
 }
 
 KeywordFrame::KeywordFrame(QString word)

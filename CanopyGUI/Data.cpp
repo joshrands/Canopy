@@ -22,6 +22,33 @@ void EmailData::createWindow()
     window->parseDataFile(this->dataPath);
 }
 
+QStringList splitCanLine(QString line)
+{
+
+}
+
+EmailCan* getEmailCan(QTextStream* in, int* fileLoc, QString* line)
+{
+    EmailCan* email = new EmailCan;
+
+    //*line = in->readLine();
+    qDebug() << *line;
+    QStringList canData = line->split(",");
+
+    qDebug() << canData.at(0);
+    int numLines = canData.at(0).toInt();
+
+    for (int i = 1; i <= numLines; i++)
+    {
+        *line = in->readLine();
+        canData << line->split(",");
+    }
+
+    qDebug() << canData.length();
+    for (int i = 0; i < canData.length(); i++)
+        qDebug() << canData.at(i);
+}
+
 void EmailData::getCanData(int start, int num)
 {
     qDebug() << "Getting can data from " << this->dataName;
@@ -55,10 +82,12 @@ void EmailData::getCanData(int start, int num)
         qDebug() << line;
         while (!line.isNull() && count != start + num)
         {
-            qDebug() << line;
-            line = can.readLine();
-            fileLoc++;
+//            qDebug() << line;
+//            line = can.readLine();
+//            fileLoc++;
+            EmailCan* email = getEmailCan(&can, &fileLoc, &line);
 
+            line = can.readLine();
             count++;
         }
     }

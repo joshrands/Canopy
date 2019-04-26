@@ -50,6 +50,9 @@ public:
     QString subject;
     QString date;
     QDateTime dateTime;
+
+    QString txtFilePath;
+    int lineNum;
 };
 
 class EmailContentWindow : public ContentWindow

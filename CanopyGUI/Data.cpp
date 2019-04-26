@@ -47,13 +47,15 @@ QStringList splitCanData(QTextStream* in, QString* line)
         int start = i;
 //        qDebug() << line->mid(i, 1);
 //        qDebug() << QString("\"");
-        if (QString(line->at(i)) == QString("\\"))
+//        if (QString(line->at(i)) == QString("\\"))
+        if (line->mid(i, 2) == QString("\\\""))
         {
-            qDebug() << "Special processing";
+//            qDebug() << "Special processing";
             // requires special processing
             start = ++i;
             while (line->mid(i, 2) != QString("\\\""))
                 i++;
+            i+=2;
         }
         else
         {
@@ -62,7 +64,7 @@ QStringList splitCanData(QTextStream* in, QString* line)
         }
 
         QString column = line->mid(start, i-start);
-        qDebug() << column;
+//        qDebug() << column;
         data << column;
     }
 

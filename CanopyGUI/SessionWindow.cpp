@@ -63,11 +63,14 @@ void SessionWindow::addData(Data *data)
     data->tabButton->setText(data->getDataName());
     ui->contentTabs->layout()->addWidget(data->tabButton);
 
+    // create window does the parsing
     data->createWindow();
+
     ui->contentScrollArea->layout()->addWidget(data->window);
 
     connect(data->tabButton, SIGNAL(clicked(bool)), this, SLOT(on_tabButton_clicked()));
 
+    // start parsing from can file and storing in ram
     displayNewContent();
 }
 
@@ -93,6 +96,7 @@ void SessionWindow::displayNewContent()
             data.at(i)->tabButton->setStyleSheet("background-color: gray;");
             data.at(i)->window->show();
 //            qDebug() << data.at(i)->window->getContentName();
+            data.at(i)->getCanData(0, data.at(i)->window->numCans);
         }
     }
 }

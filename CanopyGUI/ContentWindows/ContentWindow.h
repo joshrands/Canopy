@@ -5,6 +5,8 @@
 #include <QThread>
 #include <QtConcurrent/QtConcurrent>
 
+#include "CustomWidgets/FrameButton.h"
+
 namespace Ui {
 class ContentWindow;
 }
@@ -17,6 +19,8 @@ public:
     explicit ContentWindow(QWidget *parent = 0);
     ~ContentWindow();
 
+    // how many can objects stored in ram for this type of content
+    int numCans = 0;
     virtual void parseDataFile(QString file) = 0;
 
 //    void setSessionPath(QString path) { this->sessionFilePath = path; }
@@ -34,19 +38,33 @@ protected:
     QString contentName;
 };
 
+
+/* Email helper classes */
+class EmailCan
+{
+public:
+    static const int MAX_SUBJECT_LENGTH = 25;
+
+    QString sender;
+    QString receiver;
+    QString subject;
+    QString date;
+    QDateTime dateTime;
+};
+
 class EmailContentWindow : public ContentWindow
 {
 public:
     EmailContentWindow();
 
-    const int EMAILS_PER_PAGE = 50;
+    static const int EMAILS_PER_PAGE = 50;
 
     void parseDataFile(QString file);
 
-private:
     int page;
-
     void loadPage(int num);
+    QList<EmailCan> currentPage;
+    QList<FrameButton> headerButtons;
 };
 
 class HtmlContentWindow : public ContentWindow

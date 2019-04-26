@@ -9,25 +9,6 @@
 
 #define 	LINE_LENGTH		100
 
-/*
-void parseMBOX(QFile* dataFile, QFile* canFile, QFile* insFile, QFile* txtFile)
-{
-    QTextStream in(dataFile);
-
-    qDebug() << "Reading line by line";
-
-    QString line = in.readLine();
-    int fileLoc = 0;
-
-    while (!line.isNull())
-    {
-        qDebug() << line;
-        line = in.readLine();
-        fileLoc++;
-    }
-}
-*/
-
 void parseMBOX(QString dataFilePath, QString sessionFilePath, QString contentName)
 {
     qDebug() << "Parsing " << contentName << " from " << dataFilePath

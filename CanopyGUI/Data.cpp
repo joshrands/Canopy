@@ -22,10 +22,58 @@ void EmailData::createWindow()
     window->parseDataFile(this->dataPath);
 }
 
+void EmailData::getCanData(int start, int num)
+{
+    qDebug() << "Getting can data from " << this->dataName;
+    qDebug() << "Loading emails " << start << " to " << start + num;
+
+    // parse can file and create EmailCan objects
+    // starting at can *start* and loading *num* email headers
+
+    QString path = this->getSessionPath() + QString("/session/") + this->dataName + QString("/") + this->dataName + QString(".can");
+    qDebug() << path;
+    QFile canFile(path);
+
+    if (!canFile.open(QIODevice::ReadOnly | QIODevice::Text))
+    {
+        qDebug() << "ERROR opening can file";
+    }
+    else
+    {
+        QTextStream can(&canFile);
+        QString line = can.readLine();
+        int fileLoc = 0;
+        int count = 0;
+
+        // get to start page
+        while (!line.isNull() && count != start)
+        {
+            // iterate
+        }
+
+        // read num emails
+        qDebug() << line;
+        while (!line.isNull() && count != start + num)
+        {
+            qDebug() << line;
+            line = can.readLine();
+            fileLoc++;
+
+            count++;
+        }
+    }
+
+}
+
 void HtmlData::createWindow()
 {
     window = new HtmlContentWindow();
     window->initializeDir(this->sessionPath, this->dataName);
     window->parseDataFile(this->dataPath);
+}
+
+void HtmlData::getCanData(int start, int num)
+{
+
 }
 

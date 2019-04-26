@@ -8,7 +8,9 @@
 */
 
 #include <./ContentWindows/ContentWindow.h>
+#include "../CanopyParser/ParseEmail.h"
 
+#include <QDateTime>
 #include <QStringList>
 #include <QPushButton>
 #include <QMainWindow>
@@ -41,6 +43,7 @@ public:
     QString getSessionPath() { return sessionPath; }
 
     virtual void createWindow() = 0;
+    virtual void getCanData(int start, int num) = 0;
 
     DataTabButton* tabButton;
     ContentWindow* window;
@@ -56,18 +59,28 @@ protected:
     // content window associated with this data
 };
 
+
+/****** EMAIL DATA ******/
+
 class EmailData : public Data
 {
 public:
 
     void createWindow();
+    void getCanData(int start, int num);
 };
 
+/***********************/
+
+/**** FACEBOOK DATA ****/
 class HtmlData : public Data
 {
 public:
 
     void createWindow();
+    void getCanData(int start, int num);
 };
+
+/***********************/
 
 #endif // CASEDATA_H

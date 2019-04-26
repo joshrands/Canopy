@@ -2,7 +2,6 @@
 #include "ui_ContentWindow.h"
 #include "../CanopyParser/ParseEmail.h"
 
-#include "./CustomWidgets/FrameButton.h"
 #include <QFuture>
 #include <QLabel>
 #include <QHBoxLayout>
@@ -53,6 +52,7 @@ void ContentWindow::initializeDir(QString sessionPath, QString contentName)
 EmailContentWindow::EmailContentWindow()
 {
     this->page = 0;
+    this->numCans = EMAILS_PER_PAGE;
     // create subfolders on top
     // create tab button
 

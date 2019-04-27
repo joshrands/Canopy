@@ -16,8 +16,11 @@ Created by Canopy Intelligence LLC
 
 ### GUI
 ~~1. Loosen rigidness of welcome window~~
+
 ~~2. Remove different window for search~~
+
 3. Open emails in content window
+
 4. Make coloring on inbox/outbox more user friendly
 5. Be able to 'flag' emails as "important" or "do not read again"
 6. Autocomplete typing in search bar
@@ -28,16 +31,20 @@ Created by Canopy Intelligence LLC
 11. More flexible sorting options
 12. Number emails
 ~~13. Be able to add multiple warrants to one session~~
-14. Add threading for data parsing
+~~14. Add threading for data parsing
 
 ### Data
-1. Speed up data analysis
+~~1. Speed up data analysis~~
+
 2. Be able to save/load a session
-3. Break input files into working .can, .ses, and .ins files
+
+~~3. Break input files into working .can, .ses, and .ins files~~
+
 4. Identify spam emails
 
 ### Parser
 ~~1. Clean up HTML parsing~~
+
 2. Be able to view attachments
 3. Get content (string data) out of facebook HTML data
 

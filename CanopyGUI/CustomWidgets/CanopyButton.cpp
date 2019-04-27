@@ -22,6 +22,7 @@ FlagButton::FlagButton()
     this->setFixedWidth(30);
 
     this->setOff();
+    this->toggled = false;
 }
 
 void FlagButton::setOn()

@@ -115,6 +115,9 @@ void EmailHeaderFrame::displayReceiver()
 
 void EmailHeaderFrame::toggleFlag()
 {
+    qDebug() << "Toggling flag";
+    qDebug() << flag->isToggled();
+
     if (flag->isToggled())
     {
         flag->setOff();

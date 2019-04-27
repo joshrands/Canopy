@@ -23,8 +23,8 @@ public:
     void setOn();
     void setOff();
 
-    bool isToggled() { return toggled; }
-    void toggle() { this->toggled ^= toggled; }
+    bool isToggled() { return this->toggled; }
+    void toggle() { this->toggled = !this->toggled; }
 
 protected:
     bool toggled;

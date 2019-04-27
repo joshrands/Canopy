@@ -1,6 +1,7 @@
 #include "ContentWindow.h"
 #include "ui_ContentWindow.h"
 #include "../CanopyParser/ParseEmail.h"
+#include "./CustomWidgets/CanopyButton.h"
 
 #include <QFuture>
 #include <QLabel>
@@ -56,6 +57,31 @@ EmailContentWindow::EmailContentWindow()
     this->numCans = EMAILS_PER_PAGE;
     // create subfolders on top
     // create tab button
+    // create Inbox tab for all emails
+    CanopyButton* inbox = new CanopyButton();
+    inbox->setText(QString("Inbox"));
+    inbox->setPressed();
+
+    QHBoxLayout* tabLayout = new QHBoxLayout();
+    tabLayout->setAlignment(Qt::AlignLeft);
+    ui->tabFrame->setLayout(tabLayout);
+    ui->tabFrame->layout()->addWidget(inbox);
+
+    // create Sent/Received filters
+    CanopyButton* sent = new CanopyButton();
+    sent->setText(QString("Sent"));
+    sent->setDepressed();
+    CanopyButton* recv = new CanopyButton();
+    recv->setText(QString("Received"));
+    sent->setPressed();
+
+    // TODO: Link buttons with filters
+
+    QHBoxLayout* filterLayout = new QHBoxLayout();
+    filterLayout->setAlignment(Qt::AlignRight);
+    ui->filterFrame->setLayout(filterLayout);
+    ui->filterFrame->layout()->addWidget(sent);
+    ui->filterFrame->layout()->addWidget(recv);
 
     // create title bar
     QLabel* emailTitle = new QLabel();
@@ -101,6 +127,11 @@ void EmailContentWindow::addHeaderFrame(EmailHeaderFrame *frame)
     ui->content->layout()->addWidget(frame);
 }
 
+void EmailContentWindow::addDataTab(QString dataPath)
+{
+
+}
+
 HtmlContentWindow::HtmlContentWindow()
 {
  //   ui->title->setText(("FACEBOOK"));
@@ -108,6 +139,11 @@ HtmlContentWindow::HtmlContentWindow()
 }
 
 void HtmlContentWindow::parseDataFile(QString file)
+{
+
+}
+
+void HtmlContentWindow::addDataTab(QString dataPath)
 {
 
 }

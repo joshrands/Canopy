@@ -88,12 +88,13 @@ void SessionWindow::displayNewContent()
     {
         if (data.at(i)->getDataName() != activeDataName)
         {
-            data.at(i)->tabButton->setStyleSheet("background-color: white;");
+            data.at(i)->tabButton->setStyleSheet("background-color: white; color: rgb(0, 0, 0)");
             data.at(i)->window->hide();
         }
         else
         {
-            data.at(i)->tabButton->setStyleSheet("background-color: gray;");
+
+            data.at(i)->tabButton->setStyleSheet(QString("background-color: #F89939; color: rgb(255, 255, 255)"));
             data.at(i)->window->show();
 //            qDebug() << data.at(i)->window->getContentName();
             data.at(i)->getCanData(0, data.at(i)->window->numCans);

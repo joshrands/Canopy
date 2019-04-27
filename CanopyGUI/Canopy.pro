@@ -25,7 +25,8 @@ SOURCES += main.cpp\
     Data.cpp \
     ./ContentWindows/ContentWindow.cpp \
     ../CanopyParser/LocalEmailData.cpp \
-    ../CanopyParser/ParseEmail.cpp
+    ../CanopyParser/ParseEmail.cpp \
+    CustomWidgets/CanopyButton.cpp
 
 HEADERS  += ./Alpha1.0/SearchWindow.h \
     ./Alpha1.0/WelcomeWindow.h \
@@ -40,7 +41,8 @@ HEADERS  += ./Alpha1.0/SearchWindow.h \
     ./ContentWindows/ContentWindow.h \
     ../CanopyParser/LocalEmailData.h \
     ../CanopyParser/ParseEmail.h \
-    ContentWindows/EmailContentWindow.h
+    ContentWindows/EmailContentWindow.h \
+    CustomWidgets/CanopyButton.h
 
 FORMS    += ./Alpha1.0/SearchWindow.ui \
     ./Alpha1.0/WelcomeWindow.ui \

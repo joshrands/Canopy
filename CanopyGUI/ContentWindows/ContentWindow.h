@@ -28,7 +28,9 @@ public:
     void initializeDir(QString sessionPath, QString name);
     QString getContentName() { return this->contentName; }
 
-    QThread thread;
+//    QThread thread;
+
+    virtual void addDataTab(QString dataPath) = 0;
 
 protected:
     Ui::ContentWindow *ui;
@@ -68,8 +70,13 @@ public:
 
     int page;
     void loadPage(int num);
-    QList<EmailCan> currentPage;
-    QList<EmailHeaderFrame> headerButtons;
+//    QList<EmailCan*> currentPage;
+    QList<EmailHeaderFrame*> headerButtons;
+
+    void addDataTab(QString dataPath);
+
+protected:
+
 };
 
 class HtmlContentWindow : public ContentWindow
@@ -78,6 +85,8 @@ public:
     HtmlContentWindow();
 
     void parseDataFile(QString file);
+
+    void addDataTab(QString dataPath);
 };
 
 #endif // CONTENTWINDOW_H

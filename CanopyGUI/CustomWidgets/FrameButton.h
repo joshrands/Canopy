@@ -47,6 +47,9 @@ public:
     void displaySender();
     void displayReceiver();
 
+    QString getContentPath() { return this->contentFile; }
+    int getContentLine() { return this->contentLine; }
+
 protected:
     void onClick();
 

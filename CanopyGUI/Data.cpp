@@ -135,12 +135,14 @@ void EmailData::getCanData(int start, int num)
             EmailHeaderFrame* frame = new EmailHeaderFrame();
 
             // override clicked event
-            this->window->connect(frame, SIGNAL(clicked()), signalMapper,
-                                  SLOT(map()));
+//            EmailContentWindow* win = (EmailContentWindow*)this->window;
+            this->window->connect(frame, SIGNAL(clicked()),
+                                  signalMapper, SLOT(map()));
 
-            signalMapper->setMapping(frame, frame);
+            // map this frame event to the EmailCan data
+            signalMapper->setMapping(frame, 1);
 
-            this->window->connect(signalMapper, SIGNAL(mapped(EmailHeaderFrame*)), this->window, SLOT(displayContent(QString,int)));
+            this->window->connect(signalMapper, SIGNAL(mapped(int)), (EmailContentWindow*)this->window, SLOT(displayContent(int)));
 
             QString sender(email->sender);
             QString receiver(email->receiver);
@@ -157,7 +159,7 @@ void EmailData::getCanData(int start, int num)
             ((EmailContentWindow*)this->window)->addHeaderFrame(frame);
 
             ((EmailContentWindow*)this->window)->headerButtons.append(frame);
-            delete email;
+//            delete email;
 
             line = can.readLine();
             count++;

@@ -52,7 +52,8 @@ void ContentWindow::initializeDir(QString sessionPath, QString contentName)
     txtFile.close();
 }
 
-EmailContentWindow::EmailContentWindow()
+EmailContentWindow::EmailContentWindow(QWidget* parent)
+    : ContentWindow(parent)
 {
     this->page = 0;
     this->numCans = EMAILS_PER_PAGE;
@@ -146,14 +147,24 @@ void EmailContentWindow::addDataTab(QString dataPath)
 
 }
 
-void EmailContentWindow::displayContent(QString filePath, int lineNum)
+void EmailContentWindow::displayContent(int id)
 {
-    qDebug() << "Displaying content" << filePath;
+    if (!debounce)
+    {
+        debounce = true;
+
+        qDebug() << "Displaying content";
+
+//        QObject* obj = sender();
+
+//        qDebug() << ((EmailHeaderFrame*)obj)->getContentPath();
+    }
 }
 
-HtmlContentWindow::HtmlContentWindow()
+HtmlContentWindow::HtmlContentWindow(QWidget* parent)
+    : ContentWindow(parent)
 {
- //   ui->title->setText(("FACEBOOK"));
+    //   ui->title->setText(("FACEBOOK"));
 
 }
 
@@ -163,11 +174,6 @@ void HtmlContentWindow::parseDataFile(QString file)
 }
 
 void HtmlContentWindow::addDataTab(QString dataPath)
-{
-
-}
-
-void HtmlContentWindow::displayContent(QString filePath, int lineNum)
 {
 
 }

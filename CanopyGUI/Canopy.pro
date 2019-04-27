@@ -41,7 +41,6 @@ HEADERS  += ./Alpha1.0/SearchWindow.h \
     ./ContentWindows/ContentWindow.h \
     ../CanopyParser/LocalEmailData.h \
     ../CanopyParser/ParseEmail.h \
-    ContentWindows/EmailContentWindow.h \
     CustomWidgets/CanopyButton.h
 
 FORMS    += ./Alpha1.0/SearchWindow.ui \

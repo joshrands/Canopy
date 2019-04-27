@@ -28,7 +28,7 @@ public:
     void initializeDir(QString sessionPath, QString name);
     QString getContentName() { return this->contentName; }
 
-    virtual void displayContent(QString filePath, int lineNum) = 0;
+//    virtual void displayContent(QString filePath, int lineNum) = 0;
 
 //    QThread thread;
 
@@ -59,10 +59,13 @@ public:
     int lineNum;
 };
 
+
 class EmailContentWindow : public ContentWindow
 {
+Q_OBJECT
+
 public:
-    EmailContentWindow();
+    EmailContentWindow(QWidget* parent = 0);
 
     static const int EMAILS_PER_PAGE = 50;
 
@@ -76,22 +79,27 @@ public:
     QList<EmailHeaderFrame*> headerButtons;
 
     void addDataTab(QString dataPath);
-    void displayContent(QString filePath, int lineNum);
+//    void displayContent(QString filePath, int lineNum);
+
+public slots:
+    void displayContent(int id);
 
 protected:
+    bool debounce = false;
 
 };
 
 class HtmlContentWindow : public ContentWindow
 {
+Q_OBJECT
 public:
-    HtmlContentWindow();
+    HtmlContentWindow(QWidget* parent = 0);
 
     void parseDataFile(QString file);
 
     void addDataTab(QString dataPath);
 
-    void displayContent(QString filePath, int lineNum);
+//    void displayContent(QString filePath, int lineNum);
 };
 
 #endif // CONTENTWINDOW_H

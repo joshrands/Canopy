@@ -1,6 +1,8 @@
 #ifndef PARSEEMAIL_H
 #define PARSEEMAIL_H
 
+#define 	LINE_LENGTH		100
+
 #include <QString>
 #include <QDir>
 #include <QList>

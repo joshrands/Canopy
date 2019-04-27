@@ -7,7 +7,6 @@
 #include <QTime>
 #include <QMap>
 
-#define 	LINE_LENGTH		100
 
 void parseMBOX(QString dataFilePath, QString sessionFilePath, QString contentName)
 {

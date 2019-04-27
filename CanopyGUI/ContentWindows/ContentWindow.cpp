@@ -161,6 +161,23 @@ void EmailContentWindow::displayContent(int id)
         qDebug() << this->headerButtons.at(id)->getContentLine();
         qDebug() << this->headerButtons.at(id)->getSubjectLine();
 
+        QFile txtFile(this->headerButtons.at(id)->getContentPath());
+        if (!txtFile.open(QIODevice::ReadOnly | QIODevice::Text))
+        {
+            qDebug() << "Error opening content file";
+            // put error html
+        }
+        else
+        {
+            int line = this->headerButtons.at(id)->getContentLine();
+            txtFile.seek(line*(LINE_LENGTH + 1));
+
+            QTextStream in(&txtFile);
+
+            qDebug() << in.readLine();
+
+        }
+
         // display email!
         ui->contentFrame->hide();
         ui->htmlFrame->show();

@@ -56,7 +56,7 @@ QStringList splitCanData(QTextStream* in, QString* line)
                 i++;
             i+=2;
 
-            QString column = line->mid(start + 1, i-start-2);
+            QString column = line->mid(start + 1, i-start-3);
             data << column;
         }
         else
@@ -88,8 +88,8 @@ EmailCan* getEmailCan(QTextStream* in, int* fileLoc, QString* line)
     // TODO: Get datetime
 
     // get line number
-    email->lineNum = canData.at(1).toInt();
-//    qDebug() << lineNum;
+    email->lineNum = canData.at(2).toInt();
+    qDebug() << email->lineNum;
 
     return email;
 }
@@ -134,16 +134,6 @@ void EmailData::getCanData(int start, int num)
             // display email can
             EmailHeaderFrame* frame = new EmailHeaderFrame();
 
-            // override clicked event
-//            EmailContentWindow* win = (EmailContentWindow*)this->window;
-            this->window->connect(frame, SIGNAL(clicked()),
-                                  signalMapper, SLOT(map()));
-
-            // map this frame event to the EmailCan data
-            signalMapper->setMapping(frame, 1);
-
-            this->window->connect(signalMapper, SIGNAL(mapped(int)), (EmailContentWindow*)this->window, SLOT(displayContent(int)));
-
             QString sender(email->sender);
             QString receiver(email->receiver);
             QString header(email->subject);
@@ -152,14 +142,25 @@ void EmailData::getCanData(int start, int num)
             frame->displayReceiver();
 
             QString contentPath = this->sessionPath + "/session/working/" + this->dataName + ".txt";
-            qDebug() << contentPath;
+//            qDebug() << contentPath;
             int lineNum = email->lineNum;
+            qDebug() << lineNum;
             frame->setContentFileInfo(contentPath, lineNum);
 
             ((EmailContentWindow*)this->window)->addHeaderFrame(frame);
 
-            ((EmailContentWindow*)this->window)->headerButtons.append(frame);
+//            ((EmailContentWindow*)this->window)->headerButtons.append(frame);
 //            delete email;
+
+            // override clicked event
+            this->window->connect(frame, SIGNAL(clicked()),
+                                  signalMapper, SLOT(map()));
+
+            // map this frame event to the EmailCan data
+            signalMapper->setMapping(frame, count);
+
+            this->window->connect(signalMapper, SIGNAL(mapped(int)), (EmailContentWindow*)this->window, SLOT(displayContent(int)));
+
 
             line = can.readLine();
             count++;

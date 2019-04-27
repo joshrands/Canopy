@@ -140,6 +140,7 @@ void EmailContentWindow::parseDataFile(QString file)
 void EmailContentWindow::addHeaderFrame(EmailHeaderFrame *frame)
 {
     ui->content->layout()->addWidget(frame);
+    this->headerButtons.append(frame);
 }
 
 void EmailContentWindow::addDataTab(QString dataPath)
@@ -151,11 +152,12 @@ void EmailContentWindow::displayContent(int id)
 {
     if (!debounce)
     {
-        debounce = true;
-
+//        debounce = true;
+        qDebug() << id;
         qDebug() << "Displaying content";
-
-//        QObject* obj = sender();
+        qDebug() << this->headerButtons.at(id)->getContentPath();
+        qDebug() << this->headerButtons.at(id)->getContentLine();
+        qDebug() << this->headerButtons.at(id)->getSubjectLine();
 
 //        qDebug() << ((EmailHeaderFrame*)obj)->getContentPath();
     }

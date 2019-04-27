@@ -54,6 +54,7 @@ public:
 
     QString getContentPath() { return this->contentFile; }
     int getContentLine() { return this->contentLine; }
+    QString getSubjectLine() { return this->header; }
 
 protected:
     void onClick();

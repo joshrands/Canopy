@@ -221,6 +221,14 @@ int parseMIMEContent(QTextStream *dataFile, QTextStream *canFile, QTextStream *i
             while (!line->isNull() && line->left(previousLine.length()) != previousLine && line->left(10) != QString("X-GM-THRID"))
             {
                 temp = *line;
+
+                // format html
+                if (temp.length() == 76)
+                    temp = temp.left(75);
+                // TODO: REMOVE THIS
+                if (temp.right(1) == "=")
+                    temp = temp.left(temp.length() - 2);
+
                 html += temp;
                 *line = dataFile->readLine();
                 *fileLoc = *fileLoc + 1;
@@ -286,6 +294,10 @@ int parseMIMEContent(QTextStream *dataFile, QTextStream *canFile, QTextStream *i
 
 QString cleanHTML(QString html)
 {
+    html.replace("=09", "     ");
+    html.replace("=20", " ");
+    html.replace("=3D", "=");
+    html.replace("=E2=80=99","'");
     return html;
 }
 

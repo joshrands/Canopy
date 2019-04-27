@@ -253,8 +253,8 @@ int parseMIMEContent(QTextStream *dataFile, QTextStream *canFile, QTextStream *i
             while ((html.length() % LINE_LENGTH) != 0)
                 html += QString::number(0x00);
 
-//            qDebug() << html.length();
-//            qDebug() << html;
+            qDebug() << html.length();
+            qDebug() << html;
 /*            if (sizeof(html) % LINE_LENGTH != 0)
             {
                 qDebug() << "ERROR ERROR ERROR";

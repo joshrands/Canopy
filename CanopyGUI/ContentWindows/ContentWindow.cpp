@@ -77,7 +77,7 @@ EmailContentWindow::EmailContentWindow(QWidget* parent)
     sent->setPressed();
     CanopyButton* recv = new CanopyButton();
     recv->setText(QString("Received"));
-    sent->setDepressed();
+    recv->setDepressed();
 
     // TODO: Link buttons with filters
 
@@ -88,11 +88,13 @@ EmailContentWindow::EmailContentWindow(QWidget* parent)
     ui->filterFrame->layout()->addWidget(recv);
 
     // create next and back page buttons
-    CanopyButton* nextPage = new CanopyButton();
-    nextPage->setText(QString("Next Page"));
     CanopyButton* prevPage = new CanopyButton();
     prevPage->setText(QString("Previous Page"));
-//    QSpacerItem* spacer = new QSpacerItem();
+    prevPage->setPressed();
+    CanopyButton* nextPage = new CanopyButton();
+    nextPage->setText(QString("Next Page"));
+    nextPage->setPressed();
+   //    QSpacerItem* spacer = new QSpacerItem();
 
     QHBoxLayout* baseLayout = new QHBoxLayout();
     baseLayout->setAlignment(Qt::AlignCenter);
@@ -170,11 +172,12 @@ void EmailContentWindow::displayContent(int id)
         else
         {
             int line = this->headerButtons.at(id)->getContentLine();
-            qDebug() << "Seeking to byte location: " << line*(LINE_LENGTH + 1);
+            qDebug() << "Seeking to byte location: " << line*(LINE_LENGTH);
 //            txtFile.seek(line*(LINE_LENGTH + 1));
             qDebug() << "Seek success";
 
             QTextStream in(&txtFile);
+            // cheat for seek
             for (int i = 0; i < line; i++)
                 in.readLine();
 

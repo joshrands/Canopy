@@ -21,6 +21,27 @@ FlagButton::FlagButton()
     this->setFixedHeight(30);
     this->setFixedWidth(30);
 
+    this->setOff();
+}
+
+void FlagButton::setOn()
+{
+    QRect rect(2, 2, 26, 26);
+    QRegion region(rect, QRegion::Ellipse);
+    this->setMask(region);
+
+    QPixmap pix("/home/josh/CanopyIntel/Canopy/images/orange-important.png");
+    int size = 24;
+
+    QPixmap map = pix.scaled(size, size, Qt::KeepAspectRatio, Qt::SmoothTransformation);
+    QIcon icon(map);
+
+    this->setIcon(icon);
+    this->setIconSize(pix.rect().size());
+}
+
+void FlagButton::setOff()
+{
     QRect rect(2, 2, 26, 26);
     QRegion region(rect, QRegion::Ellipse);
     this->setMask(region);
@@ -33,15 +54,4 @@ FlagButton::FlagButton()
 
     this->setIcon(icon);
     this->setIconSize(pix.rect().size());
-
-}
-
-void FlagButton::setOn()
-{
-
-}
-
-void FlagButton::setOff()
-{
-
 }

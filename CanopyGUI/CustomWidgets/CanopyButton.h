@@ -22,6 +22,12 @@ public:
 
     void setOn();
     void setOff();
+
+    bool isToggled() { return toggled; }
+    void toggle() { this->toggled ^= toggled; }
+
+protected:
+    bool toggled;
 };
 
 #endif // CANOPYBUTTON_H

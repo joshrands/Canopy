@@ -89,21 +89,11 @@ void EmailHeaderFrame::setEmailData(QString sender, QString receiver,
 void EmailHeaderFrame::displaySender()
 {
     // add filter buttons
-    CanopyButton* importantFilter = new CanopyButton();
-    importantFilter->setFixedHeight(25);
-    importantFilter->setFixedWidth(25);
-//    importantFilter->setDepressed();
+    flag = new FlagButton();
 
-    QPixmap pix("../images/important-not-selected.png");
-    QIcon icon(pix);
-    importantFilter->setIcon(icon);
-    importantFilter->setIconSize(pix.rect().size());
+    connect(flag, SIGNAL(clicked()), this, SLOT(toggleFlag()));
 
-/*    QRect rect(0, 0, 20, 20);
-    QRegion region(rect, QRegion::Ellipse);
-    importantFilter->setMask(region);
-*/
-    this->layout()->addWidget(importantFilter);
+    this->layout()->addWidget(flag);
 
     this->layout()->addWidget(sendLabel);
     this->layout()->addWidget(headerLabel);
@@ -113,13 +103,28 @@ void EmailHeaderFrame::displaySender()
 void EmailHeaderFrame::displayReceiver()
 {
     // add filter buttons
-    FlagButton* importantFilter = new FlagButton();
+    flag = new FlagButton();
+    connect(flag, SIGNAL(clicked()), this, SLOT(toggleFlag()));
 
-    this->layout()->addWidget(importantFilter);
+    this->layout()->addWidget(flag);
 
     this->layout()->addWidget(receiveLabel);
     this->layout()->addWidget(headerLabel);
     this->layout()->addWidget(dateLabel);
+}
+
+void EmailHeaderFrame::toggleFlag()
+{
+    if (flag->isToggled())
+    {
+        flag->setOff();
+    }
+    else
+    {
+        flag->setOn();
+    }
+
+    flag->toggle();
 }
 
 KeywordFrame::KeywordFrame(QString word)

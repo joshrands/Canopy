@@ -9,6 +9,7 @@
 #include <QPushButton>
 #include <QLabel>
 
+#include "CanopyButton.h"
 //#include "Data.h"
 
 /*
@@ -42,6 +43,7 @@ signals:
 
 class EmailHeaderFrame : public FrameButton
 {
+Q_OBJECT
 public:
     void setEmailData(QString sender, QString receiver,
                       QString header, QString date);
@@ -55,6 +57,11 @@ public:
     QString getContentPath() { return this->contentFile; }
     int getContentLine() { return this->contentLine; }
     QString getSubjectLine() { return this->header; }
+
+    FlagButton* flag;
+
+public slots:
+    void toggleFlag();
 
 protected:
     void onClick();

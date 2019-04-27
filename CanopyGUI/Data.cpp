@@ -158,7 +158,6 @@ void EmailData::getCanData(int start, int num)
 
             this->window->connect(signalMapper, SIGNAL(mapped(int)), (EmailContentWindow*)this->window, SLOT(displayContent(int)));
 
-
             line = can.readLine();
             count++;
         }

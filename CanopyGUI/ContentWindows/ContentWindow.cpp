@@ -99,8 +99,8 @@ EmailContentWindow::EmailContentWindow(QWidget* parent)
     QHBoxLayout* baseLayout = new QHBoxLayout();
     baseLayout->setAlignment(Qt::AlignCenter);
     ui->baseFrame->setLayout(baseLayout);
-    ui->baseFrame->layout()->addWidget(nextPage);
     ui->baseFrame->layout()->addWidget(prevPage);
+    ui->baseFrame->layout()->addWidget(nextPage);
 
     // create title bar
     QLabel* emailTitle = new QLabel();

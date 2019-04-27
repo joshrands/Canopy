@@ -170,12 +170,22 @@ void EmailContentWindow::displayContent(int id)
         else
         {
             int line = this->headerButtons.at(id)->getContentLine();
+            qDebug() << "Seeking to byte location: " << line*(LINE_LENGTH + 1);
             txtFile.seek(line*(LINE_LENGTH + 1));
+            qDebug() << "Seek success";
 
             QTextStream in(&txtFile);
 
-            qDebug() << in.readLine();
+            QStringList params = in.readLine().split(",");
+            int length = params.at(1).toInt();
 
+            QString html("");
+            for (int i = 0; i < length; i++)
+            {
+                html += in.readLine();
+            }
+
+            ui->htmlContent->setHtml(html);
         }
 
         // display email!

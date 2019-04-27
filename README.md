@@ -28,12 +28,16 @@ Created by Canopy Intelligence LLC
 6. Autocomplete typing in search bar
 
 7. Fix HTML display
+
 ~~8. Vectorize all windows~~
+
 9. Remove 'x' in upper left corner
 10. Sort data by hierarchical folders - inboxes or FB data
 11. More flexible sorting options
 12. Number emails
+
 ~~13. Be able to add multiple warrants to one session~~
+
 ~~14. Add threading for data parsing~~
 
 15. Be able to view facebook warrant

@@ -1,7 +1,11 @@
 #include "FrameButton.h"
+#include "CanopyButton.h"
+
 #include <QLabel>
 #include <QHBoxLayout>
 #include <QPushButton>
+#include <QPixmap>
+#include <QIcon>
 
 FrameButton::FrameButton()
 {
@@ -77,12 +81,30 @@ void EmailHeaderFrame::setEmailData(QString sender, QString receiver,
     dateLabel = new QLabel();
     dateLabel->setText(date);
 
+
     //this->layout()->addWidget(sendLabel);
     //this->layout()->addWidget(receiveLabel);
 }
 
 void EmailHeaderFrame::displaySender()
 {
+    // add filter buttons
+    CanopyButton* importantFilter = new CanopyButton();
+    importantFilter->setFixedHeight(25);
+    importantFilter->setFixedWidth(25);
+//    importantFilter->setDepressed();
+
+    QPixmap pix("../images/important-not-selected.png");
+    QIcon icon(pix);
+    importantFilter->setIcon(icon);
+    importantFilter->setIconSize(pix.rect().size());
+
+/*    QRect rect(0, 0, 20, 20);
+    QRegion region(rect, QRegion::Ellipse);
+    importantFilter->setMask(region);
+*/
+    this->layout()->addWidget(importantFilter);
+
     this->layout()->addWidget(sendLabel);
     this->layout()->addWidget(headerLabel);
     this->layout()->addWidget(dateLabel);
@@ -90,6 +112,11 @@ void EmailHeaderFrame::displaySender()
 
 void EmailHeaderFrame::displayReceiver()
 {
+    // add filter buttons
+    FlagButton* importantFilter = new FlagButton();
+
+    this->layout()->addWidget(importantFilter);
+
     this->layout()->addWidget(receiveLabel);
     this->layout()->addWidget(headerLabel);
     this->layout()->addWidget(dateLabel);

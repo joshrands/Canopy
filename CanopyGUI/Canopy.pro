@@ -52,4 +52,6 @@ FORMS    += ./Alpha1.0/SearchWindow.ui \
     ./ContentWindows/ContentWindow.ui
 
 DISTFILES += \
-    ../images/CanopyLogo-04.png
+    ../images/CanopyLogo-04.png \
+    ../images/orange-important.png \
+    ../images/important-not-select.png

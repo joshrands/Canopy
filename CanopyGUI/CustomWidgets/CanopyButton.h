@@ -15,4 +15,13 @@ private:
     bool pressed;
 };
 
+class FlagButton : public CanopyButton
+{
+public:
+    FlagButton();
+
+    void setOn();
+    void setOff();
+};
+
 #endif // CANOPYBUTTON_H

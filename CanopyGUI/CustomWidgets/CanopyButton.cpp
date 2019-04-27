@@ -1,4 +1,5 @@
 #include "CanopyButton.h"
+#include <QBitmap>
 
 CanopyButton::CanopyButton()
 {
@@ -13,4 +14,34 @@ void CanopyButton::setPressed()
 void CanopyButton::setDepressed()
 {
     this->setStyleSheet(QString("background-color: white; color: rgb(100, 100, 100)"));//, color:#F89939; "));
+}
+
+FlagButton::FlagButton()
+{
+    this->setFixedHeight(30);
+    this->setFixedWidth(30);
+
+    QRect rect(2, 2, 26, 26);
+    QRegion region(rect, QRegion::Ellipse);
+    this->setMask(region);
+
+    QPixmap pix("/home/josh/CanopyIntel/Canopy/images/important-not-select.png");
+    int size = 24;
+
+    QPixmap map = pix.scaled(size, size, Qt::KeepAspectRatio, Qt::SmoothTransformation);
+    QIcon icon(map);
+
+    this->setIcon(icon);
+    this->setIconSize(pix.rect().size());
+
+}
+
+void FlagButton::setOn()
+{
+
+}
+
+void FlagButton::setOff()
+{
+
 }

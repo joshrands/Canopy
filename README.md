@@ -57,6 +57,8 @@ Created by Canopy Intelligence LLC
 
 4. Identify spam emails
 
+5. Add Canopy insights and ability to click and filter
+
 ### Parser
 ~~1. Clean up HTML parsing~~
 

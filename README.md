@@ -42,6 +42,12 @@ Created by Canopy Intelligence LLC
 
 15. Be able to view facebook warrant
 
+16. Make filter buttons work
+
+17. Add filter combo box
+
+18. Make next/previous page buttons work
+
 ### Data
 ~~1. Speed up data analysis~~
 

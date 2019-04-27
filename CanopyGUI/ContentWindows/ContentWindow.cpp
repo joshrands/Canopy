@@ -14,6 +14,8 @@ ContentWindow::ContentWindow(QWidget *parent) :
     ui(new Ui::ContentWindow)
 {
     ui->setupUi(this);
+
+    ui->htmlFrame->hide();
 }
 
 ContentWindow::~ContentWindow()
@@ -152,14 +154,16 @@ void EmailContentWindow::displayContent(int id)
 {
     if (!debounce)
     {
-//        debounce = true;
+        debounce = true;
         qDebug() << id;
         qDebug() << "Displaying content";
         qDebug() << this->headerButtons.at(id)->getContentPath();
         qDebug() << this->headerButtons.at(id)->getContentLine();
         qDebug() << this->headerButtons.at(id)->getSubjectLine();
 
-//        qDebug() << ((EmailHeaderFrame*)obj)->getContentPath();
+        // display email!
+        ui->contentFrame->hide();
+        ui->htmlFrame->show();
     }
 }
 
@@ -178,4 +182,11 @@ void HtmlContentWindow::parseDataFile(QString file)
 void HtmlContentWindow::addDataTab(QString dataPath)
 {
 
+}
+
+void ContentWindow::on_backButton_clicked()
+{
+    ui->htmlFrame->hide();
+    ui->contentFrame->show();
+    this->debounce = false;
 }

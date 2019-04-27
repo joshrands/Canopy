@@ -89,7 +89,7 @@ EmailCan* getEmailCan(QTextStream* in, int* fileLoc, QString* line)
 
     // get line number
     email->lineNum = canData.at(2).toInt();
-    qDebug() << email->lineNum;
+//    qDebug() << email->lineNum;
 
     return email;
 }
@@ -124,7 +124,6 @@ void EmailData::getCanData(int start, int num)
         }
 
         // read num emails
-        qDebug() << line;
         while (!line.isNull() && count != start + num)
         {
 //            qDebug() << line;
@@ -144,13 +143,11 @@ void EmailData::getCanData(int start, int num)
             QString contentPath = this->sessionPath + "/session/working/" + this->dataName + ".txt";
 //            qDebug() << contentPath;
             int lineNum = email->lineNum;
-            qDebug() << lineNum;
             frame->setContentFileInfo(contentPath, lineNum);
 
             ((EmailContentWindow*)this->window)->addHeaderFrame(frame);
 
-//            ((EmailContentWindow*)this->window)->headerButtons.append(frame);
-//            delete email;
+            delete email;
 
             // override clicked event
             this->window->connect(frame, SIGNAL(clicked()),

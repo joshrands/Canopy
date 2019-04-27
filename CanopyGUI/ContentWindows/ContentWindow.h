@@ -40,6 +40,11 @@ protected:
     QString dataFilePath;
     QString sessionFilePath;
     QString contentName;
+
+    bool debounce = false;
+
+private slots:
+    void on_backButton_clicked();
 };
 
 
@@ -85,7 +90,6 @@ public slots:
     void displayContent(int id);
 
 protected:
-    bool debounce = false;
 
 };
 

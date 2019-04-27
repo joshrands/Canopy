@@ -19,11 +19,14 @@ Created by Canopy Intelligence LLC
 
 ~~2. Remove different window for search~~
 
-3. Open emails in content window
+~~3. Open emails in content window~~
 
-4. Make coloring on inbox/outbox more user friendly
+~~4. Make coloring on inbox/outbox more user friendly~~
+
 5. Be able to 'flag' emails as "important" or "do not read again"
+
 6. Autocomplete typing in search bar
+
 7. Fix HTML display
 ~~8. Vectorize all windows~~
 9. Remove 'x' in upper left corner
@@ -31,7 +34,9 @@ Created by Canopy Intelligence LLC
 11. More flexible sorting options
 12. Number emails
 ~~13. Be able to add multiple warrants to one session~~
-~~14. Add threading for data parsing
+~~14. Add threading for data parsing~~
+
+15. Be able to view facebook warrant
 
 ### Data
 ~~1. Speed up data analysis~~

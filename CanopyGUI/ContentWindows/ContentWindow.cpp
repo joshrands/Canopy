@@ -171,12 +171,19 @@ void EmailContentWindow::displayContent(int id)
         {
             int line = this->headerButtons.at(id)->getContentLine();
             qDebug() << "Seeking to byte location: " << line*(LINE_LENGTH + 1);
-            txtFile.seek(line*(LINE_LENGTH + 1));
+//            txtFile.seek(line*(LINE_LENGTH + 1));
             qDebug() << "Seek success";
 
             QTextStream in(&txtFile);
+            for (int i = 0; i < line; i++)
+                in.readLine();
 
-            QStringList params = in.readLine().split(",");
+            qDebug() << "Text stream created";
+
+            QString inLine = in.readLine();
+            qDebug() << inLine;
+            QStringList params = inLine.split(",");
+            qDebug() << params.at(0);
             int length = params.at(1).toInt();
 
             QString html("");
@@ -186,6 +193,7 @@ void EmailContentWindow::displayContent(int id)
             }
 
             ui->htmlContent->setHtml(html);
+            txtFile.close();
         }
 
         // display email!

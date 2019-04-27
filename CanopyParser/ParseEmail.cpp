@@ -231,7 +231,8 @@ int parseMIMEContent(QTextStream *dataFile, QTextStream *canFile, QTextStream *i
 
 //            qDebug() << html;
             html = cleanHTML(html);
-            // write html to .txt file using padding
+
+                // write html to .txt file using padding
 
             int numLines = html.length() / LINE_LENGTH + 1; // + 1 for header
 
@@ -249,9 +250,18 @@ int parseMIMEContent(QTextStream *dataFile, QTextStream *canFile, QTextStream *i
             if (html.length() == 0)
                 html += QString::number(0x00);
 
-            while (html.length() % LINE_LENGTH != 0)
+            while ((html.length() % LINE_LENGTH) != 0)
                 html += QString::number(0x00);
 
+//            qDebug() << html.length();
+//            qDebug() << html;
+/*            if (sizeof(html) % LINE_LENGTH != 0)
+            {
+                qDebug() << "ERROR ERROR ERROR";
+//                qDebug() << html;
+                qDebug() << sizeof(html);
+            }
+*/
             // split data
             for (int i = 0; i < numLines; i++)
             {

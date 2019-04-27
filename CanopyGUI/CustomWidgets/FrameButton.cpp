@@ -20,10 +20,8 @@ void FrameButton::mousePressEvent(QMouseEvent* event)
 
         qDebug() << "clicked";
 
-        this->onClick();
-        // open email window
-//        EmailWindow* win = new EmailWindow();
-//        win->setEmailData(this->email);
+        emit clicked();
+//        this->onClick();
 
         //Qt::WindowFlags flags = windowFlags();
         //win->setWindowFlags(flags | Qt::WindowStaysOnTopHint);
@@ -53,6 +51,7 @@ void FrameButton::leaveEvent(QEvent *)
 void EmailHeaderFrame::onClick()
 {
     qDebug() << "Email clicked";
+
 }
 
 void EmailHeaderFrame::setEmailData(QString sender, QString receiver,

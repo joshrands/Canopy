@@ -7,6 +7,7 @@
 #include <QLabel>
 #include <QHBoxLayout>
 #include <QVBoxLayout>
+#include <QSpacerItem>
 
 ContentWindow::ContentWindow(QWidget *parent) :
     QFrame(parent),
@@ -70,10 +71,10 @@ EmailContentWindow::EmailContentWindow()
     // create Sent/Received filters
     CanopyButton* sent = new CanopyButton();
     sent->setText(QString("Sent"));
-    sent->setDepressed();
+    sent->setPressed();
     CanopyButton* recv = new CanopyButton();
     recv->setText(QString("Received"));
-    sent->setPressed();
+    sent->setDepressed();
 
     // TODO: Link buttons with filters
 
@@ -82,6 +83,19 @@ EmailContentWindow::EmailContentWindow()
     ui->filterFrame->setLayout(filterLayout);
     ui->filterFrame->layout()->addWidget(sent);
     ui->filterFrame->layout()->addWidget(recv);
+
+    // create next and back page buttons
+    CanopyButton* nextPage = new CanopyButton();
+    nextPage->setText(QString("Next Page"));
+    CanopyButton* prevPage = new CanopyButton();
+    prevPage->setText(QString("Previous Page"));
+//    QSpacerItem* spacer = new QSpacerItem();
+
+    QHBoxLayout* baseLayout = new QHBoxLayout();
+    baseLayout->setAlignment(Qt::AlignCenter);
+    ui->baseFrame->setLayout(baseLayout);
+    ui->baseFrame->layout()->addWidget(nextPage);
+    ui->baseFrame->layout()->addWidget(prevPage);
 
     // create title bar
     QLabel* emailTitle = new QLabel();
@@ -132,6 +146,11 @@ void EmailContentWindow::addDataTab(QString dataPath)
 
 }
 
+void EmailContentWindow::displayContent(QString filePath, int lineNum)
+{
+    qDebug() << "Displaying content" << filePath;
+}
+
 HtmlContentWindow::HtmlContentWindow()
 {
  //   ui->title->setText(("FACEBOOK"));
@@ -144,6 +163,11 @@ void HtmlContentWindow::parseDataFile(QString file)
 }
 
 void HtmlContentWindow::addDataTab(QString dataPath)
+{
+
+}
+
+void HtmlContentWindow::displayContent(QString filePath, int lineNum)
 {
 
 }

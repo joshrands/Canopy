@@ -11,6 +11,8 @@ Data::Data()
     this->tabButton->window = window;
     this->tabButton->setText(this->dataName);
     this->tabButton->data = this;
+
+    signalMapper = new QSignalMapper(this->window);
 }
 
 void EmailData::createWindow()
@@ -131,6 +133,14 @@ void EmailData::getCanData(int start, int num)
             EmailCan* email = getEmailCan(&can, &fileLoc, &line);
             // display email can
             EmailHeaderFrame* frame = new EmailHeaderFrame();
+
+            // override clicked event
+            this->window->connect(frame, SIGNAL(clicked()), signalMapper,
+                                  SLOT(map()));
+
+            signalMapper->setMapping(frame, frame);
+
+            this->window->connect(signalMapper, SIGNAL(mapped(EmailHeaderFrame*)), this->window, SLOT(displayContent(QString,int)));
 
             QString sender(email->sender);
             QString receiver(email->receiver);

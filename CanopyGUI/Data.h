@@ -14,6 +14,7 @@
 #include <QStringList>
 #include <QPushButton>
 #include <QMainWindow>
+#include <QSignalMapper>
 
 class Data;
 
@@ -56,6 +57,7 @@ protected:
     QString dataName;
     QString suspectName;
 
+    QSignalMapper* signalMapper;
     // content window associated with this data
 };
 

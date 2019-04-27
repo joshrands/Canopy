@@ -28,6 +28,8 @@ public:
     void initializeDir(QString sessionPath, QString name);
     QString getContentName() { return this->contentName; }
 
+    virtual void displayContent(QString filePath, int lineNum) = 0;
+
 //    QThread thread;
 
     virtual void addDataTab(QString dataPath) = 0;
@@ -74,6 +76,7 @@ public:
     QList<EmailHeaderFrame*> headerButtons;
 
     void addDataTab(QString dataPath);
+    void displayContent(QString filePath, int lineNum);
 
 protected:
 
@@ -87,6 +90,8 @@ public:
     void parseDataFile(QString file);
 
     void addDataTab(QString dataPath);
+
+    void displayContent(QString filePath, int lineNum);
 };
 
 #endif // CONTENTWINDOW_H

@@ -17,6 +17,8 @@
 */
 class FrameButton : public QFrame
 {
+    Q_OBJECT
+
 public:
     FrameButton();
 
@@ -32,6 +34,9 @@ protected:
 
     QPoint lastPoint;
     QPoint clickPoint;
+
+signals:
+    void clicked();
 
 };
 

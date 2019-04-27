@@ -2,7 +2,7 @@
 
 CanopyButton::CanopyButton()
 {
-//    this->setStyleSheet(QString("background-color: #F89939; color: rgb(255, 255, 255)"));//, color:#F89939; "));
+    this->setDepressed();
 }
 
 void CanopyButton::setPressed()
@@ -12,5 +12,5 @@ void CanopyButton::setPressed()
 
 void CanopyButton::setDepressed()
 {
-    this->setStyleSheet(QString("background-color: white; color: rgb(0, 0, 0)"));//, color:#F89939; "));
+    this->setStyleSheet(QString("background-color: white; color: rgb(100, 100, 100)"));//, color:#F89939; "));
 }

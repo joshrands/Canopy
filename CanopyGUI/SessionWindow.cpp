@@ -56,7 +56,7 @@ void SessionWindow::addData(Data *data)
 
     this->activeData = data;
     this->data.append(data);
-    this->activeDataName = data->getDataName();
+//    this->activeDataName = data->getDataName();
 
     // make new button
     ui->contentTabs->layout()->setAlignment(Qt::AlignLeft);

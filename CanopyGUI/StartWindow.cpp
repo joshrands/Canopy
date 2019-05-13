@@ -34,7 +34,7 @@ void StartWindow::on_newSessionButton_clicked()
     while (dir == QString(""))
     {
         dir = QFileDialog::getExistingDirectory(this, tr("Select Location for New Session Directory"),
-                                                 "/home",
+                                                 "/home/canopy",
                                                  QFileDialog::ShowDirsOnly
                                                  | QFileDialog::DontResolveSymlinks);
         // add error message if files

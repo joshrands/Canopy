@@ -117,6 +117,14 @@ void EmailData::getCanData(int start, int num)
         int fileLoc = 0;
         int count = 0;
 
+        // clear window
+        for (int i = 0; i < ((EmailContentWindow*)this->window)->headerButtons.size(); i++)
+        {
+            delete ((EmailContentWindow*)this->window)->headerButtons.at(i);
+        }
+        ((EmailContentWindow*)this->window)->headerButtons.clear();
+
+
         // get to start page
         while (!line.isNull() && count != start)
         {
@@ -138,7 +146,7 @@ void EmailData::getCanData(int start, int num)
             QString header(email->subject);
             QString date(email->date);
             frame->setEmailData(sender, receiver, header, date);
-            frame->displayReceiver();
+            frame->displaySender();
 
             QString contentPath = this->sessionPath + "/session/working/" + this->dataName + ".txt";
 //            qDebug() << contentPath;

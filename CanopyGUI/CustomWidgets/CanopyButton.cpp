@@ -3,7 +3,7 @@
 
 CanopyButton::CanopyButton()
 {
-//    this->setDepressed();
+    this->setDepressed();
 }
 
 void CanopyButton::setPressed()

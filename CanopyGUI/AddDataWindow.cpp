@@ -42,7 +42,7 @@ void AddDataWindow::populateProviderBox()
 void AddDataWindow::on_browseButton_clicked()
 {
     // current directory
-    QString currentDirectory = "/home";
+    QString currentDirectory = "/home/canopy";
     QString dataType = ui->providerComboxBox->currentText();
 
     // get type of data searching for

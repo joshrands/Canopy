@@ -74,10 +74,10 @@ EmailContentWindow::EmailContentWindow(QWidget* parent)
     // create Sent/Received filters
     CanopyButton* sent = new CanopyButton();
     sent->setText(QString("Sent"));
-    sent->setPressed();
+    sent->setDepressed();
     CanopyButton* recv = new CanopyButton();
     recv->setText(QString("Received"));
-    recv->setDepressed();
+    recv->setPressed();
 
     // TODO: Link buttons with filters
 
@@ -94,7 +94,8 @@ EmailContentWindow::EmailContentWindow(QWidget* parent)
     CanopyButton* nextPage = new CanopyButton();
     nextPage->setText(QString("Next Page"));
     nextPage->setPressed();
-   //    QSpacerItem* spacer = new QSpacerItem();
+
+    // make these buttons work
 
     QHBoxLayout* baseLayout = new QHBoxLayout();
     baseLayout->setAlignment(Qt::AlignCenter);
@@ -138,6 +139,7 @@ void EmailContentWindow::parseDataFile(QString file)
                                                  this->dataFilePath,
                                                  this->sessionFilePath,
                                                  this->contentName);
+        // start a thread to perform analytics on parsed data or parse in the parseMBOX
     }
 }
 
@@ -173,17 +175,25 @@ void EmailContentWindow::displayContent(int id)
         {
             int line = this->headerButtons.at(id)->getContentLine();
             qDebug() << "Seeking to byte location: " << line*(LINE_LENGTH);
-//            txtFile.seek(line*(LINE_LENGTH + 1));
+            txtFile.seek(line*(LINE_LENGTH + 1));
             qDebug() << "Seek success";
 
             QTextStream in(&txtFile);
+
+            // TODO: REMOVE THIS ONCE SEEK IS WORKING
             // cheat for seek
-            for (int i = 0; i < line; i++)
-                in.readLine();
+//            for (int i = 0; i < line; i++)
+//                in.readLine();
+            // REMOVE THIS ^^^
 
             qDebug() << "Text stream created";
 
             QString inLine = in.readLine();
+            qDebug() << inLine;
+            // CHEATING
+            while (inLine.length() < LINE_LENGTH)
+                inLine = in.readLine();
+
             qDebug() << inLine;
             QStringList params = inLine.split(",");
             qDebug() << params.at(0);
@@ -193,10 +203,13 @@ void EmailContentWindow::displayContent(int id)
             for (int i = 0; i < length; i++)
             {
                 html += in.readLine();
+//                qDebug() << "Writing line of html";
             }
 
             ui->htmlContent->setHtml(html);
             txtFile.close();
+
+            qDebug() << "HTML parsed";
         }
 
         // display email!

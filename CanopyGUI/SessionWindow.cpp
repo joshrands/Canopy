@@ -14,6 +14,8 @@ SessionWindow::SessionWindow(QWidget *parent) :
 {
     ui->setupUi(this);
 
+    qDebug() << "Session window created.";
+
     // center window
     QRect screenGeometry = QApplication::desktop()->screenGeometry();
     int x = (screenGeometry.width()-this->width()) / 2;
@@ -68,7 +70,7 @@ void SessionWindow::addData(Data *data)
 
     ui->contentScrollArea->layout()->addWidget(data->window);
 
-    connect(data->tabButton, SIGNAL(clicked(bool)), this, SLOT(on_tabButton_clicked()));
+    connect(data->tabButton, SIGNAL(clicked(bool)), this, SLOT(tabButton_clicked()));
 
     // start parsing from can file and storing in ram
     displayNewContent();
@@ -102,7 +104,7 @@ void SessionWindow::displayNewContent()
     }
 }
 
-void SessionWindow::on_tabButton_clicked()
+void SessionWindow::tabButton_clicked()
 {
     qDebug() << "Pressed";
     DataTabButton *btn = (DataTabButton*)QObject::sender();

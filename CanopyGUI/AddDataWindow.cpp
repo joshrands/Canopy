@@ -108,6 +108,8 @@ void AddDataWindow::on_createSessionButton_clicked()
         sessionWindow = new SessionWindow();
     }
 
+//    qDebug() << "Creating Data class";
+
     // pass all data on new data to session
     Data* data;
 
@@ -117,12 +119,15 @@ void AddDataWindow::on_createSessionButton_clicked()
 
     if (dataType == QString("Gmail"))
     {
+        qDebug() << "Creating email data";
         data = new EmailData();
     }
     else if (dataType == QString("Facebook"))
     {
         data = new HtmlData();
     }
+
+    qDebug() << "Data created";
 
     data->setDataPath(this->dataPath);
     data->setDataName(ui->warrantNameLineEdit->text());

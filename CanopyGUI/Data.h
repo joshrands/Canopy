@@ -15,8 +15,10 @@
 #include <QPushButton>
 #include <QMainWindow>
 #include <QSignalMapper>
+#include <QObject>
+#include <QWidget>
 
-class Data;
+class Data;// : public Q_Ojbect;
 
 class DataTabButton : public QPushButton
 {
@@ -26,10 +28,13 @@ public:
     Data* data;
 };
 
-class Data
+class Data : public QWidget
 {
+Q_OBJECT
+
 public:
-    Data();
+    explicit Data(QWidget* parent = 0);
+    ~Data();
 
     static QStringList types;
 
@@ -66,10 +71,18 @@ protected:
 
 class EmailData : public Data
 {
+Q_OBJECT
 public:
+    EmailData(QWidget* parent = 0);
+//    ~EmailData();
 
     void createWindow();
     void getCanData(int start, int num);
+
+public slots:
+    void nextPage();
+    void prevPage();
+
 };
 
 /***********************/

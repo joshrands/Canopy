@@ -33,6 +33,7 @@ public:
 //    QThread thread;
 
     virtual void addDataTab(QString dataPath) = 0;
+    bool atMaxPage = false;
 
 protected:
     Ui::ContentWindow *ui;
@@ -41,10 +42,16 @@ protected:
     QString sessionFilePath;
     QString contentName;
 
+
     bool debounce = false;
 
 private slots:
     void on_backButton_clicked();
+
+signals:
+    void nextPageSignal();
+    void prevPageSignal();
+
 };
 
 
@@ -86,8 +93,13 @@ public:
     void addDataTab(QString dataPath);
 //    void displayContent(QString filePath, int lineNum);
 
+    CanopyButton* nextPageButton;
+    CanopyButton* prevPageButton;
+
 public slots:
     void displayContent(int id);
+    void on_nextPage_clicked();
+    void on_prevPage_clicked();
 
 protected:
 

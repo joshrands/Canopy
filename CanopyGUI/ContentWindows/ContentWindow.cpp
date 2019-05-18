@@ -57,7 +57,7 @@ void ContentWindow::initializeDir(QString sessionPath, QString contentName)
 EmailContentWindow::EmailContentWindow(QWidget* parent)
     : ContentWindow(parent)
 {
-    this->page = 0;
+    this->page = -1;
     this->numCans = EMAILS_PER_PAGE;
     // create subfolders on top
     // create tab button
@@ -91,11 +91,17 @@ EmailContentWindow::EmailContentWindow(QWidget* parent)
     CanopyButton* prevPage = new CanopyButton();
     prevPage->setText(QString("Previous Page"));
     prevPage->setPressed();
+    this->prevPageButton = prevPage;
+
     CanopyButton* nextPage = new CanopyButton();
     nextPage->setText(QString("Next Page"));
     nextPage->setPressed();
+    this->nextPageButton = nextPage;
 
-    // make these buttons work
+    // TODO: make these buttons work
+    // SIGNAL CAUGHT IN DATA
+    //    connect(nextPage, SIGNAL(clicked(bool)), this, SLOT(on_nextPage_clicked()));
+//    connect(prevPage, SIGNAL(clicked(bool)), this, SLOT(on_prevPage_clicked()));
 
     QHBoxLayout* baseLayout = new QHBoxLayout();
     baseLayout->setAlignment(Qt::AlignCenter);
@@ -125,6 +131,30 @@ EmailContentWindow::EmailContentWindow(QWidget* parent)
 
     // load emails!
     qDebug() << "Loading " << this->contentName;
+}
+
+// TODO: EMIT A SIGNAL AND CATCH IN DATA.cpp
+void EmailContentWindow::on_nextPage_clicked()
+{
+    // TODO: Check if max page
+    if (!atMaxPage)
+    {
+        qDebug() << "Displaying next page";
+        emit nextPageSignal();
+
+        this->page++;
+    }
+}
+
+void EmailContentWindow::on_prevPage_clicked()
+{
+    if (this->page > 0)
+    {
+        qDebug() << "Displaying previous page";
+        emit prevPageSignal();
+
+        this->page--;
+    }
 }
 
 void EmailContentWindow::parseDataFile(QString file)

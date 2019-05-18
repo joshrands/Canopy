@@ -30,7 +30,7 @@ private slots:
     void on_addDataButton_clicked();
 
     // custom slot
-    void on_tabButton_clicked();
+    void tabButton_clicked();
 
     void on_quitButton_clicked();
 

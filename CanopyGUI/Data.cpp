@@ -4,7 +4,7 @@
 // CREATE NEW CONTENT DISPLAY IF CANT USE EXISTING
 QStringList Data::types = (QStringList() << "Gmail" << "Facebook");
 
-Data::Data()
+Data::Data(QWidget* parent) : QWidget(parent)
 {
     // configure button details
     this->tabButton = new DataTabButton();
@@ -15,11 +15,55 @@ Data::Data()
     signalMapper = new QSignalMapper(this->window);
 }
 
+Data::~Data()
+{
+
+}
+
+EmailData::EmailData(QWidget *parent) : Data(parent)
+{
+    qDebug() << "Creating email data";
+}
+
+//EmailData::~EmailData()
+
 void EmailData::createWindow()
 {
     window = new EmailContentWindow();
+
+    // catch page SIGNALS
+//    this->window->connect(this->window, SIGNAL(nextPageSignal()), this, SLOT(nextPage()));
+    ((EmailContentWindow*)this->window)->connect(((EmailContentWindow*)this->window)->nextPageButton, SIGNAL(clicked(bool)), this, SLOT(nextPage()));
+    ((EmailContentWindow*)this->window)->connect(((EmailContentWindow*)this->window)->prevPageButton, SIGNAL(clicked(bool)), this, SLOT(prevPage()));
+
     window->initializeDir(this->sessionPath, this->dataName);
     window->parseDataFile(this->dataPath);
+}
+
+void EmailData::nextPage()
+{
+    qDebug() << "NEXT";
+    EmailContentWindow* win = ((EmailContentWindow*)this->window);
+
+    if (!win->atMaxPage)
+    {
+        win->page++;
+    }
+
+    qDebug() << "Page: " << win->page;
+}
+
+void EmailData::prevPage()
+{
+    qDebug() << "PREV";
+    EmailContentWindow* win = ((EmailContentWindow*)this->window);
+
+    if (win->page > 0)
+    {
+        win->page--;
+    }
+
+    qDebug() << "Page: " << win->page;
 }
 
 QStringList splitCanData(QTextStream* in, QString* line)

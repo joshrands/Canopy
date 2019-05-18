@@ -11,6 +11,7 @@ Created by Canopy Intelligence LLC
 3. Word frequency count is very slow and halts the application
 4. HTML with images/color doesn't show up right
 5. No robustness for if an email doesn't have HTML content
+6. HTML not parsing =C2=A0
 
 ## ToDo
 
@@ -27,7 +28,7 @@ Created by Canopy Intelligence LLC
 
 6. Autocomplete typing in search bar
 
-7. Fix HTML display
+~~7. Fix HTML display~~
 
 ~~8. Vectorize all windows~~
 
@@ -44,7 +45,7 @@ Created by Canopy Intelligence LLC
 
 16. Make filter buttons work
 
-17. Add filter combo box
+17. Make filter combo box work
 
 18. Make next/previous page buttons work
 

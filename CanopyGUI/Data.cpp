@@ -51,6 +51,8 @@ void EmailData::nextPage()
         // display new CAN data
         this->getCanData(win->page * win->EMAILS_PER_PAGE, win->EMAILS_PER_PAGE);
     }
+    else
+        qDebug() << "At max page";
 
     qDebug() << "Page: " << win->page;
 }
@@ -63,6 +65,8 @@ void EmailData::prevPage()
     if (win->page > 0)
     {
         win->page--;
+
+        this->getCanData(win->page * win->EMAILS_PER_PAGE, win->EMAILS_PER_PAGE);
     }
 
     qDebug() << "Page: " << win->page;
@@ -175,11 +179,12 @@ void EmailData::getCanData(int start, int num)
         while (!line.isNull() && count != start)
         {
             // iterata
-            qDebug() << line;
+            qDebug() << "Data: " << line;
             // get number of lines
             int numCanLines = line.mid(0,1).toInt();//.Number_DecimalDigit;// - QChar('0');
             qDebug() << "Num: " << numCanLines;
-            for (int i = 0; i < numCanLines; i++);
+            qDebug() << "Can: " << count;
+            for (int i = 0; i < numCanLines; i++)
             {
                 line = can.readLine();
                 qDebug() << line;
@@ -192,7 +197,8 @@ void EmailData::getCanData(int start, int num)
         // read num emails
         while (!line.isNull() && count != start + num)
         {
-//            qDebug() << line;
+            qDebug() << "Line num: " << fileLoc;
+            //            qDebug() << line;
 //            line = can.readLine();
 //            fileLoc++;
             EmailCan* email = getEmailCan(&can, &fileLoc, &line);
@@ -227,7 +233,8 @@ void EmailData::getCanData(int start, int num)
             line = can.readLine();
             count++;
         }
-
+        if (line.isNull())
+            this->window->atMaxPage = true;
 //        ((EmailContentWindow*)this->window)->page++;
     }
 

@@ -48,6 +48,8 @@ void EmailData::nextPage()
     if (!win->atMaxPage)
     {
         win->page++;
+        // display new CAN data
+        this->getCanData(win->page * win->EMAILS_PER_PAGE, win->EMAILS_PER_PAGE);
     }
 
     qDebug() << "Page: " << win->page;
@@ -172,7 +174,19 @@ void EmailData::getCanData(int start, int num)
         // get to start page
         while (!line.isNull() && count != start)
         {
-            // iterate
+            // iterata
+            qDebug() << line;
+            // get number of lines
+            int numCanLines = line.mid(0,1).toInt();//.Number_DecimalDigit;// - QChar('0');
+            qDebug() << "Num: " << numCanLines;
+            for (int i = 0; i < numCanLines; i++);
+            {
+                line = can.readLine();
+                qDebug() << line;
+            }
+            line = can.readLine();
+            count++;
+            //            EmailCan* email = getEmailCan(&can, &fileLoc, &line);
         }
 
         // read num emails
@@ -193,7 +207,7 @@ void EmailData::getCanData(int start, int num)
             frame->displaySender();
 
             QString contentPath = this->sessionPath + "/session/working/" + this->dataName + ".txt";
-//            qDebug() << contentPath;
+            qDebug() << contentPath;
             int lineNum = email->lineNum;
             frame->setContentFileInfo(contentPath, lineNum);
 
@@ -206,7 +220,7 @@ void EmailData::getCanData(int start, int num)
                                   signalMapper, SLOT(map()));
 
             // map this frame event to the EmailCan data
-            signalMapper->setMapping(frame, count);
+            signalMapper->setMapping(frame, count-start);
 
             this->window->connect(signalMapper, SIGNAL(mapped(int)), (EmailContentWindow*)this->window, SLOT(displayContent(int)));
 
@@ -214,7 +228,7 @@ void EmailData::getCanData(int start, int num)
             count++;
         }
 
-        ((EmailContentWindow*)this->window)->page++;
+//        ((EmailContentWindow*)this->window)->page++;
     }
 
 }

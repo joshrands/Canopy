@@ -57,7 +57,7 @@ void ContentWindow::initializeDir(QString sessionPath, QString contentName)
 EmailContentWindow::EmailContentWindow(QWidget* parent)
     : ContentWindow(parent)
 {
-    this->page = -1;
+    this->page = 0;
     this->numCans = EMAILS_PER_PAGE;
     // create subfolders on top
     // create tab button
@@ -212,9 +212,15 @@ void EmailContentWindow::displayContent(int id)
 
             // TODO: REMOVE THIS ONCE SEEK IS WORKING
             // cheat for seek
-//            for (int i = 0; i < line; i++)
-//                in.readLine();
-            // REMOVE THIS ^^^
+           /* for (int i = 0; i < line; i++)
+            {
+                QString inLine = in.readLine();
+                if (inLine.length() != 100)
+                {
+                    qDebug() << i << ": " << inLine;
+                }
+            }
+            */    // REMOVE THIS ^^^
 
             qDebug() << "Text stream created";
 
@@ -222,7 +228,10 @@ void EmailContentWindow::displayContent(int id)
             qDebug() << inLine;
             // CHEATING
             while (inLine.length() < LINE_LENGTH)
+            {
                 inLine = in.readLine();
+                qDebug() << inLine;
+            }
 
             qDebug() << inLine;
             QStringList params = inLine.split(",");

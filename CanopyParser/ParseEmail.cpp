@@ -79,10 +79,13 @@ void parseMBOX(QString dataFilePath, QString sessionFilePath, QString contentNam
             can << data.mid(i*LINE_LENGTH, LINE_LENGTH) << endl;
         }
 
-        can << data.mid(numLines * LINE_LENGTH, data.length() - (numLines*LINE_LENGTH));
-        for (int i = data.length() - numLines * LINE_LENGTH; i < LINE_LENGTH; i++)
-            can << 0x00;
-        can << endl;
+        if (data.length() - numLines*LINE_LENGTH > 0)
+        {
+            can << data.mid(numLines * LINE_LENGTH, data.length() - (numLines*LINE_LENGTH));
+            for (int i = data.length() - numLines * LINE_LENGTH; i < LINE_LENGTH; i++)
+                can << 0x00;
+            can << endl;
+        }
 
         line = in.readLine();
         fileLoc++;
@@ -255,7 +258,7 @@ int parseMIMEContent(QTextStream *dataFile, QTextStream *canFile, QTextStream *i
             *txtFile << endl;
 
             // pad html
-            if (html.length() == 0)
+            if (html.length() == 0 || (html.length() % LINE_LENGTH) == 0)
                 html += QString::number(0x00);
 
             while ((html.length() % LINE_LENGTH) != 0)

@@ -45,7 +45,7 @@ class EmailHeaderFrame : public FrameButton
 {
 Q_OBJECT
 public:
-    void setEmailData(QString sender, QString receiver,
+    void setEmailData(int num, QString sender, QString receiver,
                       QString header, QString date);
 
     void setContentFileInfo(QString file, int line) { this->contentFile = file;
@@ -59,6 +59,8 @@ public:
     QString getSubjectLine() { return this->header; }
 
     FlagButton* flag;
+    QLabel* emailNumLabel;
+    int emailNum;
 
 public slots:
     void toggleFlag();

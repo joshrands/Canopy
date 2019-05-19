@@ -209,7 +209,7 @@ void EmailData::getCanData(int start, int num)
             QString receiver(email->receiver);
             QString header(email->subject);
             QString date(email->date);
-            frame->setEmailData(sender, receiver, header, date);
+            frame->setEmailData(count, sender, receiver, header, date);
             frame->displaySender();
 
             QString contentPath = this->sessionPath + "/session/working/" + this->dataName + ".txt";

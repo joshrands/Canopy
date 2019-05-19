@@ -134,6 +134,7 @@ EmailContentWindow::EmailContentWindow(QWidget* parent)
 }
 
 // TODO: EMIT A SIGNAL AND CATCH IN DATA.cpp
+// DEPRECATED
 void EmailContentWindow::on_nextPage_clicked()
 {
     // TODO: Check if max page

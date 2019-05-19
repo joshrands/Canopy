@@ -58,12 +58,19 @@ void EmailHeaderFrame::onClick()
 
 }
 
-void EmailHeaderFrame::setEmailData(QString sender, QString receiver,
+void EmailHeaderFrame::setEmailData(int num, QString sender, QString receiver,
                                     QString header, QString date)
 {
     QHBoxLayout* layout = new QHBoxLayout();
     this->setLayout(layout);
     this->setStyleSheet("background-color: white;");
+
+    this->emailNum = num + 1;
+    emailNumLabel = new QLabel();
+    // set width
+    emailNumLabel->setFixedWidth(20);
+//    emailNumLabel->size().setWidth(20);
+    emailNumLabel->setText(QString::number(emailNum));
 
     this->sender = sender;
     sendLabel = new QLabel();
@@ -93,6 +100,7 @@ void EmailHeaderFrame::displaySender()
 
     connect(flag, SIGNAL(clicked()), this, SLOT(toggleFlag()));
 
+    this->layout()->addWidget(emailNumLabel);
     this->layout()->addWidget(flag);
 
     this->layout()->addWidget(sendLabel);
@@ -106,6 +114,7 @@ void EmailHeaderFrame::displayReceiver()
     flag = new FlagButton();
     connect(flag, SIGNAL(clicked()), this, SLOT(toggleFlag()));
 
+    this->layout()->addWidget(emailNumLabel);
     this->layout()->addWidget(flag);
 
     this->layout()->addWidget(receiveLabel);

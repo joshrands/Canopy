@@ -66,36 +66,71 @@ void EmailHeaderFrame::setEmailData(int num, QString sender, QString receiver,
     this->setStyleSheet("background-color: white;");
 
     this->emailNum = num + 1;
-    emailNumLabel = new QLabel();
-    emailNumLabel->setFixedWidth(22);
-    emailNumLabel->setText(QString::number(emailNum));
+//    emailNumLabel = new QLabel();
+//    emailNumLabel->setFixedWidth(22);
+//    emailNumLabel->setText(QString::number(emailNum));
 
     this->sender = sender;
-    sendLabel = new QLabel();
-    sendLabel->setText(sender);
+//    sendLabel = new QLabel();
+//    sendLabel->setText(sender);
 
     this->receiver = receiver;
-    receiveLabel = new QLabel();
-    receiveLabel->setText(receiver);
+//    receiveLabel = new QLabel();
+//    receiveLabel->setText(receiver);
 
     this->header = header;
-    headerLabel = new QLabel();
-    headerLabel->setText(header);
+//    headerLabel = new QLabel();
+//    headerLabel->setText(header);
 
     this->date = date;
-    dateLabel = new QLabel();
-    dateLabel->setText(date);
-
+//    dateLabel = new QLabel();
+//    dateLabel->setText(date);
 
     //this->layout()->addWidget(sendLabel);
     //this->layout()->addWidget(receiveLabel);
 }
 
+void EmailHeaderFrame::makeLabels()
+{
+    emailNumLabel = new QLabel();
+    emailNumLabel->setFixedWidth(22);
+    emailNumLabel->setText(QString::number(emailNum));
+
+    sendLabel = new QLabel();
+    sendLabel->setText(sender);
+
+    receiveLabel = new QLabel();
+    receiveLabel->setText(receiver);
+
+    headerLabel = new QLabel();
+    headerLabel->setText(header);
+
+    dateLabel = new QLabel();
+    dateLabel->setText(date);
+}
+
+void clearLayout(QLayout* layout)
+{
+    QLayoutItem *item;
+    while((item = layout->takeAt(0))) {
+        if (item->layout()) {
+            clearLayout(item->layout());
+            delete item->layout();
+        }
+        if (item->widget()) {
+           delete item->widget();
+        }
+        delete item;
+    }
+}
+
 void EmailHeaderFrame::displaySender()
 {
+    clearLayout(this->layout());
+    makeLabels();
+
     // add filter buttons
     flag = new FlagButton();
-
     connect(flag, SIGNAL(clicked()), this, SLOT(toggleFlag()));
 
     this->layout()->addWidget(emailNumLabel);
@@ -108,6 +143,9 @@ void EmailHeaderFrame::displaySender()
 
 void EmailHeaderFrame::displayReceiver()
 {
+    clearLayout(this->layout());
+    makeLabels();
+
     // add filter buttons
     flag = new FlagButton();
     connect(flag, SIGNAL(clicked()), this, SLOT(toggleFlag()));

@@ -85,7 +85,7 @@ public:
     void createWindow();
     void getCanData(int start, int num);
 
-    void filterEmails(EmailFilter& filter);
+    void filterEmails(EmailFilter* filter);
 
 //    EmailHeaderFrame* frame;
 

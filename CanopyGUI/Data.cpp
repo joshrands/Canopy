@@ -27,9 +27,28 @@ EmailData::EmailData(QWidget *parent) : Data(parent)
 
 //EmailData::~EmailData()
 
-void EmailData::filterEmails(EmailFilter &filter)
+void EmailData::filterEmails(EmailFilter* filter)
 {
     qDebug() << "Filtering emails";
+
+    EmailContentWindow* win = ((EmailContentWindow*)this->window);
+
+    if (filter->showReceiver)
+    {
+        // show receiver
+        for (int i = 0; i < win->headerButtons.size(); i++)
+        {
+            win->headerButtons.at(i)->displayReceiver();
+        }
+    }
+    else if (filter->showSender)
+    {
+        // show sender
+        for (int i = 0; i < win->headerButtons.size(); i++)
+        {
+            win->headerButtons.at(i)->displaySender();
+        }
+    }
 }
 
 void EmailData::createWindow()
@@ -56,6 +75,12 @@ void EmailData::filterByReceiver()
 
     ((EmailContentWindow*)this->window)->sentButton->setDepressed();
     ((EmailContentWindow*)this->window)->receiveButton->setPressed();
+
+    EmailFilter filter;
+    filter.showReceiver = true;
+    filter.showSender = false;
+
+    this->filterEmails(&filter);
 }
 
 void EmailData::filterBySender()
@@ -64,6 +89,12 @@ void EmailData::filterBySender()
 
     ((EmailContentWindow*)this->window)->sentButton->setPressed();
     ((EmailContentWindow*)this->window)->receiveButton->setDepressed();
+
+    EmailFilter filter;
+    filter.showReceiver = false;
+    filter.showSender = true;
+
+    this->filterEmails(&filter);
 }
 
 void EmailData::nextPage()

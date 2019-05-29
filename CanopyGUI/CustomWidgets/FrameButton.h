@@ -66,6 +66,7 @@ public slots:
     void toggleFlag();
 
 protected:
+    void makeLabels();
     void onClick();
 
     QLabel* sendLabel;

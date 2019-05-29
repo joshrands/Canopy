@@ -67,9 +67,7 @@ void EmailHeaderFrame::setEmailData(int num, QString sender, QString receiver,
 
     this->emailNum = num + 1;
     emailNumLabel = new QLabel();
-    // set width
-    emailNumLabel->setFixedWidth(20);
-//    emailNumLabel->size().setWidth(20);
+    emailNumLabel->setFixedWidth(22);
     emailNumLabel->setText(QString::number(emailNum));
 
     this->sender = sender;

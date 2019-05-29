@@ -69,6 +69,12 @@ protected:
 
 /****** EMAIL DATA ******/
 
+struct EmailFilter
+{
+    bool showSender;
+    bool showReceiver;
+};
+
 class EmailData : public Data
 {
 Q_OBJECT
@@ -79,9 +85,17 @@ public:
     void createWindow();
     void getCanData(int start, int num);
 
+    void filterEmails(EmailFilter& filter);
+
+//    EmailHeaderFrame* frame;
+
 public slots:
     void nextPage();
     void prevPage();
+
+    // filter slots
+    void filterBySender();
+    void filterByReceiver();
 
 };
 

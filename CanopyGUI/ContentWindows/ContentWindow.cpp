@@ -72,20 +72,22 @@ EmailContentWindow::EmailContentWindow(QWidget* parent)
     ui->tabFrame->layout()->addWidget(inbox);
 
     // create Sent/Received filters
-    CanopyButton* sent = new CanopyButton();
-    sent->setText(QString("Sent"));
-    sent->setDepressed();
-    CanopyButton* recv = new CanopyButton();
-    recv->setText(QString("Received"));
-    recv->setPressed();
+    sentButton = new CanopyButton();
+    sentButton->setText(QString("Sent"));
+    sentButton->setDepressed();
+
+    receiveButton = new CanopyButton();
+    receiveButton->setText(QString("Received"));
+    receiveButton->setPressed();
 
     // TODO: Link buttons with filters
+
 
     QHBoxLayout* filterLayout = new QHBoxLayout();
     filterLayout->setAlignment(Qt::AlignRight);
     ui->filterFrame->setLayout(filterLayout);
-    ui->filterFrame->layout()->addWidget(sent);
-    ui->filterFrame->layout()->addWidget(recv);
+    ui->filterFrame->layout()->addWidget(sentButton);
+    ui->filterFrame->layout()->addWidget(receiveButton);
 
     // create next and back page buttons
     CanopyButton* prevPage = new CanopyButton();

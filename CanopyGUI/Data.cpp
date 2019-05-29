@@ -27,17 +27,43 @@ EmailData::EmailData(QWidget *parent) : Data(parent)
 
 //EmailData::~EmailData()
 
+void EmailData::filterEmails(EmailFilter &filter)
+{
+    qDebug() << "Filtering emails";
+}
+
 void EmailData::createWindow()
 {
     window = new EmailContentWindow();
+
+    qDebug() << "Email content window created";
 
     // catch page SIGNALS
 //    this->window->connect(this->window, SIGNAL(nextPageSignal()), this, SLOT(nextPage()));
     ((EmailContentWindow*)this->window)->connect(((EmailContentWindow*)this->window)->nextPageButton, SIGNAL(clicked(bool)), this, SLOT(nextPage()));
     ((EmailContentWindow*)this->window)->connect(((EmailContentWindow*)this->window)->prevPageButton, SIGNAL(clicked(bool)), this, SLOT(prevPage()));
 
+    ((EmailContentWindow*)this->window)->connect(((EmailContentWindow*)this->window)->sentButton, SIGNAL(clicked(bool)), this, SLOT(filterBySender()));
+    ((EmailContentWindow*)this->window)->connect(((EmailContentWindow*)this->window)->receiveButton, SIGNAL(clicked(bool)), this, SLOT(filterByReceiver()));
+
     window->initializeDir(this->sessionPath, this->dataName);
     window->parseDataFile(this->dataPath);
+}
+
+void EmailData::filterByReceiver()
+{
+    qDebug() << "Filtering emails by receiver";
+
+    ((EmailContentWindow*)this->window)->sentButton->setDepressed();
+    ((EmailContentWindow*)this->window)->receiveButton->setPressed();
+}
+
+void EmailData::filterBySender()
+{
+    qDebug() << "Filtering emails by sender";
+
+    ((EmailContentWindow*)this->window)->sentButton->setPressed();
+    ((EmailContentWindow*)this->window)->receiveButton->setDepressed();
 }
 
 void EmailData::nextPage()

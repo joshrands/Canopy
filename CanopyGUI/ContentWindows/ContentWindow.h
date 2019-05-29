@@ -96,6 +96,9 @@ public:
     CanopyButton* nextPageButton;
     CanopyButton* prevPageButton;
 
+    CanopyButton* sentButton;
+    CanopyButton* receiveButton;
+
 public slots:
     void displayContent(int id);
     void on_nextPage_clicked();
